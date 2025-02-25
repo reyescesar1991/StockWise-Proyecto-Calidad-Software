@@ -1,9 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+:root {
+    --titles-color: #2d3748;
+    --primary-button: #667eea;
+    --white-color: white;
+}
+
+
+.manage-user-container { //container de los elementos de la gestion de usuario y login
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+//Indicaciones para el usuario en el manejo de gestion de usuario
+
+.manage-user-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.manage-user-header h1 {
+    color: var(--titles-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.manage-user-header p {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+//
+
+// clases para el boton primario del manejo de gestion de usuario
+.btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-button);
+    color: var(--white-color);
+    margin-bottom: 1rem;
+}
+
+.btn-primary:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+}
+
+//
