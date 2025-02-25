@@ -1,0 +1,45 @@
+<div class="login-container">
+    <div class="login-header">
+        <h1>Sistema de Inventario</h1>
+        <p>Inicia sesión para continuar</p>
+    </div>
+    
+    <form [formGroup]="formLogin">
+        <div class="form-group">
+            <label for="username">Usuario</label>
+            <input type="text" 
+                   id="username" 
+                   formControlName="username"
+                   placeholder="Ingresa tu usuario" 
+                   required>
+            
+            <div *ngIf="formLogin.get('username')?.invalid && (formLogin.get('username')?.dirty || formLogin.get('username')?.touched)" class="error-message">
+                <div *ngIf="formLogin.get('username')?.errors as errors">
+                    <div *ngIf="errors['zodError']">{{ errors['zodError'].message }}</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" 
+                   id="password" 
+                   formControlName="password"
+                   placeholder="Ingresa tu contraseña" 
+                   required>
+            
+            <div *ngIf="formLogin.get('password')?.errors as errors">
+                <div *ngIf="errors['zodError']">{{ errors['zodError'].message }}</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="formLogin.invalid">Iniciar Sesión</button>
+
+        <div class="divider"></div>
+
+        <div class="recovery-options">
+            <a href="#" class="recovery-link">¿Olvidaste tu usuario?</a>
+            <a href="#" class="recovery-link">¿Olvidaste tu contraseña?</a>
+        </div>
+    </form>
+</div>

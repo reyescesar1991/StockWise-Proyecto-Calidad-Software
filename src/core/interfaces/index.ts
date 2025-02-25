@@ -1,0 +1,1 @@
+export { ILoginForm } from './loginForm.interface';
