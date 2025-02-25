@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { loginFormSchema } from '../../../core/form_Schemas';
-import { zodValidator } from '../../../core/zodValidator/zod.validator';
+import { loginFormSchema } from '../../../../../core/form_Schemas';
+import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { NgIf } from '@angular/common';
-import { ILoginForm } from '../../../core/interfaces';
+import { ILoginForm } from '../../../../../core/interfaces';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -34,5 +35,11 @@ export class LoginComponent {
       console.log('Username errors:', this.formLogin.get('username')?.errors);
       console.log('Password errors:', this.formLogin.get('password')?.errors);
     });
+  }
+
+  protected getValueForm(){
+
+    console.log(this.formLogin.getRawValue());
+    
   }
 }
