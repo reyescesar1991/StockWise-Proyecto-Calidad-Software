@@ -12,6 +12,10 @@ export const routes: Routes = [
             {
                 path: 'recuperar-clave',
                 loadComponent: () => import('./components/manage-user/components/recovery-password/recovery-password.component').then(mod => mod.RecoveryPasswordComponent),
+            },
+            {
+                path: 'recuperar-usuario',
+                loadComponent: () => import('./components/manage-user/components/recovery-user/recovery-user.component').then(mod => mod.RecoveryUserComponent),
             }
             
         ]

@@ -5,11 +5,12 @@ import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { NgIf } from '@angular/common';
 import { ILoginForm } from '../../../../../core/interfaces';
 import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
