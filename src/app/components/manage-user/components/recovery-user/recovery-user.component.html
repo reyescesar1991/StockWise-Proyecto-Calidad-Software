@@ -1,1 +1,57 @@
-<p>recovery-user works!</p>
+<div class="manage-user-container">
+    <div class="manage-user-header">
+        <h1>Gestión de Usuario</h1>
+        <p>Ingrese los datos para recuperar su usuario</p>
+    </div>
+
+    <form [formGroup]="recoveryUserForm">
+
+        <div class="form-group mb-1">
+            <label for="idUser">ID de usuario:</label>
+            <input type="text" name="idUser" id="idUser" formControlName="idUser" placeholder="Ingrese el id de usuario" required>
+            @if (this.recoveryUserForm.get('idUser')?.invalid && (this.recoveryUserForm.get('idUser')?.dirty || this.recoveryUserForm.get('idUser')?.touched)) {
+                <div *ngIf="this.recoveryUserForm.get('idUser')?.errors as errors">
+
+                    @if (errors['zodError']) {
+                        <app-label-type typeMessage="error">
+                            {{ errors['zodError'].message}}
+                        </app-label-type>
+                    }
+                </div>
+            }
+        </div>
+
+        @if (this.getButtonValidateUser()) {
+            <button type="submit" class="btn btn-primary" [disabled]="recoveryUserForm.invalid" (click)="validateUser()">Validar ID de usuario</button>
+        }
+
+        @if (this.getControlSecurityCode()) {
+            <div class="ng-trigger " [class.fade-in-animation]="securityCodeVisibility === 'visible'"  [class.fade-out-animation]="securityCodeVisibility === 'hidden'" [class.hidden-state]="securityCodeVisibility === 'hidden'">
+                <div class="form-group mb-1">
+                    <label for="securityCode">Código de Seguridad:</label>
+                    <input type="text" name="securityCode" id="securityCode" formControlName="securityCode" placeholder="Ingrese el código de seguridad" required>
+                    @if (this.recoveryUserForm.get('securityCode')?.invalid && (this.recoveryUserForm.get('securityCode')?.dirty || this.recoveryUserForm.get('securityCode')?.touched)) {
+        
+                        <div *ngIf="this.recoveryUserForm.get('securityCode')?.errors as errors">
+                            @if (errors['zodError']) {
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @if (this.getButtonSecurityCode()) {
+                <button type="submit" class="btn btn-primary" [disabled]="recoveryUserForm.invalid" (click)="validateSecurityCode()">Validar código de seguridad</button>
+            }
+        }
+
+        @if (this.getButtonRecoveryUser()) {
+            <button type="submit" class="btn btn-primary" [disabled]="recoveryUserForm.invalid" (click)="getValueForm()">Recuperar Contraseña</button>
+        }
+
+    </form>
+
+</div>
