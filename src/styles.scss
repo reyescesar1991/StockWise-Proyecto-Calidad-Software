@@ -13,15 +13,43 @@
     --white-color: white;
 }
 
+//Containers
 
-.manage-user-container { //container de los elementos de la gestion de usuario y login
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
+.container-two-fields{
+
+  display: flex;
+  justify-content: space-between;
 }
+
+.container-two-fields > div:first-child {
+  flex-basis: 45%;
+}
+
+.container-two-fields > div:last-child {
+  flex-basis: 55%;
+}
+
+
+
+@mixin manage-user-container-base-styles {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.manage-user-container { 
+  @include manage-user-container-base-styles;
+  max-width: 450px;
+}
+
+.manage--registry-user-container{
+  @include manage-user-container-base-styles;
+  max-width: 700px;
+}
+
+//
 
 //Indicaciones para el usuario en el manejo de gestion de usuario
 
@@ -71,7 +99,8 @@
 
 //estilos inputs
 
-.form-group input {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #e2e8f0;
@@ -80,11 +109,57 @@
     transition: border-color 0.3s ease;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus {
     outline: none;
     border-color: var(--primary-button);
 }
 //
+
+
+/* Estilos mejorados para select y options */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* Estilos para el dropdown nativo */
+select option {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background-color: var(--white-color);
+}
+
+/* Pseudo-elementos para simular estilos de opción */
+select option:hover, select option:focus {
+  background-color: var(--hover-color);
+  color: var(--titles-color);
+}
+
+select option:checked {
+  background-color: var(--selected-color);
+  color: var(--primary-button);
+  font-weight: 500;
+}
+
+/* Animación sutil al abrir el dropdown */
+select:focus {
+  animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(102, 126, 234, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+}
+
+///
 
 
 // animacion de movimientos

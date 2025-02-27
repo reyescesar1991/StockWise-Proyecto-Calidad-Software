@@ -1,0 +1,18 @@
+#headquarters {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#headquarters option {
+    transition: background-color 0.2s;
+}
+
+#headquarters option:first-child {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+#headquarters option:last-child {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}

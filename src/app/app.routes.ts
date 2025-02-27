@@ -16,6 +16,10 @@ export const routes: Routes = [
             {
                 path: 'recuperar-usuario',
                 loadComponent: () => import('./components/manage-user/components/recovery-user/recovery-user.component').then(mod => mod.RecoveryUserComponent),
+            },
+            {
+                path: 'registrar-usuario',
+                loadComponent: () => import('./components/manage-user/components/registry-user/registry-user.component').then(mod => mod.RegistryUserComponent),
             }
             
         ]

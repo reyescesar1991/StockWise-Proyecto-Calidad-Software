@@ -9,7 +9,7 @@ export const recoveryUserFormSchema = z.object({
     securityCode : z.string(),
 })
 
-export type recoveryUserFormSchema = z.infer<typeof recoveryUserFormSchema>;
+export type RecoveryUserFormSchema = z.infer<typeof recoveryUserFormSchema>;
 
 export type IdUser = z.infer<typeof recoveryUserFormSchema.shape.idUser>;
 export type securityCode = z.infer<typeof recoveryUserFormSchema.shape.securityCode>;
