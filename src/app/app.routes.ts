@@ -23,5 +23,9 @@ export const routes: Routes = [
             }
             
         ]
+    },
+    {
+        path: 'dashBoard',
+        loadComponent: () => import('./components/dash-board-user/dash-board-user.component').then(mod => mod.DashBoardUserComponent),
     }
 ];

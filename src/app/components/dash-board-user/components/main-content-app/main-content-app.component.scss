@@ -1,0 +1,22 @@
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    flex-grow: 1;
+    background-color: var(--content-bg);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    
+    .main-content {
+        flex-basis: auto;
+        flex-grow: 1;
+    }
+    
+}
