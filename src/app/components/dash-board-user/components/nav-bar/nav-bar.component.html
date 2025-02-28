@@ -1,30 +1,60 @@
-<div class="sidebar">
-    <div class="app-title">
-        <span class="app-icon"></span>
-        StockWise
+<div class="sidebar" id="sidebar">
+    <button class="nav-toggle" id="navToggle" (click)="toggleSidebar()">
+        <span class="icon dashboard-icon"></span>
+        Menú
+        <span class="icon chevron-down" id="menuArrow"></span>
+    </button>
+
+    <div class="sidebar-content" id="sidebarContent">
+        <div class="app-title">
+            <span class="app-icon"></span>
+            StockWise
+        </div>
+
+        <div class="nav-sections" id="navSections">
+            @for (nav of navigationConfig; track $index) {
+            <div class="nav">
+                <div class="nav-title">
+                    {{nav.title}}
+                </div>
+                <ul class="nav-items">
+                    @for (route of nav.routes; track $index) {
+                    <li class="nav-item">
+                        @if (route.subroutes && route.subroutes.length > 0) {
+                        <a href="#" class="nav-link" [class.active]="activeRouteId === route.id"
+                            [attr.data-route-id]="route.id" (click)="onNavLinkClick($event, route)">
+                            <span class="selection-style">
+                                <span class="icon" [class]="route.icon"></span>
+                                <span>{{ route.name }}</span>
+                            </span>
+                            <span class="icon chevron-down"></span>
+                        </a>
+                        <ul class="subroutes" *ngIf="route.subroutes && route.subroutes.length > 0">
+                            @for (subroute of route.subroutes; track $index) {
+                            <li class="subroute-item">
+                                <a [routerLink]="subroute.path" routerLinkActive="active"
+                                    [class.active]="activeRouteId === subroute.id" [attr.data-route-id]="subroute.id"
+                                    class="subroute-link" (click)="onSubrouteClick(subroute, route)">
+                                    {{ subroute.name }}
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                        } @else {
+                        <a [routerLink]="route.path" routerLinkActive="active"
+                            [class.active]="activeRouteId === route.id" [attr.data-route-id]="route.id" class="nav-link"
+                            (click)="onNavLinkClick($event, route)">
+                            <span>
+                                <span class="icon" [class]="route.icon"></span>
+                                <span>{{ route.name }}</span>
+                            </span>
+                        </a>
+                        }
+                    </li>
+                    }
+                </ul>
+            </div>
+            }
+        </div>
     </div>
-    
-    <nav class="nav">
-        <div class="nav-title">Principal</div>
-        <ul class="nav-items">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <span class="icon home-icon"></span>
-                    Inicio
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span class="icon dashboard-icon"></span>
-                    Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span class="icon settings-icon"></span>
-                    Configuración
-                </a>
-            </li>
-        </ul>
-    </nav>
 </div>
