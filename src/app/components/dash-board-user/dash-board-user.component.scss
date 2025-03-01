@@ -13,6 +13,17 @@
 }
 
 
+.hidden{
+
+    display: none;
+}
+
+.show{
+
+    display: block;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Output, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -11,6 +11,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavBarComponent {
 
+  @Output() hiddenContent = new EventEmitter<string>();
+  @Output() showContent = new EventEmitter<string>();
   // Objeto simulado que podría venir del backend
   protected navigationConfig = [
     {
@@ -178,6 +180,7 @@ toggleSidebar(): void {
       this.renderer.removeClass(menuArrow, 'open');
     } else {
       this.renderer.addClass(menuArrow, 'open');
+      this.sendDisplayHidden();
     }
 
     // Reemplazamos toggleClass por la lógica de addClass y removeClass para sidebar
@@ -185,9 +188,12 @@ toggleSidebar(): void {
       this.renderer.removeClass(sidebar, 'collapsed');
     } else {
       this.renderer.addClass(sidebar, 'collapsed');
+      this.sendDisplayShow();
     }
   }
 }
+
+
 
 toggleSubroutes(event: Event): void { /* ... your toggleSubroutes method ... */ }
 
@@ -295,5 +301,14 @@ onResize(event: any): void {
       this.renderer.addClass(sidebarContent, 'show');
     }
   }
+}
+
+sendDisplayHidden(): void {
+  this.hiddenContent.emit("hidden");
+}
+
+sendDisplayShow() : void{
+
+  this.showContent.emit("show");
 }
 }

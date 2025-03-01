@@ -44,7 +44,7 @@
                         <a [routerLink]="route.path" routerLinkActive="active"
                             [class.active]="activeRouteId === route.id" [attr.data-route-id]="route.id" class="nav-link"
                             (click)="onNavLinkClick($event, route)">
-                            <span>
+                            <span class="selection-style">
                                 <span class="icon" [class]="route.icon"></span>
                                 <span>{{ route.name }}</span>
                             </span>

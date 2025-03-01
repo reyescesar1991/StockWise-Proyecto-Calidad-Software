@@ -12,4 +12,20 @@ import { CommonModule } from '@angular/common';
 })
 export class DashBoardUserComponent {
 
+  displayHidden: string = '';
+
+
+  catchDisplayHidden(display: string): void {
+    // Este método se ejecuta cuando el hijo emite el evento 'mensajeAlPadre'
+    // El parámetro 'mensaje' contiene la información enviada por el hijo.
+    this.displayHidden = display;
+    console.log("Mensaje recibido del hijo:", display);
+  }
+
+  catchDisplayShow(display: string): void{
+
+    this.displayHidden = display;
+    console.log("Mensaje recibido del hijo" , display);
+    
+  }
 }
