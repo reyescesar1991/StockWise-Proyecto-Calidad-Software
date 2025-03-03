@@ -1,0 +1,374 @@
+<div class="report-container scroll-y">
+    <div class="report-header">
+        <h1>Reporte de Stock Actual</h1>
+        <p>Visualización detallada del inventario actual con filtros y estadísticas</p>
+    </div>
+
+    <div class="filters-container">
+        <div class="filters-form">
+            <div class="form-field">
+                <label for="categoryFilter">Filtrar por Categoría</label>
+                <select id="categoryFilter">
+                    <option value="">Todas las categorías</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="verduras">Verduras</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="carnes">Carnes</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="congelados">Congelados</option>
+                    <option value="enlatados">Enlatados</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="stockStatus">Estado de Stock</label>
+                <select id="stockStatus">
+                    <option value="">Todos los estados</option>
+                    <option value="normal">Normal</option>
+                    <option value="low">Bajo</option>
+                    <option value="critical">Crítico</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="searchProduct">Buscar Producto</label>
+                <input type="text" id="searchProduct" placeholder="Nombre o código de producto">
+            </div>
+            <button class="btn-app btn-app-primary">Aplicar Filtros</button>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Total de Productos</h3>
+                <div class="stat-card-icon inventory">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card-value">358</div>
+            <div class="stat-card-label">Productos en inventario</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Productos con Stock Bajo</h3>
+                <div class="stat-card-icon alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 8v4M12 16h.01"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card-value">24</div>
+            <div class="stat-card-label">Requieren reabastecimiento</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Categorías Activas</h3>
+                <div class="stat-card-icon category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card-value">10</div>
+            <div class="stat-card-label">Categorías con productos</div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-header">
+            <h2>Distribución de Stock por Categoría</h2>
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #667eea;"></div>
+                    <span>Stock Actual</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e53e3e;"></div>
+                    <span>Stock Mínimo</span>
+                </div>
+            </div>
+        </div>
+        <div class="chart-tabs">
+            <div class="chart-tab active">Gráfico de Barras</div>
+            <div class="chart-tab">Gráfico Circular</div>
+        </div>
+        <div class="chart-canvas">
+            <svg width="100%" height="100%" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ejes X e Y -->
+                <line x1="50" y1="250" x2="750" y2="250" stroke="#e2e8f0" stroke-width="2" />
+                <line x1="50" y1="250" x2="50" y2="50" stroke="#e2e8f0" stroke-width="2" />
+                
+                <!-- Etiquetas del eje X -->
+                <text x="100" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Frutas</text>
+                <text x="170" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Verduras</text>
+                <text x="240" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Lácteos</text>
+                <text x="310" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Carnes</text>
+                <text x="380" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Panadería</text>
+                <text x="450" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Bebidas</text>
+                <text x="520" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Congelados</text>
+                <text x="590" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Enlatados</text>
+                <text x="660" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Limpieza</text>
+                <text x="730" y="270" text-anchor="middle" font-size="12" fill="#4a5568">Otros</text>
+                
+                <!-- Etiquetas del eje Y -->
+                <text x="40" y="250" text-anchor="end" font-size="12" fill="#4a5568">0</text>
+                <text x="40" y="210" text-anchor="end" font-size="12" fill="#4a5568">25</text>
+                <text x="40" y="170" text-anchor="end" font-size="12" fill="#4a5568">50</text>
+                <text x="40" y="130" text-anchor="end" font-size="12" fill="#4a5568">75</text>
+                <text x="40" y="90" text-anchor="end" font-size="12" fill="#4a5568">100</text>
+                <text x="40" y="50" text-anchor="end" font-size="12" fill="#4a5568">125</text>
+                
+                <!-- Líneas de cuadrícula -->
+                <line x1="50" y1="210" x2="750" y2="210" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5" />
+                <line x1="50" y1="170" x2="750" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5" />
+                <line x1="50" y1="130" x2="750" y2="130" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5" />
+                <line x1="50" y1="90" x2="750" y2="90" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5" />
+                <line x1="50" y1="50" x2="750" y2="50" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="5,5" />
+                
+                <!-- Barras de datos - Stock Actual -->
+                <rect x="80" y="120" width="30" height="130" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="150" y="150" width="30" height="100" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="220" y="80" width="30" height="170" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="290" y="130" width="30" height="120" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="360" y="170" width="30" height="80" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="430" y="100" width="30" height="150" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="500" y="190" width="30" height="60" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="570" y="160" width="30" height="90" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="640" y="180" width="30" height="70" fill="#667eea" opacity="0.8" rx="3" />
+                <rect x="710" y="200" width="30" height="50" fill="#667eea" opacity="0.8" rx="3" />
+                
+                <!-- Marcadores de stock mínimo -->
+                <line x1="80" y1="200" x2="110" y2="200" stroke="#e53e3e" stroke-width="2" />
+                <line x1="150" y1="220" x2="180" y2="220" stroke="#e53e3e" stroke-width="2" />
+                <line x1="220" y1="190" x2="250" y2="190" stroke="#e53e3e" stroke-width="2" />
+                <line x1="290" y1="200" x2="320" y2="200" stroke="#e53e3e" stroke-width="2" />
+                <line x1="360" y1="210" x2="390" y2="210" stroke="#e53e3e" stroke-width="2" />
+                <line x1="430" y1="190" x2="460" y2="190" stroke="#e53e3e" stroke-width="2" />
+                <line x1="500" y1="220" x2="530" y2="220" stroke="#e53e3e" stroke-width="2" />
+                <line x1="570" y1="210" x2="600" y2="210" stroke="#e53e3e" stroke-width="2" />
+                <line x1="640" y1="220" x2="670" y2="220" stroke="#e53e3e" stroke-width="2" />
+                <line x1="710" y1="230" x2="740" y2="230" stroke="#e53e3e" stroke-width="2" />
+                
+                <!-- Título del gráfico -->
+                <text x="400" y="30" text-anchor="middle" font-size="16" fill="#2d3748" font-weight="bold">Distribución de Stock por Categoría</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2>Listado de Productos en Inventario</h2>
+        </div>
+        <table class="stock-table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock Actual</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>P001</td>
+                    <td>Manzanas Orgánicas Fuji</td>
+                    <td>Frutas</td>
+                    <td>$1.99</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 85%; background-color: var(--success-color);"></div>
+                        </div>
+                        <span>85 kg</span>
+                    </td>
+                    <td><span class="stock-status stock-normal">Normal</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>P002</td>
+                    <td>Leche Entera 1L</td>
+                    <td>Lácteos</td>
+                    <td>$2.50</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 120%; background-color: var(--success-color);"></div>
+                        </div>
+                        <span>120 unidades</span>
+                    </td>
+                    <td><span class="stock-status stock-normal">Normal</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>P003</td>
+                    <td>Pechuga de Pollo 1kg</td>
+                    <td>Carnes</td>
+                    <td>$5.99</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 32%; background-color: var(--warning-color);"></div>
+                        </div>
+                        <span>32 kg</span>
+                    </td>
+                    <td><span class="stock-status stock-low">Bajo</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>P004</td>
+                    <td>Pan Integral 700g</td>
+                    <td>Panadería</td>
+                    <td>$3.25</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 15%; background-color: var(--error-color);"></div>
+                        </div>
+                        <span>15 unidades</span>
+                    </td>
+                    <td><span class="stock-status stock-critical">Crítico</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>P005</td>
+                    <td>Coca-Cola 2L</td>
+                    <td>Bebidas</td>
+                    <td>$2.99</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 78%; background-color: var(--success-color);"></div>
+                        </div>
+                        <span>78 unidades</span>
+                    </td>
+                    <td><span class="stock-status stock-normal">Normal</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>P006</td>
+                    <td>Atún en Lata 170g</td>
+                    <td>Enlatados</td>
+                    <td>$1.75</td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-value" style="width: 45%; background-color: var(--warning-color);"></div>
+                        </div>
+                        <span>45 unidades</span>
+                    </td>
+                    <td><span class="stock-status stock-low">Bajo</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon view">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <div class="pagination-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"></path>
+                </svg>
+            </div>
+            <div class="pagination-item active">1</div>
+            <div class="pagination-item">2</div>
+            <div class="pagination-item">3</div>
+            <div class="pagination-item">4</div>
+            <div class="pagination-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l6-6-6-6"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="notice">
+        Los productos con stock bajo o crítico requieren atención. Considere programar una reposición para mantener niveles óptimos de inventario.
+    </div>
+</div>

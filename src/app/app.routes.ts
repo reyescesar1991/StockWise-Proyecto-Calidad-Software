@@ -74,6 +74,17 @@ export const routes: Routes = [
                         loadComponent: () => import('./components/stock/components/search-product/search-product.component').then(mod => mod.SearchProductComponent),
                     }
                 ]
+            },
+            {
+                path: 'reportes',
+                loadComponent: () => import('./components/reports/reports.component').then(mod => mod.ReportsComponent),
+                children: [
+
+                    {
+                        path: 'reporte-general',
+                        loadComponent: () => import('./components/reports/components/general-status/general-status.component').then(mod => mod.GeneralStatusComponent),
+                    }
+                ]
             }
         ]
     }

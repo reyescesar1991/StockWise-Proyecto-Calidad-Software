@@ -4,21 +4,43 @@
         <p>Complete los campos para añadir un nuevo producto al inventario</p>
     </div>
 
-    <form>
+    <form [formGroup]="registryProductForm">
         <div class="form-grid">
+
             <div class="form-field full-width">
                 <label for="productName" class="required">Nombre del Producto</label>
-                <input type="text" id="productName" placeholder="Ej: Manzanas Orgánicas Fuji" required>
+                <input type="text" id="productName" placeholder="Ej: Manzanas Orgánicas Fuji" formControlName="name" required>
+                @if (this.registryProductForm.get('name')?.invalid && (this.registryProductForm.get('name')?.dirty || this.registryProductForm.get('name')?.touched)) {
+                    <div *ngIf="this.registryProductForm.get('name')?.errors as errors">
+
+                        @if (errors['zodError']) {
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
+
 
             <div class="form-field full-width">
                 <label for="description" class="required">Descripción</label>
-                <textarea id="description" placeholder="Ej: Manzanas crujientes y dulces, cultivadas localmente sin pesticidas" required></textarea>
+                <textarea id="description" placeholder="Ej: Manzanas crujientes y dulces, cultivadas localmente sin pesticidas" formControlName="description" required></textarea>
+                @if (this.registryProductForm.get('description')?.invalid && (this.registryProductForm.get('description')?.dirty || this.registryProductForm.get('description')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('description')?.errors as errors">
+                        @if (errors['zodError']) {
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="category" class="required">Categoría</label>
-                <select id="category" required>
+                <select id="category" formControlName="category" required>
                     <option value="" disabled selected>Seleccione una categoría</option>
                     <option value="frutas">Frutas</option>
                     <option value="verduras">Verduras</option>
@@ -31,11 +53,23 @@
                     <option value="limpieza">Limpieza</option>
                     <option value="otros">Otros</option>
                 </select>
+                @if (this.registryProductForm.get('category')?.invalid && (this.registryProductForm.get('category')?.dirty || this.registryProductForm.get('category')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('category')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="unit" class="required">Unidad de Medida</label>
-                <select id="unit" required>
+                <select id="unit" formControlName="unit" required>
                     <option value="" disabled selected>Seleccione una unidad</option>
                     <option value="kilo">Kilo</option>
                     <option value="gramo">Gramo</option>
@@ -46,34 +80,91 @@
                     <option value="caja">Caja</option>
                     <option value="paquete">Paquete</option>
                 </select>
+                @if (this.registryProductForm.get('unit')?.invalid && (this.registryProductForm.get('unit')?.dirty || this.registryProductForm.get('unit')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('unit')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="sellingPrice" class="required">Precio de Venta</label>
                 <div class="input-group">
                     <span class="input-group-prefix">$</span>
-                    <input type="number" id="sellingPrice" placeholder="0.00" step="0.01" min="0" required>
+                    <input type="number" id="sellingPrice" formControlName="sellingPrice" placeholder="0.00" step="0.01" min="0" required>
                 </div>
+                @if (this.registryProductForm.get('sellingPrice')?.invalid && (this.registryProductForm.get('sellingPrice')?.dirty || this.registryProductForm.get('sellingPrice')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('sellingPrice')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="costPrice">Precio de Costo</label>
                 <div class="input-group">
                     <span class="input-group-prefix">$</span>
-                    <input type="number" id="costPrice" placeholder="0.00" step="0.01" min="0">
+                    <input type="number" id="costPrice" formControlName="costPrice" placeholder="0.00" step="0.01" min="0">
                 </div>
-                <div class="help-text">Opcional, útil para cálculos de rentabilidad</div>
+                @if (this.registryProductForm.get('costPrice')?.invalid && (this.registryProductForm.get('costPrice')?.dirty || this.registryProductForm.get('costPrice')?.touched)) {
+                    <div *ngIf="this.registryProductForm.get('costPrice')?.errors as errors">
+                        @if (errors['zodError']) {
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
+                @else {
+                    <div class="help-text">Opcional, útil para cálculos de rentabilidad</div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="initialStock" class="required">Stock Inicial</label>
-                <input type="number" id="initialStock" placeholder="Ej: 50" min="0" required>
+                <input type="number" formControlName="initialStock" id="initialStock" placeholder="Ej: 50" min="0" required>
+                @if (this.registryProductForm.get('initialStock')?.invalid && (this.registryProductForm.get('initialStock')?.dirty || this.registryProductForm.get('initialStock')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('initialStock')?.errors as errors">
+                        @if (errors['zodError']) {
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="minStock">Stock Mínimo</label>
-                <input type="number" id="minStock" placeholder="Ej: 10" min="0">
-                <div class="help-text">Para alertas de reabastecimiento</div>
+                <input type="number" id="minStock" formControlName="minStock" placeholder="Ej: 10" min="0">
+                @if (this.registryProductForm.get('minStock')?.invalid && (this.registryProductForm.get('minStock')?.dirty || this.registryProductForm.get('minStock')?.touched)) {
+
+                    <div *ngIf="this.registryProductForm.get('minStock')?.errors as errors">
+                        @if (errors['zodError']) {
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
+                @else {
+                    <div class="help-text">Para alertas de reabastecimiento</div>
+                }
             </div>
 
             <div class="form-field full-width">
