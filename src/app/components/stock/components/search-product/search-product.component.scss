@@ -1,0 +1,308 @@
+.stock-view-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+.search-section {
+    margin-bottom: 2rem;
+}
+
+.search-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-input-group input {
+    flex: 1;
+}
+
+.search-button {
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    font-size: 1.2rem;
+}
+
+.quick-scan {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.scan-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--light-gray);
+    border: 1px dashed var(--border-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.scan-button:hover {
+    background-color: rgba(102, 126, 234, 0.1);
+    border-color: var(--primary-button);
+}
+
+.scan-icon {
+    font-size: 1.25rem;
+}
+
+/* Área de resultados */
+.product-result-area {
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Estado vacío - animación pulsante */
+.empty-state {
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+/* Animación de pulso */
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+.empty-state h2 {
+    color: var(--titles-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Detalles del producto */
+.product-details {
+    width: 100%;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.product-title-section h2 {
+    color: var(--titles-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.product-code {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.category-badge {
+    background-color: var(--primary-button);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Tarjeta de stock */
+.stock-card {
+    background-color: var(--white-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Indicador de stock - con animación */
+.stock-indicator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 1.5rem;
+    margin-right: 1.5rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.stock-indicator-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-button) 0%, var(--primary-button) 70%, var(--light-gray) 70%, var(--light-gray) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fillAnimation 1.5s ease-out forwards;
+}
+
+@keyframes fillAnimation {
+    0% {
+        background: conic-gradient(var(--primary-button) 0%, var(--primary-button) 0%, var(--light-gray) 0%, var(--light-gray) 100%);
+    }
+    100% {
+        background: conic-gradient(var(--primary-button) 0%, var(--primary-button) 70%, var(--light-gray) 70%, var(--light-gray) 100%);
+    }
+}
+
+.stock-indicator-circle {
+    width: 100px;
+    height: 100px;
+    background-color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stock-indicator-circle span {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--titles-color);
+}
+
+.stock-indicator-circle small {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+/* Detalles del stock */
+.stock-details {
+    flex: 1;
+}
+
+.stock-detail-row {
+    display: flex;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stock-detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    flex: 1;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.detail-value {
+    flex: 2;
+    color: var(--titles-color);
+}
+
+.stock-status {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-good {
+    background-color: var(--success-color);
+}
+
+.status-warning {
+    background-color: var(--warning-color);
+}
+
+.status-critical {
+    background-color: var(--error-color);
+}
+
+/* Botones de acción */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.notice {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: #ebf8ff;
+    border-left: 4px solid var(--info-color);
+}
+
+
+@media (max-width: 768px) {
+    .stock-view-container {
+        padding: 1.5rem;
+    }
+    
+    .stock-card {
+        flex-direction: column;
+    }
+    
+    .stock-indicator-container {
+        padding-right: 0;
+        margin-right: 0;
+        border-right: none;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

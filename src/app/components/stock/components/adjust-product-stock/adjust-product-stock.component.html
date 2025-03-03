@@ -1,0 +1,95 @@
+<div class="stock-adjustment-container scroll-y">
+    <div class="form-header-content">
+        <h1>Ajuste de Stock Manual</h1>
+        <p>Complete los campos para realizar ajustes manuales al inventario cuando encuentre discrepancias</p>
+    </div>
+
+    <form>
+        <div class="form-grid">
+            <div class="form-field full-width">
+                <label for="product" class="required">Producto</label>
+                <select id="product" required>
+                    <option value="" disabled selected>Buscar y seleccionar producto</option>
+                    <option value="1">Manzanas Orgánicas Fuji</option>
+                    <option value="2">Leche Entera 1L</option>
+                    <option value="3">Pan Integral 500g</option>
+                    <option value="4">Arroz Blanco 1kg</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="currentStock" class="required">Stock en Sistema</label>
+                <input type="number" id="currentStock" readonly value="0" disabled>
+                <div class="help-text">Stock registrado actualmente</div>
+            </div>
+
+            <div class="form-field">
+                <label for="actualStock" class="required">Stock Real</label>
+                <input type="number" id="actualStock" placeholder="Ingrese el stock real" min="0" required>
+                <div class="help-text">Stock verificado físicamente</div>
+            </div>
+
+            <div class="form-field">
+                <label for="adjustmentType" class="required">Tipo de Ajuste</label>
+                <select id="adjustmentType" required disabled>
+                    <option value="" disabled selected>Se calculará automáticamente</option>
+                    <option value="increment">Incremento</option>
+                    <option value="decrement">Reducción</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="adjustmentQuantity" class="required">Cantidad de Ajuste</label>
+                <input type="number" id="adjustmentQuantity" readonly value="0" disabled>
+                <div class="help-text">Se calcula automáticamente</div>
+            </div>
+
+            <div class="form-field full-width">
+                <label for="adjustmentReason" class="required">Motivo del Ajuste</label>
+                <select id="adjustmentReason" required>
+                    <option value="" disabled selected>Seleccione un motivo</option>
+                    <option value="inventario">Recuento de Inventario</option>
+                    <option value="error">Error de Registro Previo</option>
+                    <option value="perdida">Pérdida Detectada</option>
+                    <option value="hallazgo">Producto Encontrado</option>
+                    <option value="devolucion">Devolución de Cliente</option>
+                    <option value="otro">Otro Motivo</option>
+                </select>
+            </div>
+
+            <div class="form-field full-width">
+                <label for="adjustmentDetails" class="required">Detalles del Ajuste</label>
+                <textarea id="adjustmentDetails" placeholder="Describa en detalle la razón del ajuste, cuándo y cómo se detectó la discrepancia, y cualquier acción adicional tomada" required></textarea>
+            </div>
+
+            <div class="form-field">
+                <label for="date" class="required">Fecha del Ajuste</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <div class="form-field">
+                <label for="adjustedBy" class="required">Ajustado por</label>
+                <input type="text" id="adjustedBy" placeholder="Nombre del responsable" required>
+            </div>
+
+            <div class="form-field full-width">
+                <label for="evidenceUpload">Evidencia del Ajuste</label>
+                <div class="image-upload" onclick="document.getElementById('evidenceUpload').click()">
+                    <div class="image-icon"></div>
+                    <p>Arrastre documentos o fotos aquí o <span>haga clic para seleccionar</span></p>
+                    <p>Fotografías del recuento, documentos de respaldo, etc.</p>
+                </div>
+                <input type="file" id="evidenceUpload" accept="image/*,.pdf,.xlsx,.docx" multiple style="display: none;">
+            </div>
+
+            <div class="form-buttons full-width">
+                <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
+                <button type="submit" class="btn-app btn-app-primary">Registrar Ajuste</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="notice">
+        <strong>Importante:</strong> Los ajustes de inventario quedan registrados en el historial del sistema para auditoría y seguimiento. Asegúrese de proporcionar detalles claros y precisos sobre la razón del ajuste.
+    </div>
+</div>

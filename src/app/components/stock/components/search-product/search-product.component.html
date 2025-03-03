@@ -1,0 +1,89 @@
+<div class="stock-view-container scroll-y">
+    <div class="form-header-content">
+        <h1>Consulta de Stock</h1>
+        <p>Busque y visualice rápidamente el stock disponible de cualquier producto</p>
+    </div>
+
+    <div class="search-section">
+        <div class="form-field full-width">
+            <label for="productSearch" class="required">Buscar Producto</label>
+            <div class="search-input-group">
+                <input type="text" id="productSearch" placeholder="Ingrese código o nombre del producto" required>
+                <button type="button" class="search-button btn-app btn-app-primary">
+                    <span class="search-icon">🔍</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="product-result-area" id="productResultArea">
+        <!-- Sección inicial oculta, se muestra después de buscar -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon pulse-animation">📦</div>
+            <h2>Sin resultados</h2>
+            <p>Busque un producto para ver su información de stock</p>
+        </div>
+
+        <!-- Sección que se muestra cuando hay resultados -->
+        <div class="product-details" id="productDetails">
+            <div class="product-header">
+                <div class="product-title-section">
+                    <h2 id="productName">Nombre del Producto</h2>
+                    <span class="product-code" id="productCode">SKU: PRD-12345</span>
+                </div>
+                <div class="category-badge" id="productCategory">Categoría</div>
+            </div>
+
+            <div class="stock-card">
+                <div class="stock-indicator-container">
+                    <div class="stock-indicator-ring">
+                        <div class="stock-indicator-circle">
+                            <span id="stockQuantity">42</span>
+                            <small>unidades</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="stock-details">
+                    <div class="stock-detail-row">
+                        <div class="detail-label">Stock Mínimo:</div>
+                        <div class="detail-value" id="minStock">10 unidades</div>
+                    </div>
+                    <div class="stock-detail-row">
+                        <div class="detail-label">Stock Óptimo:</div>
+                        <div class="detail-value" id="optimalStock">50 unidades</div>
+                    </div>
+                    <div class="stock-detail-row">
+                        <div class="detail-label">Ubicación:</div>
+                        <div class="detail-value" id="location">Bodega Central - Estante A3</div>
+                    </div>
+                    <div class="stock-detail-row">
+                        <div class="detail-label">Última Actualización:</div>
+                        <div class="detail-value" id="lastUpdated">02/03/2025 - 15:30</div>
+                    </div>
+                    <div class="stock-status" id="stockStatus">
+                        <!-- El estado se define dinámicamente -->
+                        <span class="status-indicator status-good"></span>
+                        <span class="status-text">Stock Adecuado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-app btn-app-secondary">
+                    <span>Historial</span>
+                </button>
+                <button class="btn-app btn-app-secondary">
+                    <span>Ajustar Stock</span>
+                </button>
+                <button class="btn-app btn-app-primary">
+                    <span>Ver Detalles Completos</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notice" id="stockTip">
+        <strong>Tip:</strong> Para ver un historial detallado de movimientos, haga clic en el botón "Historial" después de encontrar un producto.
+    </div>
+</div>

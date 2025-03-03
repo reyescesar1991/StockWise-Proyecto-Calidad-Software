@@ -60,6 +60,18 @@ export const routes: Routes = [
                     {
                         path: 'agregar-inventario',
                         loadComponent: () => import('./components/stock/components/add-stock/add-stock.component').then(mod => mod.AddStockComponent),
+                    },
+                    {
+                        path: 'registrar-venta',
+                        loadComponent: () => import('./components/stock/components/record-inventory-output/record-inventory-output.component').then(mod => mod.RecordInventoryOutputComponent),
+                    },
+                    {
+                        path: 'ajustar-producto',
+                        loadComponent: () => import('./components/stock/components/adjust-product-stock/adjust-product-stock.component').then(mod => mod.AdjustProductStockComponent),
+                    },
+                    {
+                        path: 'buscar-producto',
+                        loadComponent: () => import('./components/stock/components/search-product/search-product.component').then(mod => mod.SearchProductComponent),
                     }
                 ]
             }
