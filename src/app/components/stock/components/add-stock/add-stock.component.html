@@ -1,0 +1,92 @@
+<div class="stock-entry-container scroll-y">
+    <div class="form-header-content">
+        <h1>Registrar Entrada de Stock</h1>
+        <p>Complete los campos para registrar la recepción de productos de sus proveedores</p>
+    </div>
+
+    <form>
+        <div class="form-grid mt-1">
+            <div class="form-field full-width">
+                <label for="productSelect" class="required">Producto</label>
+                <div class="product-select-container">
+                    <select id="productSelect" required>
+                        <option value="" disabled selected>Seleccione un producto</option>
+                        <option value="1">Manzanas Orgánicas Fuji - Frutas</option>
+                        <option value="2">Leche Entera - Lácteos</option>
+                        <option value="3">Pan Integral - Panadería</option>
+                        <option value="4">Tomates Orgánicos - Verduras</option>
+                        <option value="5">Agua Mineral - Bebidas</option>
+                    </select>
+                    <button type="button" class="btn-search-product"></button>
+                </div>
+                <div class="help-text">Si no encuentra el producto, utilice el botón de búsqueda</div>
+            </div>
+
+            <div class="form-field">
+                <label for="currentStock" class="info-label">Stock Actual</label>
+                <div class="info-value" id="currentStock">45 Kilos</div>
+            </div>
+
+            <div class="form-field">
+                <label for="quantityReceived" class="required">Cantidad Recibida</label>
+                <div class="quantity-input">
+                    <input type="number" id="quantityReceived" min="1" placeholder="Ej: 10" required>
+                    <span class="unit-display">Kilos</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="receptionDate" class="required">Fecha de Recepción</label>
+                <input type="date" id="receptionDate" required>
+            </div>
+
+            <div class="form-field">
+                <label for="supplier" class="required">Proveedor</label>
+                <select id="supplier" required>
+                    <option value="" disabled selected>Seleccione un proveedor</option>
+                    <option value="1">Distribuidora Frutas del Valle</option>
+                    <option value="2">Lácteos Naturales S.A.</option>
+                    <option value="3">Panadería Industrial El Molino</option>
+                    <option value="4">Hortalizas Frescas Ltd.</option>
+                    <option value="5">Embotelladoras Unidas</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="batchNumber">Número de Lote</label>
+                <input type="text" id="batchNumber" placeholder="Ej: LOT-2025-001">
+                <div class="help-text">Útil para trazabilidad en productos perecederos</div>
+            </div>
+
+            <div class="form-field full-width">
+                <label for="notes">Notas Adicionales</label>
+                <textarea id="notes" placeholder="Información adicional sobre este ingreso de stock..."></textarea>
+            </div>
+
+            <div class="stock-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Stock Actual:</span>
+                    <span class="summary-value">45 Kilos</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Cantidad a Añadir:</span>
+                    <span class="summary-value">10 Kilos</span>
+                </div>
+                <div class="summary-item result">
+                    <span class="summary-label">Stock Resultante:</span>
+                    <span class="summary-value">55 Kilos</span>
+                </div>
+            </div>
+
+            <div class="form-buttons mt-1">
+                <button type="button" class="btn-app btn-app-secondary me-1">Cancelar</button>
+                <button type="submit" class="btn-app btn-app-primary">Registrar Entrada</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="notice">
+        <p>Los campos marcados con * son obligatorios. El registro de entrada de stock actualizará automáticamente el inventario disponible.</p>
+        <p>Para productos perecederos, se recomienda ingresar el número de lote para facilitar la trazabilidad en caso de problemas de calidad.</p>
+    </div>
+</div>

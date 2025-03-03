@@ -1,0 +1,156 @@
+<div class="product-form-container scroll-y">
+    <div class="form-header">
+        <div class="form-header-content">
+            <h1>Modificar Producto</h1>
+            <p>Actualice la información del producto seleccionado</p>
+        </div>
+        <div class="product-badge">
+            ID: PRD-2023-001
+            <span class="status-badge status-active">Activo</span>
+        </div>
+    </div>
+
+    <form>
+        <div class="form-section">
+            <h2 class="form-section-title">Información básica</h2>
+            <div class="form-grid">
+                <div class="form-field full-width">
+                    <label for="productName" class="required">Nombre del Producto</label>
+                    <input type="text" id="productName" value="Manzanas Orgánicas Fuji" required>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="description" class="required">Descripción</label>
+                    <textarea id="description" required>Manzanas crujientes y dulces, cultivadas localmente sin pesticidas. Perfectas para consumo directo o para preparar postres y ensaladas.</textarea>
+                </div>
+
+                <div class="form-field">
+                    <label for="category" class="required">Categoría</label>
+                    <select id="category" required>
+                        <option value="frutas" selected>Frutas</option>
+                        <option value="verduras">Verduras</option>
+                        <option value="lacteos">Lácteos</option>
+                        <option value="carnes">Carnes</option>
+                        <option value="panaderia">Panadería</option>
+                        <option value="bebidas">Bebidas</option>
+                        <option value="congelados">Congelados</option>
+                        <option value="enlatados">Enlatados</option>
+                        <option value="limpieza">Limpieza</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="productCode">Código de Producto</label>
+                    <input type="text" id="productCode" value="FRUT-001" class="readonly-field" readonly>
+                    <div class="help-text">El código de producto no se puede modificar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 class="form-section-title">Precios y Medidas</h2>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="sellingPrice" class="required">Precio de Venta</label>
+                    <div class="input-group">
+                        <span class="input-group-prefix">$</span>
+                        <input type="number" id="sellingPrice" value="2.50" step="0.01" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="costPrice">Precio de Costo</label>
+                    <div class="input-group">
+                        <span class="input-group-prefix">$</span>
+                        <input type="number" id="costPrice" value="1.75" step="0.01" min="0">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="unit" class="required">Unidad de Medida</label>
+                    <select id="unit" required>
+                        <option value="kilo" selected>Kilo</option>
+                        <option value="gramo">Gramo</option>
+                        <option value="litro">Litro</option>
+                        <option value="mililitro">Mililitro</option>
+                        <option value="unidad">Unidad</option>
+                        <option value="docena">Docena</option>
+                        <option value="caja">Caja</option>
+                        <option value="paquete">Paquete</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="minStock">Stock Mínimo</label>
+                    <input type="number" id="minStock" value="10" min="0">
+                    <div class="help-text">Para alertas de reabastecimiento</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 class="form-section-title">Imágenes</h2>
+            <div class="form-grid">
+                <div class="form-field full-width">
+                    <label>Imágenes actuales</label>
+                    <div class="image-gallery">
+                        <div class="image-item">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='100' cy='75' r='40' fill='%23e5e7eb'/%3E%3Cpath d='M85 60 A15 15 0 0 1 115 60 A45 45 0 0 1 125 105 A15 15 0 0 1 75 105 A45 45 0 0 1 85 60z' fill='%23d1d5db'/%3E%3C/svg%3E" alt="Manzana Fuji 1">
+                            <button type="button" class="remove-image">✕</button>
+                        </div>
+                        <div class="image-item">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='70' cy='75' r='30' fill='%23e5e7eb'/%3E%3Ccircle cx='130' cy='75' r='30' fill='%23d1d5db'/%3E%3C/svg%3E" alt="Manzana Fuji 2">
+                            <button type="button" class="remove-image">✕</button>
+                        </div>
+                    </div>
+                    
+                    <div class="image-upload" onclick="document.getElementById('productImage').click()">
+                        <div class="image-icon"></div>
+                        <p>Arrastre nuevas imágenes aquí o <span>haga clic para seleccionar</span></p>
+                        <p>Formatos aceptados: JPG, PNG, GIF (máx 5MB)</p>
+                    </div>
+                    <input type="file" id="productImage" accept="image/*" multiple style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 class="form-section-title">Estado del Producto</h2>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="productStatus" class="required">Estado</label>
+                    <select id="productStatus" required>
+                        <option value="active" selected>Activo</option>
+                        <option value="inactive">Inactivo</option>
+                    </select>
+                </div>
+                
+                <div class="form-field">
+                    <label for="statusReason">Razón de cambio (si inactivo)</label>
+                    <input type="text" id="statusReason" placeholder="Ej: Producto descontinuado">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button type="button" class="btn-app btn-app-danger">Eliminar Producto</button>
+            <div class="primary-buttons">
+                <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
+                <button type="submit" class="btn-app btn-app-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="notice">
+        Los cambios en el producto se verán reflejados inmediatamente en el sistema de inventario.
+        Si cambia el estado a "Inactivo", el producto no aparecerá en los listados de productos disponibles.
+    </div>
+
+    <div class="history-section">
+        <div class="history-title">
+            <span>Historial de modificaciones</span>
+            <span class="history-toggle">Mostrar historial</span>
+        </div>
+    </div>
+</div>

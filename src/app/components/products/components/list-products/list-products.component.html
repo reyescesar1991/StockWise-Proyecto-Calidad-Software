@@ -1,0 +1,134 @@
+<div class="product-list-container scroll-y">
+    <div class="form-header-content">
+        <h1>Listado de Productos</h1>
+        <p class="mb-0-5">Consulte todos los productos disponibles en el inventario</p>
+    </div>
+
+    <div class="filter-section">
+        <div class="form-field">
+            <label for="searchProduct">Buscar Producto</label>
+            <div class="search-input">
+                <span class="search-icon"></span>
+                <input type="text" id="searchProduct" placeholder="Nombre del producto...">
+            </div>
+        </div>
+        
+        <div class="form-field">
+            <label for="filterCategory">Filtrar por Categoría</label>
+            <select id="filterCategory">
+                <option value="" selected>Todas las categorías</option>
+                <option value="frutas">Frutas</option>
+                <option value="verduras">Verduras</option>
+                <option value="lacteos">Lácteos</option>
+                <option value="carnes">Carnes</option>
+                <option value="panaderia">Panadería</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="congelados">Congelados</option>
+                <option value="enlatados">Enlatados</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="otros">Otros</option>
+            </select>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="button" class="btn-app btn-app-secondary me-1">Limpiar Filtros</button>
+            <button type="button" class="btn-app btn-app-primary">Aplicar Filtros</button>
+        </div>
+    </div>
+
+    <div class="products-table-container">
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="product-image"><div class="image-placeholder"></div></td>
+                    <td>Manzanas Orgánicas Fuji</td>
+                    <td>Frutas</td>
+                    <td>45 Kilos</td>
+                    <td>$2.50</td>
+                    <td class="product-actions">
+                        <button class="action-button view-button"></button>
+                        <button class="action-button edit-button"></button>
+                        <button class="action-button delete-button"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-image"><div class="image-placeholder"></div></td>
+                    <td>Leche Entera</td>
+                    <td>Lácteos</td>
+                    <td>30 Litros</td>
+                    <td>$1.80</td>
+                    <td class="product-actions">
+                        <button class="action-button view-button"></button>
+                        <button class="action-button edit-button"></button>
+                        <button class="action-button delete-button"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-image"><div class="image-placeholder"></div></td>
+                    <td>Pan Integral</td>
+                    <td>Panadería</td>
+                    <td>25 Unidades</td>
+                    <td>$3.20</td>
+                    <td class="product-actions">
+                        <button class="action-button view-button"></button>
+                        <button class="action-button edit-button"></button>
+                        <button class="action-button delete-button"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-image"><div class="image-placeholder"></div></td>
+                    <td>Tomates Orgánicos</td>
+                    <td>Verduras</td>
+                    <td>15 Kilos</td>
+                    <td>$2.00</td>
+                    <td class="product-actions">
+                        <button class="action-button view-button"></button>
+                        <button class="action-button edit-button"></button>
+                        <button class="action-button delete-button"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="product-image"><div class="image-placeholder"></div></td>
+                    <td>Agua Mineral</td>
+                    <td>Bebidas</td>
+                    <td>50 Litros</td>
+                    <td>$1.25</td>
+                    <td class="product-actions">
+                        <button class="action-button view-button"></button>
+                        <button class="action-button edit-button"></button>
+                        <button class="action-button delete-button"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button class="pagination-button prev-button"></button>
+        <div class="pagination-numbers">
+            <button class="pagination-number active">1</button>
+            <button class="pagination-number">2</button>
+            <button class="pagination-number">3</button>
+            <span class="pagination-ellipsis">...</span>
+            <button class="pagination-number">10</button>
+        </div>
+        <button class="pagination-button next-button"></button>
+    </div>
+
+    <div class="products-summary">
+        <p>Mostrando <span class="summary-highlight">5</span> de <span class="summary-highlight">42</span> productos</p>
+        <div class="add-product-button">
+            <button class="btn-app btn-app-primary">Añadir Producto</button>
+        </div>
+    </div>
+</div>

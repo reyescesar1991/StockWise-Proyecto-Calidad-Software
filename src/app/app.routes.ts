@@ -27,5 +27,42 @@ export const routes: Routes = [
     {
         path: 'dashBoard',
         loadComponent: () => import('./components/dash-board-user/dash-board-user.component').then(mod => mod.DashBoardUserComponent),
+        children: [
+
+            {
+                path: 'productos',
+                loadComponent: () => import('./components/products/products.component').then(mod => mod.ProductosComponent),
+                children: [
+
+                    {
+                        path: 'registrar-producto',
+                        loadComponent: () => import('./components/products/components/product-registry/product-registry.component').then(mod => mod.ProductRegistryComponent),
+                    },
+                    {
+                        path: 'modificar-producto',
+                        loadComponent: () => import('./components/products/components/modify-product/modify-product.component').then(mod => mod.ModifyProductComponent),
+                    },
+                    {
+                        path: 'lista-productos',
+                        loadComponent: () => import('./components/products/components/list-products/list-products.component').then(mod => mod.ListProductsComponent),
+                    },
+                    {
+                        path: 'buscar-producto',
+                        loadComponent: () => import('./components/products/components/search-product/search-product.component').then(mod => mod.SearchProductComponent),
+                    }
+                ]
+            },
+            {
+                path: 'inventario',
+                loadComponent: () => import('./components/stock/stock.component').then(mod => mod.StockComponent),
+                children: [
+
+                    {
+                        path: 'agregar-inventario',
+                        loadComponent: () => import('./components/stock/components/add-stock/add-stock.component').then(mod => mod.AddStockComponent),
+                    }
+                ]
+            }
+        ]
     }
 ];

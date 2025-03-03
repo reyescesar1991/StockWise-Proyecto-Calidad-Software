@@ -1,0 +1,111 @@
+.product-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.form-header h1 {
+    color: var(--titles-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.form-header p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+
+.image-upload {
+    border: 2px dashed var(--border-color);
+    border-radius: 6px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: var(--light-gray);
+}
+
+.image-upload:hover {
+    border-color: var(--primary-button);
+    background-color: rgba(102, 126, 234, 0.05);
+}
+
+.image-upload i {
+    font-size: 2rem;
+    color: var(--primary-button);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.image-upload p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.image-upload span {
+    color: var(--primary-button);
+    font-weight: 500;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    grid-column: 1 / -1;
+}
+
+
+
+.notice {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: #ebf8ff;
+    border-left: 4px solid #4299e1;
+}
+
+/* Íconos para simular FontAwesome */
+.image-icon::before {
+    content: "📷";
+    font-size: 2rem;
+}
+
+.currency-field {
+    position: relative;
+}
+
+.help-text {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-form-container {
+        padding: 1.5rem;
+    }
+}

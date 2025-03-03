@@ -10,11 +10,19 @@
 :root {
     --titles-color: #2d3748;
     --primary-button: #667eea;
+    --primary-button-hover: #5a6fd3;
     --white-color: white;
     --sidebar-bg: #1a202c;
     --header-bg: #f7fafc;
     --content-bg: #ffffff;
     --nav-hover: #4a5568;
+    --border-color: #e2e8f0;
+    --light-gray: #f7f8fc;
+    --text-color: #4a5568;
+    --error-color: #e53e3e;
+    --success-color: #38a169;
+    --warning-color: #dd6b20;
+    --info-color: #3182ce;
 }
 
 //Containers
@@ -259,3 +267,232 @@ select:focus {
 .m-2 { margin: 2rem !important; }
 .m-2-5 { margin: 2.5rem !important; }
 .m-3 { margin: 3rem !important; }
+
+
+//scroll en y 
+
+/* Estilos para el contenedor del scrollbar (ajústalo si es necesario) */
+.scroll-y { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  overflow-y: auto; /* Asegura que el scroll aparezca solo verticalmente cuando sea necesario */
+  scrollbar-width: thin; /* Para navegadores Firefox */
+  scrollbar-color: var(--primary-button) transparent; /* Para navegadores Firefox: thumb y track */
+  height: 750px;
+}
+
+/* Estilos para el track del scrollbar (la barra de fondo) */
+.scroll-y::-webkit-scrollbar-track { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: transparent; /* Fondo transparente para el track */
+}
+
+/* Estilos para el thumb del scrollbar (la parte que se arrastra) */
+.scroll-y::-webkit-scrollbar-thumb { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button); /* Color principal para el thumb */
+  border-radius: 6px; /* Bordes redondeados para el thumb (ajusta el valor si prefieres) */
+  border: 2px solid transparent; /* Borde transparente para un mejor aspecto */
+  background-clip: padding-box; /* Para que el fondo no se extienda bajo el borde */
+}
+
+/* Estilo hover para el thumb del scrollbar */
+.scroll-y::-webkit-scrollbar-thumb:hover { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button-hover); /* Color hover al pasar el ratón */
+}
+
+/* Estilo active (cuando se está arrastrando) para el thumb del scrollbar (opcional) */
+.scroll-y::-webkit-scrollbar-thumb:active { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button-hover); /* Mismo color hover al hacer clic y arrastrar, o puedes usar otro color */
+}
+
+/* Estilo para el botón de "corner" del scrollbar (esquina inferior derecha) - Opcional */
+.scroll-y::-webkit-scrollbar-corner { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: transparent; /* Fondo transparente para la esquina */
+}
+
+@media (max-width: 767px){
+
+  .scroll-y{
+
+    height: 480px;
+  }
+}
+
+
+//fin scroll styles
+
+
+//Forms internos 
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  display: block;
+  color: var(--titles-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-field .required::after {
+  content: "*";
+  color: var(--error-color);
+  margin-left: 4px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  background-color: var(--white-color);
+}
+
+.form-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--primary-button);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #a0aec0;
+}
+
+.form-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-prefix {
+  padding: 0.75rem 1rem;
+  background-color: var(--light-gray);
+  border: 1px solid var(--border-color);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.input-group input {
+  border-radius: 0 6px 6px 0;
+}
+
+.form-header-content h1 {
+  color: var(--titles-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-header-content p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+//
+
+//botones applicacion interna
+
+.btn-app {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-app-primary {
+  background-color: var(--primary-button);
+  color: var(--white-color);
+}
+
+.btn-app-primary:hover {
+  background-color: var(--primary-button-hover);
+}
+
+.btn-app-secondary {
+  background-color: var(--white-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-app-secondary:hover {
+  background-color: var(--light-gray);
+}
+
+.btn-app-danger {
+  background-color: var(--white-color);
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+
+.btn-app-danger:hover {
+  background-color: var(--error-color);
+  color: var(--white-color);
+}
+
+//estilo de botones 
+
+
+//Notice 
+
+.notice {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  background-color: #fffaf0;
+  border-left: 4px solid var(--warning-color);
+}
+
+//fin notice
+
+//help text 
+
+.help-text {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 0.25rem;
+}
+
+//
+
+
+//medias querys
+
+@media (max-width: 767px){
+
+  .form-buttons button{
+
+    width: 100%;
+    margin-bottom: .5rem;
+}
+}

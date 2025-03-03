@@ -3,5 +3,7 @@
     <app-nav-bar class="sidebar" (hiddenContent)="catchDisplayHidden('hidden')" (showContent)="catchDisplayShow('show')"></app-nav-bar>
     
     <!-- Componente Rojo (70%) -->
-    <app-main-content-app class="main-content" [class.hidden]="displayHidden === 'hidden'" [class.show]="displayHidden === 'show'"></app-main-content-app>
+    <app-main-content-app class="main-content" [class.hidden]="displayHidden === 'hidden'" [class.show]="displayHidden === 'show'">
+        <router-outlet></router-outlet>
+    </app-main-content-app>
 </div>

@@ -1,0 +1,166 @@
+<div class="product-search-container scroll-y">
+    <div class="form-header-content">
+        <h1>Búsqueda de Productos</h1>
+        <p>Encuentre productos específicos por nombre o categoría</p>
+    </div>
+
+    <div class="search-form-container">
+        <div class="form-grid">
+            <div class="form-field full-width">
+                <label for="productSearch">Buscar Producto</label>
+                <div class="search-input">
+                    <span class="search-icon"></span>
+                    <input type="text" id="productSearch" placeholder="Ej: Manzanas Orgánicas, Leche, Pan Integral...">
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="searchCategory">Categoría</label>
+                <select id="searchCategory">
+                    <option value="" selected>Todas las categorías</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="verduras">Verduras</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="carnes">Carnes</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="congelados">Congelados</option>
+                    <option value="enlatados">Enlatados</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="priceRange">Rango de Precio</label>
+                <div class="price-range-container">
+                    <div class="input-group">
+                        <span class="input-group-prefix">$</span>
+                        <input type="number" id="minPrice" placeholder="Mín" min="0" step="0.01">
+                    </div>
+                    <span class="range-separator">a</span>
+                    <div class="input-group">
+                        <span class="input-group-prefix">$</span>
+                        <input type="number" id="maxPrice" placeholder="Máx" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-field full-width">
+                <div class="form-buttons search-buttons">
+                    <button type="button" class="btn-app btn-app-secondary me-1">Limpiar</button>
+                    <button type="button" class="btn-app btn-app-primary">Buscar Productos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-results">
+        <div class="search-status">
+            <p>Se encontraron <span class="result-count">5</span> productos que coinciden con tu búsqueda</p>
+        </div>
+
+        <div class="results-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Manzanas Orgánicas Fuji</h3>
+                    <p class="product-category">Frutas</p>
+                    <p class="product-stock">Stock: 45 Kilos</p>
+                    <p class="product-price">$2.50</p>
+                </div>
+                <div class="product-actions">
+                    <button class="action-button view-button"></button>
+                    <button class="action-button edit-button"></button>
+                    <button class="action-button add-button"></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Leche Entera</h3>
+                    <p class="product-category">Lácteos</p>
+                    <p class="product-stock">Stock: 30 Litros</p>
+                    <p class="product-price">$1.80</p>
+                </div>
+                <div class="product-actions">
+                    <button class="action-button view-button"></button>
+                    <button class="action-button edit-button"></button>
+                    <button class="action-button add-button"></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Pan Integral</h3>
+                    <p class="product-category">Panadería</p>
+                    <p class="product-stock">Stock: 25 Unidades</p>
+                    <p class="product-price">$3.20</p>
+                </div>
+                <div class="product-actions">
+                    <button class="action-button view-button"></button>
+                    <button class="action-button edit-button"></button>
+                    <button class="action-button add-button"></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Tomates Orgánicos</h3>
+                    <p class="product-category">Verduras</p>
+                    <p class="product-stock">Stock: 15 Kilos</p>
+                    <p class="product-price">$2.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="action-button view-button"></button>
+                    <button class="action-button edit-button"></button>
+                    <button class="action-button add-button"></button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="product-details">
+                    <h3>Agua Mineral</h3>
+                    <p class="product-category">Bebidas</p>
+                    <p class="product-stock">Stock: 50 Litros</p>
+                    <p class="product-price">$1.25</p>
+                </div>
+                <div class="product-actions">
+                    <button class="action-button view-button"></button>
+                    <button class="action-button edit-button"></button>
+                    <button class="action-button add-button"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="pagination-button prev-button"></button>
+            <div class="pagination-numbers">
+                <button class="pagination-number active">1</button>
+                <button class="pagination-number">2</button>
+                <button class="pagination-number">3</button>
+                <span class="pagination-ellipsis">...</span>
+                <button class="pagination-number">6</button>
+            </div>
+            <button class="pagination-button next-button"></button>
+        </div>
+    </div>
+
+    <div class="search-tip notice">
+        Puede refinar su búsqueda utilizando palabras clave específicas, seleccionando una categoría o estableciendo un rango de precios.
+    </div>
+</div>

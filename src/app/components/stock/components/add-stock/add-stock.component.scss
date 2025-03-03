@@ -1,0 +1,144 @@
+.stock-entry-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.product-select-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.product-select-container select {
+    flex-grow: 1;
+}
+
+.btn-search-product {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--white-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-search-product:hover {
+    background-color: var(--light-gray);
+}
+
+.btn-search-product::before {
+    content: "🔍";
+    font-size: 1.2rem;
+}
+
+.info-label {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.info-value {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--light-gray);
+    color: var(--titles-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.quantity-input {
+    position: relative;
+    display: flex;
+}
+
+.quantity-input input {
+    width: 100%;
+}
+
+.unit-display {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.stock-summary {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-button);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.summary-item:not(:last-child) {
+    border-bottom: 1px dashed var(--border-color);
+    margin-bottom: 0.5rem;
+}
+
+.summary-label {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.summary-value {
+    color: var(--titles-color);
+    font-weight: 600;
+}
+
+.summary-item.result {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.summary-item.result .summary-label,
+.summary-item.result .summary-value {
+    font-size: 1.05rem;
+    color: var(--primary-button);
+    font-weight: 600;
+}
+
+.notice {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: #ebf8ff;
+    border-left: 4px solid #4299e1;
+}
+
+.notice p:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .stock-entry-container {
+        padding: 1.5rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stock-summary {
+        padding: 1rem;
+    }
+}

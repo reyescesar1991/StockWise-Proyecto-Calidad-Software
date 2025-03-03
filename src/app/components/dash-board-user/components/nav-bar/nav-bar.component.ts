@@ -153,13 +153,13 @@ export class NavBarComponent {
 
 
 protected routeInformation: string = '';
-protected activeRouteId: string | null = null;
-protected isMobileView: boolean = false; // Track mobile view state
+protected activeRouteId: string | null = null; //ruta activa para remarcarla
+protected isMobileView: boolean = false;
 
 constructor(private renderer: Renderer2, private el: ElementRef, private router: Router) { }
 
 ngOnInit(): void {
-  this.setupMobileMenuInitialState(); // Set initial mobile menu state on component init
+  this.setupMobileMenuInitialState();
 }
 
 toggleSidebar(): void {
@@ -268,7 +268,6 @@ setActiveRoute(routeId: string): void {
   }
 }
 
-// Angular implementation of setupMobileMenu and resize listener
 
 setupMobileMenuInitialState(): void {
   this.isMobileView = window.innerWidth <= 768;
