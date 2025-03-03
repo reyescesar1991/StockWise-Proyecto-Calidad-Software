@@ -10,7 +10,9 @@ export const registryProductFormSchema = z.object({
     costPrice: z.number().gte(0.1, {message: 'El valor de costo mínimo de un producto no puede ser menor a 0.1 $'}).nullable(),
     initialStock: z.number().gte(5, {message : 'El valor mínimo de registro inicial en el stock no puede ser menor de 5 unidades'}).nullable(),
     minStock: z.number().gte(10, {message: 'El valor mínimo de aviso de stock bajo para los productos no puede ser menor a 10 unidades'}).nullable(),
-    productImage: z.instanceof(File).optional(),
+    productImage: z.any().refine(file => file instanceof File, {
+        message: "Debe ser un archivo válido"
+    }).optional()
 });
 
 

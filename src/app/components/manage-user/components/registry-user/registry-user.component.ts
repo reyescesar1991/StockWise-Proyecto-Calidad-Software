@@ -5,11 +5,12 @@ import { IRegistryUserForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { registryUserFormSchema } from '../../../../../core/form_Schemas';
 import { ICountry, IHeadquarter, IRol } from '../../../../../core/models';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-registry-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './registry-user.component.html',
   styleUrl: './registry-user.component.scss'
 })
@@ -125,6 +126,8 @@ export class RegistryUserComponent {
   }
 
   protected getValueForm(){
+    
+    console.log(this.registryUserForm.getRawValue());
     
   }
 }

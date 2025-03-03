@@ -42,6 +42,16 @@
     background-color: var(--light-gray);
 }
 
+.image-upload.success{
+
+    border: 2px dashed var(--success-color);
+}
+
+.image-upload.error{
+
+    border: 2px dashed var(--error-color);
+}
+
 .image-upload:hover {
     border-color: var(--primary-button);
     background-color: rgba(102, 126, 234, 0.05);
@@ -98,6 +108,48 @@
     font-size: 0.8rem;
     color: #718096;
     margin-top: 0.25rem;
+}
+
+/* Estilos para el estado de éxito */
+.success-upload {
+    text-align: center;
+    padding: 1.5rem;
+    border: 2px solid var(--success-color);
+    border-radius: 8px;
+    background-color: rgba(76, 175, 80, 0.1);
+    animation: fadeIn 0.5s ease-in;
+}
+
+.success-icon {
+    width: 48px;
+    height: 48px;
+    fill: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    color: #2E7D32;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.file-name {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.upload-icon {
+    width: 48px;
+    height: 48px;
+    fill: #666;
+    margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 768px) {
