@@ -9,7 +9,8 @@
             <label for="searchProduct">Buscar Producto</label>
             <div class="search-input">
                 <span class="search-icon"></span>
-                <input type="text" id="searchProduct" placeholder="Nombre del producto...">
+                <input type="text" id="searchProduct" placeholder="Nombre del producto..."
+                [(ngModel)]="searchTerm" (input)="applySearchFilter()">
             </div>
         </div>
 

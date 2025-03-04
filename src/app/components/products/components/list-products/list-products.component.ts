@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { IProductModel } from '../../../../../core/models';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-products',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule, FormsModule],
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.scss'
 })
@@ -19,8 +20,9 @@ export class ListProductsComponent {
   protected filteredProducts: any[] = [];
   protected allProducts: any = [];
   protected Math = Math;
+  protected searchTerm: string = '';
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.loadProducts();
   }
@@ -111,34 +113,42 @@ export class ListProductsComponent {
         category: 'Limpieza',
         initialStock: 40,
         sellingPrice: 6.20
-      }
+      },
+      {
+        productImage: 'Image of Aceite de Oliva',
+        name: 'Aceite de Oliva 1000ml',
+        category: 'Aceites',
+        initialStock: 60,
+        sellingPrice: 8.50
+      },
+      {
+        productImage: 'Image of Aceite de Oliva',
+        name: 'Aceite de Oliva 2000ml',
+        category: 'Aceites',
+        initialStock: 60,
+        sellingPrice: 8.50
+      },
     ];
-    
+
     this.totalItems = this.allProducts.length;
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
     this.updateVisiblePages();
     this.updateFilteredProducts();
   }
 
-  protected updateFilteredProducts() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.filteredProducts = this.allProducts.slice(startIndex, endIndex);
-  }
-
   protected updateVisiblePages() {
     const maxVisiblePages = 5;
     let start = Math.max(1, this.currentPage - 2);
     let end = Math.min(this.totalPages, start + maxVisiblePages - 1);
-    
+
     if (end - start < maxVisiblePages - 1) {
       start = Math.max(1, end - maxVisiblePages + 1);
     }
-    
-    this.visiblePages = Array.from({length: end - start + 1}, (_, i) => start + i);
+
+    this.visiblePages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
     console.log(this.visiblePages);
-    
+
   }
 
   protected goToPage(page: number) {
@@ -156,15 +166,40 @@ export class ListProductsComponent {
     this.goToPage(this.currentPage + 1);
   }
 
-  // Añade estos métodos para manejar los filtros
-  protected applyFilters() {
-    // Lógica de filtrado aquí
-    this.currentPage = 1;
-    this.loadProducts();
+  protected updateFilteredProducts() {
+    console.log(this.searchTerm);
+
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    console.log("start index filtro = ", startIndex);
+    
+    const endIndex = startIndex + this.itemsPerPage;
+
+    console.log("end index filtro = ", endIndex);
+
+    const filtered = this.allProducts.filter((product: { name: string; }) =>
+      product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+
+    console.log(filtered);
+    
+
+    this.filteredProducts = filtered.slice(startIndex, endIndex);
+
+    console.log(this.filteredProducts);
+    
+
+    this.totalItems = filtered.length;
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+
+  }
+
+  protected applySearchFilter() {
+    this.currentPage = 1; 
+    this.updateVisiblePages();
+    this.updateFilteredProducts();
   }
 
   protected clearFilters() {
-    // Restablecer filtros
     this.loadProducts();
   }
 
