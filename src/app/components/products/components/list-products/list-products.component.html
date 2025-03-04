@@ -12,7 +12,7 @@
                 <input type="text" id="searchProduct" placeholder="Nombre del producto...">
             </div>
         </div>
-        
+
         <div class="form-field">
             <label for="filterCategory">Filtrar por Categoría</label>
             <select id="filterCategory">
@@ -29,7 +29,7 @@
                 <option value="otros">Otros</option>
             </select>
         </div>
-        
+
         <div class="form-buttons">
             <button type="button" class="btn-app btn-app-secondary me-1">Limpiar Filtros</button>
             <button type="button" class="btn-app btn-app-primary">Aplicar Filtros</button>
@@ -49,84 +49,52 @@
                 </tr>
             </thead>
             <tbody>
+                @for (product of filteredProducts; track $index) {
+
                 <tr>
-                    <td class="product-image"><div class="image-placeholder"></div></td>
-                    <td>Manzanas Orgánicas Fuji</td>
-                    <td>Frutas</td>
-                    <td>45 Kilos</td>
-                    <td>$2.50</td>
+                    <td class="product-image">
+                        <div class="image-placeholder"></div>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.initialStock}}</td>
+                    <td>{{product.sellingPrice}}</td>
                     <td class="product-actions">
                         <button class="action-button view-button"></button>
                         <button class="action-button edit-button"></button>
                         <button class="action-button delete-button"></button>
                     </td>
                 </tr>
-                <tr>
-                    <td class="product-image"><div class="image-placeholder"></div></td>
-                    <td>Leche Entera</td>
-                    <td>Lácteos</td>
-                    <td>30 Litros</td>
-                    <td>$1.80</td>
-                    <td class="product-actions">
-                        <button class="action-button view-button"></button>
-                        <button class="action-button edit-button"></button>
-                        <button class="action-button delete-button"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="product-image"><div class="image-placeholder"></div></td>
-                    <td>Pan Integral</td>
-                    <td>Panadería</td>
-                    <td>25 Unidades</td>
-                    <td>$3.20</td>
-                    <td class="product-actions">
-                        <button class="action-button view-button"></button>
-                        <button class="action-button edit-button"></button>
-                        <button class="action-button delete-button"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="product-image"><div class="image-placeholder"></div></td>
-                    <td>Tomates Orgánicos</td>
-                    <td>Verduras</td>
-                    <td>15 Kilos</td>
-                    <td>$2.00</td>
-                    <td class="product-actions">
-                        <button class="action-button view-button"></button>
-                        <button class="action-button edit-button"></button>
-                        <button class="action-button delete-button"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="product-image"><div class="image-placeholder"></div></td>
-                    <td>Agua Mineral</td>
-                    <td>Bebidas</td>
-                    <td>50 Litros</td>
-                    <td>$1.25</td>
-                    <td class="product-actions">
-                        <button class="action-button view-button"></button>
-                        <button class="action-button edit-button"></button>
-                        <button class="action-button delete-button"></button>
-                    </td>
-                </tr>
+                }
             </tbody>
         </table>
     </div>
 
     <div class="pagination">
-        <button class="pagination-button prev-button"></button>
+        <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
         <div class="pagination-numbers">
-            <button class="pagination-number active">1</button>
-            <button class="pagination-number">2</button>
+            @for (page of visiblePages; track $index) {
+            <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
+            }
+            @if (totalPages > visiblePages[visiblePages.length - 1]) {
+            <span class="pagination-ellipsis">...</span>
+            }
+            @if (totalPages > visiblePages[visiblePages.length - 1]) {
+            <button class="pagination-number" (click)="goToPage(totalPages)">
+                {{totalPages}}</button>
+            }
+            <!-- <button class="pagination-number">2</button>
             <button class="pagination-number">3</button>
             <span class="pagination-ellipsis">...</span>
-            <button class="pagination-number">10</button>
+            <button class="pagination-number">10</button> -->
         </div>
-        <button class="pagination-button next-button"></button>
+        <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
+            (click)="nextPage()"></button>
     </div>
 
     <div class="products-summary">
-        <p>Mostrando <span class="summary-highlight">5</span> de <span class="summary-highlight">42</span> productos</p>
+        <p>Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
+                class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
         <div class="add-product-button">
             <button class="btn-app btn-app-primary">Añadir Producto</button>
         </div>

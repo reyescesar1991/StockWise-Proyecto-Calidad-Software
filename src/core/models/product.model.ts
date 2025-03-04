@@ -9,5 +9,6 @@ export interface IProductModel{
     initialStock: number,
     minStock: number,
     productImage: File,
+    idProduct: string,
 
 }
