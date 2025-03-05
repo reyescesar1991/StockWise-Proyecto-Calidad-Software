@@ -16,7 +16,7 @@
 
         <div class="form-field">
             <label for="filterCategory">Filtrar por Categoría</label>
-            <select id="filterCategory">
+            <select id="filterCategory" [(ngModel)]="searchCategoryTerm">
                 <option value="" selected>Todas las categorías</option>
                 <option value="frutas">Frutas</option>
                 <option value="verduras">Verduras</option>
@@ -32,8 +32,8 @@
         </div>
 
         <div class="form-buttons">
-            <button type="button" class="btn-app btn-app-secondary me-1">Limpiar Filtros</button>
-            <button type="button" class="btn-app btn-app-primary">Aplicar Filtros</button>
+            <button type="button" class="btn-app btn-app-secondary me-1" (click)="clearFilters()">Limpiar Filtros</button>
+            <button type="button" class="btn-app btn-app-primary" (click)="applySearchCategoryFilter()">Aplicar Filtros</button>
         </div>
     </div>
 

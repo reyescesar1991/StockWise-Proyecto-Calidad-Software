@@ -1,32 +1,52 @@
 <div class="product-form-container scroll-y">
     <div class="form-header">
-        <div class="form-header-content">
-            <h1>Modificar Producto</h1>
-            <p>Actualice la información del producto seleccionado</p>
+
+        <div class="flex-container-column">
+            <div class="form-header-content">
+                <h1>Modificar Producto</h1>
+                <p class="mb-1">Actualice la información del producto seleccionado</p>
+            </div>
+
+            <div class="form-field">
+                <label for="searchProduct">Nombre del Producto</label>
+                <div class="flex-container-row">
+                    <div class="search-input me-1">
+                        <span class="search-icon"></span>
+                        <input type="text" id="searchProduct" placeholder="Nombre del producto...">
+                    </div>
+                    <div class="primary-buttons">
+                        <button type="submit" class="btn-app btn-app-primary" (click)="findProduct()">Buscar Producto</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-badge" [class.fade-in-animation]="product !== ''">
+                ID: PRD-2023-001
+                <span class="status-badge status-active">Activo</span>
+            </div>
         </div>
-        <div class="product-badge">
-            ID: PRD-2023-001
-            <span class="status-badge status-active">Activo</span>
-        </div>
+
+
     </div>
 
-    <form>
+    <form [formGroup]="modifyProductForm">
         <div class="form-section">
             <h2 class="form-section-title">Información básica</h2>
             <div class="form-grid">
                 <div class="form-field full-width">
-                    <label for="productName" class="required">Nombre del Producto</label>
-                    <input type="text" id="productName" value="Manzanas Orgánicas Fuji" required>
+                    <label for="nameProduct" class="required">Nombre del Producto</label>
+                    <input type="text" id="nameProduct" formControlName="nameProduct" value="Manzanas Orgánicas Fuji" required>
                 </div>
 
                 <div class="form-field full-width">
                     <label for="description" class="required">Descripción</label>
-                    <textarea id="description" required>Manzanas crujientes y dulces, cultivadas localmente sin pesticidas. Perfectas para consumo directo o para preparar postres y ensaladas.</textarea>
+                    <textarea id="description" formControlName="description"
+                        required>Manzanas crujientes y dulces, cultivadas localmente sin pesticidas. Perfectas para consumo directo o para preparar postres y ensaladas.</textarea>
                 </div>
 
                 <div class="form-field">
                     <label for="category" class="required">Categoría</label>
-                    <select id="category" required>
+                    <select id="category" formControlName="category" required>
                         <option value="frutas" selected>Frutas</option>
                         <option value="verduras">Verduras</option>
                         <option value="lacteos">Lácteos</option>
@@ -42,7 +62,7 @@
 
                 <div class="form-field">
                     <label for="productCode">Código de Producto</label>
-                    <input type="text" id="productCode" value="FRUT-001" class="readonly-field" readonly>
+                    <input type="text" id="productCode" formControlName="productCode" value="FRUT-001" class="readonly-field" readonly>
                     <div class="help-text">El código de producto no se puede modificar</div>
                 </div>
             </div>
@@ -55,7 +75,7 @@
                     <label for="sellingPrice" class="required">Precio de Venta</label>
                     <div class="input-group">
                         <span class="input-group-prefix">$</span>
-                        <input type="number" id="sellingPrice" value="2.50" step="0.01" min="0" required>
+                        <input type="number" id="sellingPrice" formControlName="sellingPrice" value="2.50" step="0.01" min="0" required>
                     </div>
                 </div>
 
@@ -63,13 +83,13 @@
                     <label for="costPrice">Precio de Costo</label>
                     <div class="input-group">
                         <span class="input-group-prefix">$</span>
-                        <input type="number" id="costPrice" value="1.75" step="0.01" min="0">
+                        <input type="number" formControlName="costPrice" id="costPrice" value="1.75" step="0.01" min="0">
                     </div>
                 </div>
 
                 <div class="form-field">
                     <label for="unit" class="required">Unidad de Medida</label>
-                    <select id="unit" required>
+                    <select id="unit" formControlName="unit" required>
                         <option value="kilo" selected>Kilo</option>
                         <option value="gramo">Gramo</option>
                         <option value="litro">Litro</option>
@@ -83,7 +103,7 @@
 
                 <div class="form-field">
                     <label for="minStock">Stock Mínimo</label>
-                    <input type="number" id="minStock" value="10" min="0">
+                    <input type="number" formControlName="minStock" id="minStock" value="10" min="0">
                     <div class="help-text">Para alertas de reabastecimiento</div>
                 </div>
             </div>
@@ -96,15 +116,17 @@
                     <label>Imágenes actuales</label>
                     <div class="image-gallery">
                         <div class="image-item">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='100' cy='75' r='40' fill='%23e5e7eb'/%3E%3Cpath d='M85 60 A15 15 0 0 1 115 60 A45 45 0 0 1 125 105 A15 15 0 0 1 75 105 A45 45 0 0 1 85 60z' fill='%23d1d5db'/%3E%3C/svg%3E" alt="Manzana Fuji 1">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='100' cy='75' r='40' fill='%23e5e7eb'/%3E%3Cpath d='M85 60 A15 15 0 0 1 115 60 A45 45 0 0 1 125 105 A15 15 0 0 1 75 105 A45 45 0 0 1 85 60z' fill='%23d1d5db'/%3E%3C/svg%3E"
+                                alt="Manzana Fuji 1">
                             <button type="button" class="remove-image">✕</button>
                         </div>
                         <div class="image-item">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='70' cy='75' r='30' fill='%23e5e7eb'/%3E%3Ccircle cx='130' cy='75' r='30' fill='%23d1d5db'/%3E%3C/svg%3E" alt="Manzana Fuji 2">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23f3f4f6'/%3E%3Ccircle cx='70' cy='75' r='30' fill='%23e5e7eb'/%3E%3Ccircle cx='130' cy='75' r='30' fill='%23d1d5db'/%3E%3C/svg%3E"
+                                alt="Manzana Fuji 2">
                             <button type="button" class="remove-image">✕</button>
                         </div>
                     </div>
-                    
+
                     <div class="image-upload" onclick="document.getElementById('productImage').click()">
                         <div class="image-icon"></div>
                         <p>Arrastre nuevas imágenes aquí o <span>haga clic para seleccionar</span></p>
@@ -120,15 +142,15 @@
             <div class="form-grid">
                 <div class="form-field">
                     <label for="productStatus" class="required">Estado</label>
-                    <select id="productStatus" required>
+                    <select id="productStatus" formControlName="productStatus" required>
                         <option value="active" selected>Activo</option>
                         <option value="inactive">Inactivo</option>
                     </select>
                 </div>
-                
+
                 <div class="form-field">
                     <label for="statusReason">Razón de cambio (si inactivo)</label>
-                    <input type="text" id="statusReason" placeholder="Ej: Producto descontinuado">
+                    <input type="text" formControlName="statusReason" id="statusReason" placeholder="Ej: Producto descontinuado">
                 </div>
             </div>
         </div>
@@ -137,7 +159,7 @@
             <button type="button" class="btn-app btn-app-danger">Eliminar Producto</button>
             <div class="primary-buttons">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary">Guardar Cambios</button>
+                <button type="submit" class="btn-app btn-app-primary" (click)="getValueForm()">Guardar Cambios</button>
             </div>
         </div>
     </form>

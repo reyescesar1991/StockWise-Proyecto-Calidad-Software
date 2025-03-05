@@ -41,6 +41,17 @@
   flex-basis: 55%;
 }
 
+.flex-container-column{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container-row{
+
+  display: flex;
+}
+
 
 
 @mixin manage-user-container-base-styles {

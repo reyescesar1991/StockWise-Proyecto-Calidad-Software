@@ -21,6 +21,7 @@ export class ListProductsComponent {
   protected allProducts: any = [];
   protected Math = Math;
   protected searchTerm: string = '';
+  protected searchCategoryTerm: string = '';
 
   ngOnInit() {
 
@@ -40,7 +41,7 @@ export class ListProductsComponent {
       {
         productImage: 'Image of Leche Entera',
         name: 'Leche Entera 1L',
-        category: 'Lácteos',
+        category: 'lacteos',
         initialStock: 80,
         sellingPrice: 2.50
       },
@@ -68,7 +69,7 @@ export class ListProductsComponent {
       {
         productImage: 'Image of Huevos Docena',
         name: 'Huevos Docena',
-        category: 'Lácteos',
+        category: 'lacteos',
         initialStock: 120,
         sellingPrice: 2.20
       },
@@ -103,30 +104,16 @@ export class ListProductsComponent {
       {
         productImage: 'Image of Queso Gouda',
         name: 'Queso Gouda 200g',
-        category: 'Lácteos',
+        category: 'lacteos',
         initialStock: 70,
         sellingPrice: 4.80
       },
       {
         productImage: 'Image of Detergente Lavadora',
         name: 'Detergente Lavadora 3L',
-        category: 'Limpieza',
+        category: 'limpieza',
         initialStock: 40,
         sellingPrice: 6.20
-      },
-      {
-        productImage: 'Image of Aceite de Oliva',
-        name: 'Aceite de Oliva 1000ml',
-        category: 'Aceites',
-        initialStock: 60,
-        sellingPrice: 8.50
-      },
-      {
-        productImage: 'Image of Aceite de Oliva',
-        name: 'Aceite de Oliva 2000ml',
-        category: 'Aceites',
-        initialStock: 60,
-        sellingPrice: 8.50
       },
     ];
 
@@ -140,6 +127,15 @@ export class ListProductsComponent {
     const maxVisiblePages = 5;
     let start = Math.max(1, this.currentPage - 2);
     let end = Math.min(this.totalPages, start + maxVisiblePages - 1);
+
+    console.log(start);
+    console.log(end);
+    console.log(this.currentPage);
+    console.log(this.totalPages);
+    
+    
+    
+    
 
     if (end - start < maxVisiblePages - 1) {
       start = Math.max(1, end - maxVisiblePages + 1);
@@ -156,6 +152,7 @@ export class ListProductsComponent {
     this.currentPage = page;
     this.updateVisiblePages();
     this.updateFilteredProducts();
+    this.updateFilteredCategoryProducts();
   }
 
   protected previousPage() {
@@ -166,7 +163,7 @@ export class ListProductsComponent {
     this.goToPage(this.currentPage + 1);
   }
 
-  protected updateFilteredProducts() {
+  private updateFilteredProducts() {
     console.log(this.searchTerm);
 
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -190,6 +187,7 @@ export class ListProductsComponent {
 
     this.totalItems = filtered.length;
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+    
 
   }
 
@@ -197,6 +195,33 @@ export class ListProductsComponent {
     this.currentPage = 1; 
     this.updateVisiblePages();
     this.updateFilteredProducts();
+  }
+
+  protected applySearchCategoryFilter(){
+    this.currentPage = 1;
+    this.updateFilteredCategoryProducts();
+    this.updateVisiblePages();
+  }
+
+  private updateFilteredCategoryProducts(){
+
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+
+    const endIndex = (startIndex) + this.itemsPerPage;
+
+    const filtered = this.allProducts.filter((product : {category: string}) =>
+      product.category.toLowerCase().includes(this.searchCategoryTerm.toLowerCase())
+    )
+
+    console.log(filtered);
+    
+
+    this.filteredProducts = filtered.slice(startIndex, endIndex);
+
+    this.totalItems = filtered.length;
+    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+
+    console.log(this.totalPages);
   }
 
   protected clearFilters() {
