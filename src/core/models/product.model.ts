@@ -10,6 +10,7 @@ export interface IProductModel{
     minStock: number,
     productImage: File,
     idProduct: string,
-    status: string,
-
+    status: string, //TODO: Agregar al form de registro
+    location: string, //TODO: Agregar al form de registro
+    optimalStock: string, //TODO: Agregar al form de registro
 }
