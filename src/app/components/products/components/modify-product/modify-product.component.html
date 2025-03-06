@@ -36,12 +36,35 @@
                 <div class="form-field full-width">
                     <label for="nameProduct" class="required">Nombre del Producto</label>
                     <input type="text" id="nameProduct" formControlName="nameProduct" value="Manzanas Orgánicas Fuji" required>
+                    @if (this.modifyProductForm.get('nameProduct')?.invalid && (this.modifyProductForm.get('nameProduct')?.dirty || this.modifyProductForm.get('nameProduct')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('nameProduct')?.errors as errors">
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field full-width">
                     <label for="description" class="required">Descripción</label>
                     <textarea id="description" formControlName="description"
                         required>Manzanas crujientes y dulces, cultivadas localmente sin pesticidas. Perfectas para consumo directo o para preparar postres y ensaladas.</textarea>
+                    @if (this.modifyProductForm.get('description')?.invalid && (this.modifyProductForm.get('description')?.dirty || this.modifyProductForm.get('description')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('description')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
@@ -58,6 +81,18 @@
                         <option value="limpieza">Limpieza</option>
                         <option value="otros">Otros</option>
                     </select>
+                    @if (this.modifyProductForm.get('category')?.invalid && (this.modifyProductForm.get('category')?.dirty || this.modifyProductForm.get('category')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('category')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
@@ -77,6 +112,18 @@
                         <span class="input-group-prefix">$</span>
                         <input type="number" id="sellingPrice" formControlName="sellingPrice" value="2.50" step="0.01" min="0" required>
                     </div>
+                    @if (this.modifyProductForm.get('sellingPrice')?.invalid && (this.modifyProductForm.get('sellingPrice')?.dirty || this.modifyProductForm.get('sellingPrice')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('sellingPrice')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
@@ -85,6 +132,18 @@
                         <span class="input-group-prefix">$</span>
                         <input type="number" formControlName="costPrice" id="costPrice" value="1.75" step="0.01" min="0">
                     </div>
+                    @if (this.modifyProductForm.get('costPrice')?.invalid && (this.modifyProductForm.get('costPrice')?.dirty || this.modifyProductForm.get('costPrice')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('costPrice')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
@@ -99,12 +158,37 @@
                         <option value="caja">Caja</option>
                         <option value="paquete">Paquete</option>
                     </select>
+                    @if (this.modifyProductForm.get('unit')?.invalid && (this.modifyProductForm.get('unit')?.dirty || this.modifyProductForm.get('unit')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('unit')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
                     <label for="minStock">Stock Mínimo</label>
                     <input type="number" formControlName="minStock" id="minStock" value="10" min="0">
-                    <div class="help-text">Para alertas de reabastecimiento</div>
+                    @if (this.modifyProductForm.get('minStock')?.invalid && (this.modifyProductForm.get('minStock')?.dirty || this.modifyProductForm.get('minStock')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('minStock')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }@else {
+                        <div class="help-text">Para alertas de reabastecimiento</div>
+                    }
                 </div>
             </div>
         </div>
@@ -128,11 +212,29 @@
                     </div>
 
                     <div class="image-upload" onclick="document.getElementById('productImage').click()">
-                        <div class="image-icon"></div>
-                        <p>Arrastre nuevas imágenes aquí o <span>haga clic para seleccionar</span></p>
-                        <p>Formatos aceptados: JPG, PNG, GIF (máx 5MB)</p>
+
+
+                        @if (!this.selectedFile) {
+                            <div>
+                                <div class="image-icon"></div>
+                                <p><span>Haga clic para seleccionar la imagen</span></p>
+                                <p>Formatos aceptados: JPG, PNG, GIF (máx 5MB)</p>
+                            </div>
+    
+                        }@else {
+    
+                            <div>
+                                <div class="success-upload">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="success-icon">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <p class="success-message">¡Imagen cargada exitosamente!</p>
+                                    <p class="file-name">{{ selectedFile.name }}</p>
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <input type="file" id="productImage" accept="image/*" multiple style="display: none;">
+                    <input type="file" id="productImage" accept="image/*" multiple style="display: none;" (change)="onFileChange($event)">
                 </div>
             </div>
         </div>
@@ -146,11 +248,35 @@
                         <option value="active" selected>Activo</option>
                         <option value="inactive">Inactivo</option>
                     </select>
+                    @if (this.modifyProductForm.get('productStatus')?.invalid && (this.modifyProductForm.get('productStatus')?.dirty || this.modifyProductForm.get('productStatus')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('productStatus')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <div class="form-field">
                     <label for="statusReason">Razón de cambio (si inactivo)</label>
                     <input type="text" formControlName="statusReason" id="statusReason" placeholder="Ej: Producto descontinuado">
+                    @if (this.modifyProductForm.get('statusReason')?.invalid && (this.modifyProductForm.get('statusReason')?.dirty || this.modifyProductForm.get('statusReason')?.touched)) {
+
+                        <div *ngIf="this.modifyProductForm.get('statusReason')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -159,7 +285,7 @@
             <button type="button" class="btn-app btn-app-danger">Eliminar Producto</button>
             <div class="primary-buttons">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" (click)="getValueForm()">Guardar Cambios</button>
+                <button type="submit" class="btn-app btn-app-primary" (click)="getValueForm()" [disabled]="modifyProductForm.invalid">Guardar Cambios</button>
             </div>
         </div>
     </form>

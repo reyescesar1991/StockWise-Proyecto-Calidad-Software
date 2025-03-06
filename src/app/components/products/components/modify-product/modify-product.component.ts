@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { IModifyProductForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { modifyProductFormSchema } from '../../../../../core/form_Schemas';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-modify-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './modify-product.component.html',
   styleUrl: './modify-product.component.scss'
 })
@@ -17,6 +18,7 @@ export class ModifyProductComponent {
 
   protected product: string = '';
   protected modifyProductForm: FormGroup<IModifyProductForm>;
+  protected selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder) {
 
@@ -101,6 +103,22 @@ export class ModifyProductComponent {
 
     console.log(this.modifyProductForm.getRawValue());
     
+  }
+
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+
+    if (this.selectedFile) {
+      // Asigna el File al FormControl SIN usar setValue
+      this.modifyProductForm.patchValue({
+        productImage: this.selectedFile
+      });
+    } else {
+      this.modifyProductForm.patchValue({ productImage: null });
+    }
+
+    // Fuerza la validación
+    this.modifyProductForm.get('productImage')?.updateValueAndValidity();
   }
 
 }

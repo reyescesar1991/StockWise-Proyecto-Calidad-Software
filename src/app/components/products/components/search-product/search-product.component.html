@@ -10,7 +10,7 @@
                 <label for="productSearch">Buscar Producto</label>
                 <div class="search-input">
                     <span class="search-icon"></span>
-                    <input type="text" id="productSearch" placeholder="Ej: Manzanas Orgánicas, Leche, Pan Integral...">
+                    <input type="text" id="productSearch" placeholder="Ej: Manzanas Orgánicas, Leche, Pan Integral..." [(ngModel)]="searchTerm">
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
             <div class="form-field full-width">
                 <div class="form-buttons search-buttons">
                     <button type="button" class="btn-app btn-app-secondary me-1">Limpiar</button>
-                    <button type="button" class="btn-app btn-app-primary">Buscar Productos</button>
+                    <button type="button" class="btn-app btn-app-primary" (click)="searchProducts()">Buscar Productos</button>
                 </div>
             </div>
         </div>
@@ -57,36 +57,21 @@
 
     <div class="search-results">
         <div class="search-status">
-            <p>Se encontraron <span class="result-count">5</span> productos que coinciden con tu búsqueda</p>
+            <p>Se encontraron <span class="result-count">{{itemsFounded}}</span> productos que coinciden con tu búsqueda</p>
         </div>
 
         <div class="results-grid">
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="image-placeholder"></div>
-                </div>
-                <div class="product-details">
-                    <h3>Manzanas Orgánicas Fuji</h3>
-                    <p class="product-category">Frutas</p>
-                    <p class="product-stock">Stock: 45 Kilos</p>
-                    <p class="product-price">$2.50</p>
-                </div>
-                <div class="product-actions">
-                    <button class="action-button view-button"></button>
-                    <button class="action-button edit-button"></button>
-                    <button class="action-button add-button"></button>
-                </div>
-            </div>
+            @for (product of filteredProducts; track $index) {
 
             <div class="product-card">
                 <div class="product-image">
                     <div class="image-placeholder"></div>
                 </div>
                 <div class="product-details">
-                    <h3>Leche Entera</h3>
-                    <p class="product-category">Lácteos</p>
-                    <p class="product-stock">Stock: 30 Litros</p>
-                    <p class="product-price">$1.80</p>
+                    <h3>{{product.name}}</h3>
+                    <p class="product-category">{{product.category}}</p>
+                    <p class="product-stock">Stock: {{product.initialStock}} Kilos</p>
+                    <p class="product-price">${{product.sellingPrice}}</p>
                 </div>
                 <div class="product-actions">
                     <button class="action-button view-button"></button>
@@ -94,73 +79,42 @@
                     <button class="action-button add-button"></button>
                 </div>
             </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="image-placeholder"></div>
+            }
+            @if (filteredProducts.length > 0) {
+                <div class="pagination">
+                    <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
+                    <div class="pagination-numbers">
+                        @for (page of visiblePages; track $index) {
+                        <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
+                        }
+                        @if (totalPages > visiblePages[visiblePages.length - 1]) {
+                        <span class="pagination-ellipsis">...</span>
+                        }
+                        @if (totalPages > visiblePages[visiblePages.length - 1]) {
+                        <button class="pagination-number" (click)="goToPage(totalPages)">
+                            {{totalPages}}</button>
+                        }
+                        <!-- <button class="pagination-number">2</button>
+                        <button class="pagination-number">3</button>
+                        <span class="pagination-ellipsis">...</span>
+                        <button class="pagination-number">10</button> -->
+                    </div>
+                    <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
+                        (click)="nextPage()"></button>
                 </div>
-                <div class="product-details">
-                    <h3>Pan Integral</h3>
-                    <p class="product-category">Panadería</p>
-                    <p class="product-stock">Stock: 25 Unidades</p>
-                    <p class="product-price">$3.20</p>
+            
+                <div class="products-summary">
+                    <p class="mb-1 summary-highlight">Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
+                            class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
+                    <div class="add-product-button">
+                        <button class="btn-app btn-app-primary">Añadir Producto</button>
+                    </div>
                 </div>
-                <div class="product-actions">
-                    <button class="action-button view-button"></button>
-                    <button class="action-button edit-button"></button>
-                    <button class="action-button add-button"></button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="image-placeholder"></div>
-                </div>
-                <div class="product-details">
-                    <h3>Tomates Orgánicos</h3>
-                    <p class="product-category">Verduras</p>
-                    <p class="product-stock">Stock: 15 Kilos</p>
-                    <p class="product-price">$2.00</p>
-                </div>
-                <div class="product-actions">
-                    <button class="action-button view-button"></button>
-                    <button class="action-button edit-button"></button>
-                    <button class="action-button add-button"></button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="image-placeholder"></div>
-                </div>
-                <div class="product-details">
-                    <h3>Agua Mineral</h3>
-                    <p class="product-category">Bebidas</p>
-                    <p class="product-stock">Stock: 50 Litros</p>
-                    <p class="product-price">$1.25</p>
-                </div>
-                <div class="product-actions">
-                    <button class="action-button view-button"></button>
-                    <button class="action-button edit-button"></button>
-                    <button class="action-button add-button"></button>
-                </div>
-            </div>
+            }
         </div>
 
-        <div class="pagination">
-            <button class="pagination-button prev-button"></button>
-            <div class="pagination-numbers">
-                <button class="pagination-number active">1</button>
-                <button class="pagination-number">2</button>
-                <button class="pagination-number">3</button>
-                <span class="pagination-ellipsis">...</span>
-                <button class="pagination-number">6</button>
-            </div>
-            <button class="pagination-button next-button"></button>
+        <div class="search-tip notice">
+            Puede refinar su búsqueda utilizando palabras clave específicas, seleccionando una categoría o estableciendo
+            un rango de precios.
         </div>
     </div>
-
-    <div class="search-tip notice">
-        Puede refinar su búsqueda utilizando palabras clave específicas, seleccionando una categoría o estableciendo un rango de precios.
-    </div>
-</div>
