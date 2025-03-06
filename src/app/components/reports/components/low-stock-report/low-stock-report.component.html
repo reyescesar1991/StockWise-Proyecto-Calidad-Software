@@ -1,0 +1,220 @@
+<div class="low-stock-report-container scroll-y">
+    <div class="form-header-content">
+        <h1>Reporte de Productos Bajo Stock</h1>
+        <p>Lista de productos que están por debajo de su stock mínimo configurado</p>
+    </div>
+
+    <div class="report-actions mt-1">
+        <div class="report-filters">
+            <div class="form-field">
+                <label for="categoryFilter">Filtrar por Categoría</label>
+                <select id="categoryFilter">
+                    <option value="" selected>Todas las categorías</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="verduras">Verduras</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="carnes">Carnes</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="congelados">Congelados</option>
+                    <option value="enlatados">Enlatados</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+            
+            <div class="form-field">
+                <label for="criticalOnly">Mostrar Solo</label>
+                <select id="criticalOnly">
+                    <option value="all" selected>Todos los productos bajo stock</option>
+                    <option value="critical">Solo productos en estado crítico</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="report-buttons">
+            <button class="btn-app btn-app-secondary">
+                Actualizar
+            </button>
+            <button class="btn-app btn-app-primary">
+                Exportar
+            </button>
+        </div>
+    </div>
+
+    <div class="status-summary">
+        <div class="status-card critical">
+            <div class="status-icon critical-icon"></div>
+            <div class="status-details">
+                <h3>5</h3>
+                <p>Productos en estado crítico</p>
+            </div>
+        </div>
+        <div class="status-card warning">
+            <div class="status-icon warning-icon"></div>
+            <div class="status-details">
+                <h3>12</h3>
+                <p>Productos bajo stock mínimo</p>
+            </div>
+        </div>
+        <div class="status-card info">
+            <div class="status-icon info-icon"></div>
+            <div class="status-details">
+                <h3>$1,280</h3>
+                <p>Valor estimado de reposición</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="report-table-container">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Stock Actual</th>
+                    <th>Stock Mínimo</th>
+                    <th>Déficit</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="critical-row">
+                    <td class="product-name">Leche Entera</td>
+                    <td>Lácteos</td>
+                    <td>5 Litros</td>
+                    <td>20 Litros</td>
+                    <td class="deficit">-15 Litros</td>
+                    <td><span class="status-badge critical">Crítico</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="critical-row">
+                    <td class="product-name">Manzanas Orgánicas Fuji</td>
+                    <td>Frutas</td>
+                    <td>3 Kilos</td>
+                    <td>15 Kilos</td>
+                    <td class="deficit">-12 Kilos</td>
+                    <td><span class="status-badge critical">Crítico</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="warning-row">
+                    <td class="product-name">Pan Integral</td>
+                    <td>Panadería</td>
+                    <td>8 Unidades</td>
+                    <td>10 Unidades</td>
+                    <td class="deficit">-2 Unidades</td>
+                    <td><span class="status-badge warning">Bajo</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="critical-row">
+                    <td class="product-name">Café Molido</td>
+                    <td>Bebidas</td>
+                    <td>2 Kilos</td>
+                    <td>10 Kilos</td>
+                    <td class="deficit">-8 Kilos</td>
+                    <td><span class="status-badge critical">Crítico</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="warning-row">
+                    <td class="product-name">Arroz Integral</td>
+                    <td>Granos</td>
+                    <td>15 Kilos</td>
+                    <td>20 Kilos</td>
+                    <td class="deficit">-5 Kilos</td>
+                    <td><span class="status-badge warning">Bajo</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="warning-row">
+                    <td class="product-name">Papel Higiénico</td>
+                    <td>Limpieza</td>
+                    <td>12 Paquetes</td>
+                    <td>15 Paquetes</td>
+                    <td class="deficit">-3 Paquetes</td>
+                    <td><span class="status-badge warning">Bajo</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="critical-row">
+                    <td class="product-name">Aceite de Oliva</td>
+                    <td>Condimentos</td>
+                    <td>3 Litros</td>
+                    <td>12 Litros</td>
+                    <td class="deficit">-9 Litros</td>
+                    <td><span class="status-badge critical">Crítico</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="warning-row">
+                    <td class="product-name">Yogurt Natural</td>
+                    <td>Lácteos</td>
+                    <td>8 Unidades</td>
+                    <td>12 Unidades</td>
+                    <td class="deficit">-4 Unidades</td>
+                    <td><span class="status-badge warning">Bajo</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+                <tr class="critical-row">
+                    <td class="product-name">Detergente Líquido</td>
+                    <td>Limpieza</td>
+                    <td>2 Litros</td>
+                    <td>10 Litros</td>
+                    <td class="deficit">-8 Litros</td>
+                    <td><span class="status-badge critical">Crítico</span></td>
+                    <td class="actions-cell">
+                        <button class="action-button order-button"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <div class="pagination">
+        <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
+        <div class="pagination-numbers">
+            @for (page of visiblePages; track $index) {
+            <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
+            }
+            @if (totalPages > visiblePages[visiblePages.length - 1]) {
+            <span class="pagination-ellipsis">...</span>
+            }
+            @if (totalPages > visiblePages[visiblePages.length - 1]) {
+            <button class="pagination-number" (click)="goToPage(totalPages)">
+                {{totalPages}}</button>
+            }
+            <!-- <button class="pagination-number">2</button>
+            <button class="pagination-number">3</button>
+            <span class="pagination-ellipsis">...</span>
+            <button class="pagination-number">10</button> -->
+        </div>
+        <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
+            (click)="nextPage()"></button>
+    </div>
+
+    <div class="products-summary">
+        <p class="mb-1">Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
+                class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
+        <div class="add-product-button">
+            <button class="btn-app btn-app-primary">Añadir Producto</button>
+        </div>
+    </div>
+
+    <div class="notice">
+        <p>El estado <span class="critical-text">Crítico</span> indica que el stock está por debajo del 30% del mínimo configurado.</p>
+        <p>Se recomienda reponer los productos en estado crítico lo antes posible para evitar quiebres de stock.</p>
+    </div>
+</div>

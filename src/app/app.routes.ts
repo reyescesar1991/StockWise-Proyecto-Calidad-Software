@@ -83,6 +83,10 @@ export const routes: Routes = [
                     {
                         path: 'reporte-general',
                         loadComponent: () => import('./components/reports/components/general-status/general-status.component').then(mod => mod.GeneralStatusComponent),
+                    },
+                    {
+                        path: 'reporte-bajo-stock',
+                        loadComponent: () => import('./components/reports/components/low-stock-report/low-stock-report.component').then(mod => mod.LowStockReportComponent),
                     }
                 ]
             }

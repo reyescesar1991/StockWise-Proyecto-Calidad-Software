@@ -551,6 +551,81 @@ select:focus {
 
 //
 
+//pagination
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.pagination-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pagination-button:hover {
+  background-color: var(--light-gray);
+}
+
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pagination-number:hover {
+  background-color: var(--light-gray);
+}
+
+.pagination-number.active {
+  background-color: var(--primary-button);
+  color: var(--white-color);
+  border-color: var(--primary-button);
+}
+
+.pagination-ellipsis {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.prev-button::before {
+  content: "⬅️";
+  font-size: 0.8rem;
+}
+
+.next-button::before {
+  content: "➡️";
+  font-size: 0.8rem;
+}
+
+//
+
 
 //medias querys
 
@@ -560,5 +635,14 @@ select:focus {
 
     width: 100%;
     margin-bottom: .5rem;
+}
+
+.pagination-numbers {
+  gap: 0.25rem;
+}
+
+.pagination-number {
+  width: 32px;
+  height: 32px;
 }
 }

@@ -1,6 +1,6 @@
 import { FormControl } from "@angular/forms";
 
-export interface AdjustProductStockForm{
+export interface IAdjustProductStockForm{
 
     nameProduct : FormControl<string | null>;
     actualStock: FormControl<number | null>;
