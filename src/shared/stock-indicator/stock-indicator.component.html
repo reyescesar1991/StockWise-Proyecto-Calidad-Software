@@ -1,0 +1,38 @@
+<div class="stock-container">
+    <div class="stock-indicator-container">
+      <div class="stock-quantity">
+        <span>{{ stockData.currentStock }}</span> unidades en stock
+      </div>
+      <div class="stock-bar-container">
+        <div class="stock-bar-fill" [style.width.%]="fillPercentage" [style.backgroundColor]="statusColor"></div>
+      </div>
+      <div class="stock-bar-labels">
+        <span>0</span>
+        <span>{{ stockData.minStock }} (mínimo)</span>
+        <span>{{ stockData.optimalStock }} (óptimo)</span>
+      </div>
+    </div>
+  
+    <div class="stock-details">
+      <div class="stock-detail-row">
+        <div class="detail-label">Stock Mínimo:</div>
+        <div class="detail-value">{{ stockData.minStock }} unidades</div>
+      </div>
+      <div class="stock-detail-row">
+        <div class="detail-label">Stock Óptimo:</div>
+        <div class="detail-value">{{ stockData.optimalStock }} unidades</div>
+      </div>
+      <div class="stock-detail-row">
+        <div class="detail-label">Ubicación:</div>
+        <div class="detail-value">{{ stockData.location }}</div>
+      </div>
+      <div class="stock-detail-row">
+        <div class="detail-label">Última Actualización:</div>
+        <div class="detail-value">{{ stockData.lastUpdated }}</div>
+      </div>
+      <div class="stock-status">
+        <span class="status-indicator" [ngClass]="statusClass"></span>
+        <span class="status-text">{{ statusText }}</span>
+      </div>
+    </div>
+  </div>

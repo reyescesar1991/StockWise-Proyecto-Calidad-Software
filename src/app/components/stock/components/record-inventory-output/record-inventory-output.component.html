@@ -4,11 +4,11 @@
         <p>Complete los campos para registrar ventas o mermas y actualizar el inventario</p>
     </div>
 
-    <form class="mt-1">
+    <form [formGroup]="recordOuputInventoryForm" class="mt-1">
         <div class="form-grid">
             <div class="form-field full-width">
                 <label for="outflowType" class="required">Tipo de Salida</label>
-                <select id="outflowType" required>
+                <select id="outflowType" formControlName="outflowType" required>
                     <option value="" disabled selected>Seleccione el tipo de salida</option>
                     <option value="venta">Venta</option>
                     <option value="merma">Merma</option>
@@ -17,7 +17,7 @@
 
             <div class="form-field full-width">
                 <label for="product" class="required">Producto</label>
-                <select id="product" required>
+                <select id="product" formControlName="nameProduct" required>
                     <option value="" disabled selected>Buscar y seleccionar producto</option>
                     <option value="1">Manzanas Orgánicas Fuji</option>
                     <option value="2">Leche Entera 1L</option>
@@ -34,12 +34,12 @@
 
             <div class="form-field">
                 <label for="quantity" class="required">Cantidad a Retirar</label>
-                <input type="number" id="quantity" placeholder="Ej: 5" min="1" required>
+                <input type="number" formControlName="quantitySale" id="quantity" placeholder="Ej: 5" min="1" required>
             </div>
 
             <div class="form-field" id="mermaReasonField" style="display: none;">
                 <label for="mermaReason" class="required">Motivo de Merma</label>
-                <select id="mermaReason">
+                <select id="mermaReason" formControlName="mermaReason">
                     <option value="" disabled selected>Seleccione el motivo</option>
                     <option value="dañado">Producto Dañado</option>
                     <option value="caducado">Producto Caducado</option>
@@ -53,34 +53,34 @@
                 <label for="salePrice" class="required">Precio de Venta</label>
                 <div class="input-group">
                     <span class="input-group-prefix">$</span>
-                    <input type="number" id="salePrice" placeholder="0.00" step="0.01" min="0" required>
+                    <input type="number" id="salePrice" formControlName="salePrice" placeholder="0.00" step="0.01" min="0" required>
                 </div>
             </div>
 
             <div class="form-field full-width">
                 <label for="observations">Observaciones</label>
-                <textarea id="observations" placeholder="Detalles adicionales sobre esta salida de stock"></textarea>
+                <textarea id="observations" formControlName="observations" placeholder="Detalles adicionales sobre esta salida de stock"></textarea>
             </div>
 
             <div class="form-field full-width" id="mermaDetailsField" style="display: none;">
                 <label for="mermaDetails" class="required">Detalles de la Merma</label>
-                <textarea id="mermaDetails" placeholder="Describa en detalle la razón de la merma y cualquier acción tomada"></textarea>
+                <textarea id="mermaDetails" formControlName="mermaDetails" placeholder="Describa en detalle la razón de la merma y cualquier acción tomada"></textarea>
             </div>
 
             <div class="form-field">
                 <label for="date" class="required">Fecha</label>
-                <input type="date" id="date" required>
+                <input type="date" formControlName="dateSale" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
             </div>
 
             <div class="form-field">
                 <label for="documentNumber">N° de Documento</label>
-                <input type="text" id="documentNumber" placeholder="Factura, boleta, etc." required>
+                <input type="text" id="documentNumber" formControlName="documentNumber" placeholder="Factura, boleta, etc." required>
                 <div class="help-text">Opcional, referencia del documento</div>
             </div>
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary">Registrar Salida</button>
+                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Salida</button>
             </div>
         </div>
     </form>

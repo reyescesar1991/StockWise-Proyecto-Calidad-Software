@@ -4,12 +4,12 @@
         <p>Complete los campos para registrar la recepción de productos de sus proveedores</p>
     </div>
 
-    <form>
+    <form [formGroup]="addStockForm">
         <div class="form-grid mt-1">
             <div class="form-field full-width">
                 <label for="productSelect" class="required">Producto</label>
                 <div class="product-select-container">
-                    <select id="productSelect" required>
+                    <select id="productSelect" formControlName="nameProduct" required>
                         <option value="" disabled selected>Seleccione un producto</option>
                         <option value="1">Manzanas Orgánicas Fuji - Frutas</option>
                         <option value="2">Leche Entera - Lácteos</option>
@@ -30,19 +30,21 @@
             <div class="form-field">
                 <label for="quantityReceived" class="required">Cantidad Recibida</label>
                 <div class="quantity-input">
-                    <input type="number" id="quantityReceived" min="1" placeholder="Ej: 10" required>
+                    <input type="number" id="quantityReceived" formControlName="quantityReceived" min="1" placeholder="Ej: 10" required>
                     <span class="unit-display">Kilos</span>
                 </div>
             </div>
 
             <div class="form-field">
                 <label for="receptionDate" class="required">Fecha de Recepción</label>
-                <input type="date" id="receptionDate" required>
+                <input type="date" formControlName="receptionDate"
+                    [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'"    id="receptionDate"
+                    required>
             </div>
 
             <div class="form-field">
                 <label for="supplier" class="required">Proveedor</label>
-                <select id="supplier" required>
+                <select id="supplier" formControlName="supplier" required>
                     <option value="" disabled selected>Seleccione un proveedor</option>
                     <option value="1">Distribuidora Frutas del Valle</option>
                     <option value="2">Lácteos Naturales S.A.</option>
@@ -54,13 +56,13 @@
 
             <div class="form-field">
                 <label for="batchNumber">Número de Lote</label>
-                <input type="text" id="batchNumber" placeholder="Ej: LOT-2025-001">
+                <input type="text" id="batchNumber" formControlName="batchNumber" placeholder="Ej: LOT-2025-001">
                 <div class="help-text">Útil para trazabilidad en productos perecederos</div>
             </div>
 
             <div class="form-field full-width">
                 <label for="notes">Notas Adicionales</label>
-                <textarea id="notes" placeholder="Información adicional sobre este ingreso de stock..."></textarea>
+                <textarea id="notes" formControlName="notes" placeholder="Información adicional sobre este ingreso de stock..."></textarea>
             </div>
 
             <div class="stock-summary">
@@ -80,7 +82,7 @@
 
             <div class="form-buttons mt-1">
                 <button type="button" class="btn-app btn-app-secondary me-1">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary">Registrar Entrada</button>
+                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Entrada</button>
             </div>
         </div>
     </form>

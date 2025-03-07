@@ -11,7 +11,7 @@ export const registrySaleStockFormSchema = z.object({
     salePrice: z.number().gte(0, {message: 'Valor de venta no permitido'}),
     observations: z.string().min(5 , {message: 'Observación no puede tener menos de 5 caracteres'}).optional(),
     mermaDetails: z.string().min(5, {message: 'Detalle de la merma no puede tener menos de 5 caracteres'}).optional(),
-    dateSale: z.date().min(today , {message: 'La fecha de recepción no puede ser anterior a hoy'}),
+    dateSale: z.string(),
     documentNumber: z.string(),
 
 });

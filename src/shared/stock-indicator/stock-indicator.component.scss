@@ -1,0 +1,122 @@
+/* Contenedor principal */
+.stock-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    width: 36.875rem;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  /* Indicador de stock */
+  .stock-indicator-container {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stock-quantity {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  
+    span {
+      font-weight: bold;
+    }
+  }
+  
+  .stock-bar-container {
+    height: 24px;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  
+  .stock-bar-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.5s ease, background-color 0.5s ease;
+  }
+  
+  .stock-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  /* Detalles de stock */
+  .stock-details {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stock-detail-row {
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .detail-label {
+    flex: 1;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .detail-value {
+    flex: 2;
+  }
+  
+  .stock-status {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .status-low {
+    background-color: #f44336;
+  }
+  
+  .status-medium {
+    background-color: #ff9800;
+  }
+  
+  .status-good {
+    background-color: #4caf50;
+  }
+  
+  .status-text {
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px){
+
+    .stock-indicator-container{
+
+        width: auto;
+    }
+
+    .stock-container{
+
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+
+    .stock-details{
+
+        padding: .9rem;
+    }
+  }

@@ -4,9 +4,8 @@ export interface IAdjustProductStockForm{
 
     nameProduct : FormControl<string | null>;
     actualStock: FormControl<number | null>;
-    adjustmentType: FormControl<string | null>;
     adjustmentReason: FormControl<string | null>;
     adjustmentDetails: FormControl<string | null>;
-    dateAdjust: FormControl<Date | null>;
+    dateAdjust: FormControl<string | null>;
     adjustedBy: FormControl<string | null>;
 }

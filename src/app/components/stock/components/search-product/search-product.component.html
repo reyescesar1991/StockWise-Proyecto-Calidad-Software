@@ -36,37 +36,7 @@
             </div>
 
             <div class="stock-card">
-                <div class="stock-indicator-container">
-                    <div class="stock-indicator-ring">
-                        <div class="stock-indicator-circle">
-                            <span id="stockQuantity">42</span>
-                            <small>unidades</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="stock-details">
-                    <div class="stock-detail-row">
-                        <div class="detail-label">Stock Mínimo:</div>
-                        <div class="detail-value" id="minStock">10 unidades</div>
-                    </div>
-                    <div class="stock-detail-row">
-                        <div class="detail-label">Stock Óptimo:</div>
-                        <div class="detail-value" id="optimalStock">50 unidades</div>
-                    </div>
-                    <div class="stock-detail-row">
-                        <div class="detail-label">Ubicación:</div>
-                        <div class="detail-value" id="location">Bodega Central - Estante A3</div>
-                    </div>
-                    <div class="stock-detail-row">
-                        <div class="detail-label">Última Actualización:</div>
-                        <div class="detail-value" id="lastUpdated">02/03/2025 - 15:30</div>
-                    </div>
-                    <div class="stock-status" id="stockStatus">
-                        <!-- El estado se define dinámicamente -->
-                        <span class="status-indicator status-good"></span>
-                        <span class="status-text">Stock Adecuado</span>
-                    </div>
-                </div>
+                    <app-stock-indicator></app-stock-indicator>
             </div>
 
             <div class="action-buttons">

@@ -4,11 +4,11 @@
         <p>Complete los campos para realizar ajustes manuales al inventario cuando encuentre discrepancias</p>
     </div>
 
-    <form class="mt-1">
+    <form [formGroup]="adjustProductForm" class="mt-1">
         <div class="form-grid">
             <div class="form-field full-width">
                 <label for="product" class="required">Producto</label>
-                <select id="product" required>
+                <select id="product" formControlName="nameProduct" required>
                     <option value="" disabled selected>Buscar y seleccionar producto</option>
                     <option value="1">Manzanas Orgánicas Fuji</option>
                     <option value="2">Leche Entera 1L</option>
@@ -25,7 +25,7 @@
 
             <div class="form-field">
                 <label for="actualStock" class="required">Stock Real</label>
-                <input type="number" id="actualStock" placeholder="Ingrese el stock real" min="0" required>
+                <input type="number" formControlName="actualStock" id="actualStock" placeholder="Ingrese el stock real" min="0" required>
                 <div class="help-text">Stock verificado físicamente</div>
             </div>
 
@@ -46,7 +46,7 @@
 
             <div class="form-field full-width">
                 <label for="adjustmentReason" class="required">Motivo del Ajuste</label>
-                <select id="adjustmentReason" required>
+                <select id="adjustmentReason" formControlName="adjustmentReason" required>
                     <option value="" disabled selected>Seleccione un motivo</option>
                     <option value="inventario">Recuento de Inventario</option>
                     <option value="error">Error de Registro Previo</option>
@@ -59,17 +59,17 @@
 
             <div class="form-field full-width">
                 <label for="adjustmentDetails" class="required">Detalles del Ajuste</label>
-                <textarea id="adjustmentDetails" placeholder="Describa en detalle la razón del ajuste, cuándo y cómo se detectó la discrepancia, y cualquier acción adicional tomada" required></textarea>
+                <textarea id="adjustmentDetails" formControlName="adjustmentDetails" placeholder="Describa en detalle la razón del ajuste, cuándo y cómo se detectó la discrepancia, y cualquier acción adicional tomada" required></textarea>
             </div>
 
             <div class="form-field">
                 <label for="date" class="required">Fecha del Ajuste</label>
-                <input type="date" id="date" required>
+                <input type="date" formControlName="dateAdjust" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
             </div>
 
             <div class="form-field">
                 <label for="adjustedBy" class="required">Ajustado por</label>
-                <input type="text" id="adjustedBy" placeholder="Nombre del responsable" required>
+                <input type="text" formControlName="adjustedBy" id="adjustedBy" placeholder="Nombre del responsable" required>
             </div>
 
             <div class="form-field full-width">
@@ -84,7 +84,7 @@
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary">Registrar Ajuste</button>
+                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Ajuste</button>
             </div>
         </div>
     </form>
