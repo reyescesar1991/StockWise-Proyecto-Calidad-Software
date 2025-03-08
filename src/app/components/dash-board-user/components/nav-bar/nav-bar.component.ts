@@ -22,16 +22,10 @@ export class NavBarComponent {
             {
                 id: 'home',
                 name: 'Inicio',
-                path: '/home',
+                path: '/dashBoard',
                 icon: 'home-icon',
-                active: true
-            },
-            {
-                id: 'dashboard',
-                name: 'Dashboard',
-                path: '/dashboard',
-                icon: 'dashboard-icon',
-                active: false
+                active: true,
+                subroutes: [] // Subrutas vacías para consistencia
             }
         ]
     },
@@ -42,26 +36,32 @@ export class NavBarComponent {
             {
                 id: 'products',
                 name: 'Productos',
-                path: '/products',
+                path: '/dashBoard/productos',
                 icon: 'products-icon',
                 active: false,
                 subroutes: [
                     {
+                        id: 'products-registry',
+                        name: 'Registrar producto',
+                        path: '/dashBoard/productos/registrar-producto',
+                        active: false
+                    },
+                    {
+                        id: 'products-modify',
+                        name: 'Modificar producto',
+                        path: '/dashBoard/productos/modificar-producto',
+                        active: false
+                    },
+                    {
                         id: 'products-list',
-                        name: 'Listado',
-                        path: '/products/list',
+                        name: 'Listado de productos',
+                        path: '/dashBoard/productos/lista-productos',
                         active: false
                     },
                     {
-                        id: 'products-create',
-                        name: 'Crear producto',
-                        path: '/products/create',
-                        active: false
-                    },
-                    {
-                        id: 'products-categories',
-                        name: 'Categorías',
-                        path: '/products/categories',
+                        id: 'products-search',
+                        name: 'Buscar producto',
+                        path: '/dashBoard/productos/buscar-producto',
                         active: false
                     }
                 ]
@@ -69,26 +69,32 @@ export class NavBarComponent {
             {
                 id: 'inventory-management',
                 name: 'Gestión de Stock',
-                path: '/inventory',
+                path: '/dashBoard/inventario',
                 icon: 'inventory-icon',
                 active: false,
                 subroutes: [
                     {
-                        id: 'inventory-entries',
-                        name: 'Entradas',
-                        path: '/inventory/entries',
+                        id: 'inventory-add',
+                        name: 'Agregar inventario',
+                        path: '/dashBoard/inventario/agregar-inventario',
                         active: false
                     },
                     {
-                        id: 'inventory-exits',
-                        name: 'Salidas',
-                        path: '/inventory/exits',
+                        id: 'inventory-sales',
+                        name: 'Registrar venta',
+                        path: '/dashBoard/inventario/registrar-venta',
                         active: false
                     },
                     {
-                        id: 'inventory-transfers',
-                        name: 'Transferencias',
-                        path: '/inventory/transfers',
+                        id: 'inventory-adjust',
+                        name: 'Ajustar producto',
+                        path: '/dashBoard/inventario/ajustar-producto',
+                        active: false
+                    },
+                    {
+                        id: 'inventory-search',
+                        name: 'Buscar producto',
+                        path: '/dashBoard/inventario/buscar-producto',
                         active: false
                     }
                 ]
@@ -100,18 +106,31 @@ export class NavBarComponent {
         title: 'Reportes',
         routes: [
             {
-                id: 'sales-reports',
-                name: 'Ventas',
-                path: '/reports/sales',
+                id: 'general-reports',
+                name: 'Reportes',
+                path: '/dashBoard/reportes',
                 icon: 'reports-icon',
-                active: false
-            },
-            {
-                id: 'inventory-reports',
-                name: 'Inventario',
-                path: '/reports/inventory',
-                icon: 'reports-icon',
-                active: false
+                active: false,
+                subroutes: [
+                    {
+                        id: 'report-general',
+                        name: 'Estado general',
+                        path: '/dashBoard/reportes/reporte-general',
+                        active: false
+                    },
+                    {
+                        id: 'report-low-stock',
+                        name: 'Bajo stock',
+                        path: '/dashBoard/reportes/reporte-bajo-stock',
+                        active: false
+                    },
+                    {
+                        id: 'report-total-stock',
+                        name: 'Valor total inventario',
+                        path: '/dashBoard/reportes/reporte-total-stock',
+                        active: false
+                    }
+                ]
             }
         ]
     },
@@ -122,20 +141,26 @@ export class NavBarComponent {
             {
                 id: 'users',
                 name: 'Usuarios',
-                path: '/users',
+                path: '/dashBoard/usuarios',
                 icon: 'users-icon',
                 active: false,
                 subroutes: [
                     {
-                        id: 'users-list',
-                        name: 'Listado',
-                        path: '/users/list',
+                        id: 'users-create',
+                        name: 'Crear usuario',
+                        path: '/dashBoard/usuarios/crear-usuario',
                         active: false
                     },
                     {
-                        id: 'users-roles',
-                        name: 'Roles y permisos',
-                        path: '/users/roles',
+                        id: 'users-update',
+                        name: 'Modificar usuario',
+                        path: '/dashBoard/usuarios/modificar-usuario',
+                        active: false
+                    },
+                    {
+                        id: 'users-list',
+                        name: 'Listar usuarios',
+                        path: '/dashBoard/usuarios/listar-usuarios',
                         active: false
                     }
                 ]
@@ -145,7 +170,8 @@ export class NavBarComponent {
                 name: 'Configuración',
                 path: '/settings',
                 icon: 'settings-icon',
-                active: false
+                active: false,
+                subroutes: [] // Mantenemos subroutes vacío para consistencia
             }
         ]
     }

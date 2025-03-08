@@ -102,6 +102,14 @@ export const routes: Routes = [
                     {
                         path: 'crear-usuario',
                         loadComponent: () => import('./components/users-roles/components/create-user/create-user.component').then(mod => mod.CreateUserComponent),
+                    },
+                    {
+                        path: 'modificar-usuario',
+                        loadComponent: () => import('./components/users-roles/components/update-user/update-user.component').then(mod => mod.UpdateUserComponent),
+                    },
+                    {
+                        path: 'listar-usuarios',
+                        loadComponent: () => import('./components/users-roles/components/list-users/list-users.component').then(mod => mod.ListUsersComponent),
                     }
                 ]
             }

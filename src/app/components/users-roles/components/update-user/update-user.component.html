@@ -1,0 +1,342 @@
+@if (!userFound) {
+
+    <div class="container-search">
+        <div class="form-row">
+            <div class="form-field">
+                <label for="idUser" class="required">ID de usuario a modificar:</label>
+                <input type="text" id="idUser" name="idUser" [(ngModel)]="user">
+                <button type="submit" class="btn-app btn-app-primary mt-1" (click)="searchUser()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (userFound) {
+    <div class="manage-user-container scroll-y">
+        <div class="form-header-content">
+            <div class="container-two-fields mb-1">
+                <h1>Modificar usuario</h1>
+                <button type="submit" class="btn-app btn-app-primary" (click)="resetSearchUser()">Buscar otro usuario</button>
+            </div>
+            <p>Actualice la información del usuario seleccionado. Los cambios se aplicarán una vez guardados.</p>
+        </div>
+    
+        <div class="user-info-banner">
+            <div class="user-avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <div class="user-details">
+                <h2>Carlos Rodríguez</h2>
+                <span class="user-id">ID: CROD1234</span>
+                <span class="user-role">Supervisor de Inventario</span>
+            </div>
+            <div class="user-status active">
+                <span class="status-indicator"></span>
+                <span class="status-text">Activo</span>
+            </div>
+        </div>
+    
+        <form class="user-edit-form">
+            <div class="form-tabs">
+                <button type="button" class="tab-button active" data-tab="personal">Información personal</button>
+                <button type="button" class="tab-button" data-tab="contact">Contacto</button>
+                <button type="button" class="tab-button" data-tab="work">Laboral</button>
+                <button type="button" class="tab-button" data-tab="permissions">Permisos</button>
+                <button type="button" class="tab-button" data-tab="security">Seguridad</button>
+            </div>
+    
+            <div class="form-section active" id="personal-section">
+                <h3>Información personal</h3>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="idUser" class="required">ID de usuario</label>
+                        <input type="text" id="idUser" name="idUser" value="CROD1234" readonly>
+                        <small class="field-hint">El ID de usuario no puede modificarse</small>
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="email" class="required">Correo electrónico</label>
+                        <input type="email" id="email" name="email" value="carlos.rodriguez@empresa.com">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="name" class="required">Nombres</label>
+                        <input type="text" id="name" name="name" value="Carlos">
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="lastName" class="required">Apellidos</label>
+                        <input type="text" id="lastName" name="lastName" value="Rodríguez">
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <label for="profileImage">Imagen de perfil</label>
+                    <div class="image-upload-container">
+                        <div class="current-image">
+                            <div class="avatar-placeholder">CR</div>
+                        </div>
+                        <div class="upload-controls">
+                            <input type="file" id="profileImage" name="profileImage" class="file-input" accept="image/*">
+                            <label for="profileImage" class="btn-app btn-app-secondary">Seleccionar imagen</label>
+                            <button type="button" class="btn-app btn-app-danger">Eliminar imagen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-section" id="contact-section">
+                <h3>Información de contacto</h3>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="codeCountry" class="required">Código de país</label>
+                        <select id="codeCountry" name="codeCountry">
+                            <option value="+57">+57 (Colombia)</option>
+                            <option value="+52">+52 (México)</option>
+                            <option value="+51">+51 (Perú)</option>
+                            <option value="+54" selected>+54 (Argentina)</option>
+                            <option value="+56">+56 (Chile)</option>
+                            <option value="+58">+58 (Venezuela)</option>
+                            <option value="+593">+593 (Ecuador)</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="phoneNumber" class="required">Número telefónico</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" value="1142567890">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="emergencyContact">Contacto de emergencia</label>
+                        <input type="text" id="emergencyContact" name="emergencyContact" value="Marta Rodríguez">
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="emergencyPhone">Teléfono de emergencia</label>
+                        <input type="tel" id="emergencyPhone" name="emergencyPhone" value="1145678901">
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <label for="address">Dirección</label>
+                    <input type="text" id="address" name="address" value="Av. Corrientes 1234, Buenos Aires">
+                </div>
+            </div>
+    
+            <div class="form-section" id="work-section">
+                <h3>Información laboral</h3>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="rol" class="required">Rol en la empresa</label>
+                        <select id="rol" name="rol">
+                            <option value="1">Empleado de Almacén</option>
+                            <option value="2" selected>Supervisor de Inventario</option>
+                            <option value="3">Gestor de Inventario</option>
+                            <option value="4">Administrador de Inventario</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="headquarters" class="required">Sede</label>
+                        <select id="headquarters" name="headquarters">
+                            <option value="1">Sede Principal</option>
+                            <option value="2">Sede Norte</option>
+                            <option value="3" selected>Sede Sur</option>
+                            <option value="4">Sede Este</option>
+                            <option value="5">Sede Oeste</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="department">Departamento</label>
+                        <select id="department" name="department">
+                            <option value="1">Logística</option>
+                            <option value="2" selected>Almacén</option>
+                            <option value="3">Compras</option>
+                            <option value="4">Ventas</option>
+                            <option value="5">Administración</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="position">Cargo</label>
+                        <input type="text" id="position" name="position" value="Supervisor de Turno Tarde">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="hireDate">Fecha de contratación</label>
+                        <input type="date" id="hireDate" name="hireDate" value="2022-03-15">
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="employeeNumber">Número de empleado</label>
+                        <input type="text" id="employeeNumber" name="employeeNumber" value="EMP-2022-056">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-section" id="permissions-section">
+                <h3>Permisos</h3>
+    
+                <div class="form-field full-width">
+                    <div class="notice">
+                        <p>El rol actual "Supervisor de Inventario" incluye los siguientes permisos por defecto: ver
+                            inventario, registrar entrada/salida de stock, ajustar stock, generar informes básicos.</p>
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <label>Permisos específicos</label>
+                    <div class="permissions-grid">
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_view_inventory" name="permissions[]" value="ver_inventario"
+                                checked disabled>
+                            <label for="perm_view_inventory" class="disabled">Ver inventario</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_register_stock_in" name="permissions[]"
+                                value="registrar_entrada_stock" checked disabled>
+                            <label for="perm_register_stock_in" class="disabled">Registrar entradas</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_register_stock_out" name="permissions[]"
+                                value="registrar_salida_stock" checked disabled>
+                            <label for="perm_register_stock_out" class="disabled">Registrar salidas</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_adjust_stock" name="permissions[]" value="ajustar_stock" checked
+                                disabled>
+                            <label for="perm_adjust_stock" class="disabled">Ajustar stock</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_manage_categories" name="permissions[]"
+                                value="gestionar_categorias">
+                            <label for="perm_manage_categories">Gestionar categorías</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_manage_suppliers" name="permissions[]"
+                                value="gestionar_proveedores">
+                            <label for="perm_manage_suppliers">Gestionar proveedores</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_generate_basic_reports" name="permissions[]"
+                                value="generar_informes_basicos" checked disabled>
+                            <label for="perm_generate_basic_reports" class="disabled">Informes básicos</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_generate_advanced_reports" name="permissions[]"
+                                value="generar_informes_avanzados" checked>
+                            <label for="perm_generate_advanced_reports">Informes avanzados</label>
+                        </div>
+                        <div class="permission-item">
+                            <input type="checkbox" id="perm_analyze_stock" name="permissions[]" value="analizar_stock">
+                            <label for="perm_analyze_stock">Analizar stock</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <label for="customPermissions">Permisos personalizados adicionales</label>
+                    <textarea id="customPermissions" name="customPermissions"
+                        placeholder="Permisos adicionales separados por comas...">acceso_informes_semanales, visualizar_historial_completo</textarea>
+                </div>
+            </div>
+    
+            <div class="form-section" id="security-section">
+                <h3>Seguridad</h3>
+    
+                <div class="form-field full-width">
+                    <div class="security-status">
+                        <div class="security-item">
+                            <span class="security-icon secure">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </span>
+                            <div class="security-info">
+                                <h4>Última actualización de contraseña</h4>
+                                <p>15/01/2025 (hace 53 días)</p>
+                            </div>
+                        </div>
+    
+                        <div class="security-item">
+                            <span class="security-icon warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                    </path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </span>
+                            <div class="security-info">
+                                <h4>Último inicio de sesión</h4>
+                                <p>Hoy, 08/03/2025 10:23 AM (Buenos Aires, Argentina)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <label>Opciones de seguridad</label>
+                    <div class="security-options">
+                        <div class="security-option">
+                            <input type="checkbox" id="force_password_reset" name="force_password_reset">
+                            <label for="force_password_reset">Forzar cambio de contraseña en próximo inicio de
+                                sesión</label>
+                        </div>
+    
+                        <div class="security-option">
+                            <input type="checkbox" id="two_factor_auth" name="two_factor_auth" checked>
+                            <label for="two_factor_auth">Autenticación de dos factores</label>
+                        </div>
+    
+                        <div class="security-option">
+                            <input type="checkbox" id="account_lock" name="account_lock">
+                            <label for="account_lock">Bloquear cuenta temporalmente</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-field full-width">
+                    <button type="button" class="btn-app btn-app-secondary reset-password">Restablecer contraseña</button>
+                </div>
+            </div>
+    
+            <div class="form-field full-width">
+                <label for="notes">Notas adicionales</label>
+                <textarea id="notes"
+                    name="notes">Supervisor experimentado con excelente desempeño en gestión de inventario. Ha completado capacitación avanzada en marzo 2024.</textarea>
+            </div>
+    
+            <div class="form-actions">
+                <button type="button" class="btn-app btn-app-danger">Desactivar usuario</button>
+                <div class="action-group">
+                    <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
+                    <button type="submit" class="btn-app btn-app-primary">Guardar cambios</button>
+                </div>
+            </div>
+        </form>
+    </div>
+}

@@ -52,6 +52,11 @@
   display: flex;
 }
 
+.full-width{
+
+  width: 100%;
+}
+
 
 
 @mixin manage-user-container-base-styles {
@@ -657,5 +662,9 @@ select:focus {
 .pagination-number {
   width: 32px;
   height: 32px;
+}
+
+.form-field {
+  width: 100%;
 }
 }
