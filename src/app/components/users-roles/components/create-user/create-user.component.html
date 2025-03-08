@@ -1,0 +1,183 @@
+<div class="manage-user-container scroll-y">
+    <div class="form-header-content">
+      <h1>Crear nuevo usuario</h1>
+      <p>Complete el formulario para registrar un nuevo usuario en el sistema de gestión de inventario</p>
+    </div>
+  
+    <form class="user-create-form">
+      <div class="form-section">
+        <h2>Información personal</h2>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="idUser" class="required">ID de usuario</label>
+            <input type="text" id="idUser" name="idUser" placeholder="Ingrese el ID único del usuario">
+          </div>
+          
+          <div class="form-field">
+            <label for="email" class="required">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name" class="required">Nombres</label>
+            <input type="text" id="name" name="name" placeholder="Nombres del usuario">
+          </div>
+          
+          <div class="form-field">
+            <label for="lastName" class="required">Apellidos</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Apellidos del usuario">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="password" class="required">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Ingrese la contraseña">
+          </div>
+          
+          <div class="form-field">
+            <label for="confirmPassword" class="required">Confirmar contraseña</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme la contraseña">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>Información de contacto</h2>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="codeCountry" class="required">Código de país</label>
+            <select id="codeCountry" name="codeCountry">
+              <option value="" disabled selected>Seleccione un código</option>
+              <option value="+57">+57 (Colombia)</option>
+              <option value="+52">+52 (México)</option>
+              <option value="+51">+51 (Perú)</option>
+              <option value="+54">+54 (Argentina)</option>
+              <option value="+56">+56 (Chile)</option>
+              <option value="+58">+58 (Venezuela)</option>
+              <option value="+593">+593 (Ecuador)</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label for="phoneNumber" class="required">Número telefónico</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Número telefónico">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>Información laboral</h2>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="rol" class="required">Rol en la empresa</label>
+            <select id="rol" name="rol">
+              <option value="" disabled selected>Seleccione un rol</option>
+              <option value="1">Empleado de Almacén</option>
+              <option value="2">Supervisor de Inventario</option>
+              <option value="3">Gestor de Inventario</option>
+              <option value="4">Administrador de Inventario</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label for="headquarters" class="required">Sede</label>
+            <select id="headquarters" name="headquarters">
+              <option value="" disabled selected>Seleccione una sede</option>
+              <option value="1">Sede Principal</option>
+              <option value="2">Sede Norte</option>
+              <option value="3">Sede Sur</option>
+              <option value="4">Sede Este</option>
+              <option value="5">Sede Oeste</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-field">
+            <label for="department">Departamento</label>
+            <select id="department" name="department">
+              <option value="" disabled selected>Seleccione un departamento</option>
+              <option value="1">Logística</option>
+              <option value="2">Almacén</option>
+              <option value="3">Compras</option>
+              <option value="4">Ventas</option>
+              <option value="5">Administración</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label for="position">Cargo</label>
+            <input type="text" id="position" name="position" placeholder="Cargo del usuario">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h2>Permisos adicionales</h2>
+        
+        <div class="form-field full-width">
+          <label for="permissions">Permisos específicos</label>
+          <div class="permissions-grid">
+            <div class="permission-item">
+              <input type="checkbox" id="perm_view_inventory" name="permissions[]" value="ver_inventario">
+              <label for="perm_view_inventory">Ver inventario</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_register_stock_in" name="permissions[]" value="registrar_entrada_stock">
+              <label for="perm_register_stock_in">Registrar entradas</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_register_stock_out" name="permissions[]" value="registrar_salida_stock">
+              <label for="perm_register_stock_out">Registrar salidas</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_adjust_stock" name="permissions[]" value="ajustar_stock">
+              <label for="perm_adjust_stock">Ajustar stock</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_manage_categories" name="permissions[]" value="gestionar_categorias">
+              <label for="perm_manage_categories">Gestionar categorías</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_manage_suppliers" name="permissions[]" value="gestionar_proveedores">
+              <label for="perm_manage_suppliers">Gestionar proveedores</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_generate_basic_reports" name="permissions[]" value="generar_informes_basicos">
+              <label for="perm_generate_basic_reports">Informes básicos</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_generate_advanced_reports" name="permissions[]" value="generar_informes_avanzados">
+              <label for="perm_generate_advanced_reports">Informes avanzados</label>
+            </div>
+            <div class="permission-item">
+              <input type="checkbox" id="perm_analyze_stock" name="permissions[]" value="analizar_stock">
+              <label for="perm_analyze_stock">Analizar stock</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-field full-width">
+          <div class="notice">
+            <p>Los permisos específicos solo se aplicarán si son compatibles con el rol seleccionado. El rol "Administrador de Inventario" incluye todos los permisos por defecto.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-field full-width">
+        <label for="notes">Notas adicionales</label>
+        <textarea id="notes" name="notes" placeholder="Información adicional sobre el usuario..."></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
+        <button type="submit" class="btn-app btn-app-primary">Crear usuario</button>
+      </div>
+    </form>
+  </div>

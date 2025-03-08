@@ -425,6 +425,19 @@ select:focus {
   margin-top: 0.5rem;
 }
 
+  /* Animación sutil al pasar sobre los elementos del formulario */
+  .form-field input:hover,
+  .form-field select:hover,
+  .form-field textarea:hover {
+    border-color: var(--primary-button-hover);
+  }
+  
+  /* Mejorar la visualización de campo obligatorio */
+  .required::after {
+    font-size: 1.2rem;
+    vertical-align: middle;
+  }
+
 //
 
 //botones applicacion interna

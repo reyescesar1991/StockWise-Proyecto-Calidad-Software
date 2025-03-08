@@ -87,6 +87,21 @@ export const routes: Routes = [
                     {
                         path: 'reporte-bajo-stock',
                         loadComponent: () => import('./components/reports/components/low-stock-report/low-stock-report.component').then(mod => mod.LowStockReportComponent),
+                    },
+                    {
+                        path: 'reporte-total-stock',
+                        loadComponent: () => import('./components/reports/components/value-stock-report/value-stock-report.component').then(mod => mod.ValueStockReportComponent),
+                    }
+                ]
+            },
+            {
+                path: 'usuarios',
+                loadComponent: () => import('./components/users-roles/users-roles.component').then(mod => mod.UsersRolesComponent),
+                children: [
+
+                    {
+                        path: 'crear-usuario',
+                        loadComponent: () => import('./components/users-roles/components/create-user/create-user.component').then(mod => mod.CreateUserComponent),
                     }
                 ]
             }

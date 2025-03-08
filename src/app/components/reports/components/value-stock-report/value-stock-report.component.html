@@ -1,0 +1,215 @@
+<div class="inventory-value-container scroll-y">
+    <div class="form-header">
+        <h1>Reporte de Valor de Inventario</h1>
+        <p>Visualice y exporte el valor total de su inventario actual para fines contables y administrativos</p>
+    </div>
+
+    <div class="report-filters">
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="valuationType">Base de Valorización</label>
+                <select id="valuationType">
+                    <option value="cost">Precio de Costo</option>
+                    <option value="selling">Precio de Venta</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="reportDate">Fecha del Reporte</label>
+                <input type="date" id="reportDate" value="">
+            </div>
+
+            <div class="form-field">
+                <label for="categoryFilter">Filtrar por Categoría</label>
+                <select id="categoryFilter">
+                    <option value="all">Todas las Categorías</option>
+                    <option value="frutas">Frutas</option>
+                    <option value="verduras">Verduras</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="carnes">Carnes</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="congelados">Congelados</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="locationFilter">Filtrar por Ubicación</label>
+                <select id="locationFilter">
+                    <option value="all">Todas las Ubicaciones</option>
+                    <option value="bodegacentral">Bodega Central</option>
+                    <option value="tiendaprincipal">Tienda Principal</option>
+                    <option value="sucursal1">Sucursal Norte</option>
+                    <option value="sucursal2">Sucursal Sur</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-buttons filter-buttons">
+            <button type="button" class="btn-app btn-app-secondary" id="resetFilters">
+                Restablecer Filtros
+            </button>
+            <button type="button" class="btn-app btn-app-primary" id="generateReport">
+                Generar Reporte
+            </button>
+        </div>
+    </div>
+
+    <div class="report-summary">
+        <div class="summary-cards">
+            <div class="summary-card total-value">
+                <div class="summary-icon value-icon">💰</div>
+                <div class="summary-content">
+                    <h3>Valor Total del Inventario</h3>
+                    <div class="summary-amount" id="totalInventoryValue">$45,782.50</div>
+                    <div class="summary-label" id="valuationBasedOn">Basado en precio de costo</div>
+                </div>
+            </div>
+
+            <div class="summary-card items-count">
+                <div class="summary-icon items-icon">📦</div>
+                <div class="summary-content">
+                    <h3>Productos en Inventario</h3>
+                    <div class="summary-amount" id="totalItemsCount">247</div>
+                    <div class="summary-label">productos registrados</div>
+                </div>
+            </div>
+
+            <div class="summary-card categories-count">
+                <div class="summary-icon categories-icon">🏷️</div>
+                <div class="summary-content">
+                    <h3>Categorías</h3>
+                    <div class="summary-amount" id="categoriesCount">8</div>
+                    <div class="summary-label">categorías con productos</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inventory-chart">
+            <div class="chart-header">
+                <h3>Valor del Inventario por Categoría</h3>
+                <div class="chart-toggle">
+                    <button type="button" class="chart-btn active" data-chart="pie">Gráfico de Torta</button>
+                    <button type="button" class="chart-btn" data-chart="bar">Gráfico de Barras</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="inventoryChart" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="report-table-container">
+        <div class="table-header">
+            <h3>Detalle de Inventario</h3>
+            <div class="table-actions">
+                <div class="search-field">
+                    <input type="text" id="tableSearch" placeholder="Buscar producto...">
+                </div>
+                <div class="export-options">
+                    <button type="button" class="btn-app btn-app-secondary btn-sm" id="exportPDF">
+                        <span class="export-icon">📄</span> PDF
+                    </button>
+                    <button type="button" class="btn-app btn-app-secondary btn-sm" id="exportExcel">
+                        <span class="export-icon">📊</span> Excel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="inventory-table-wrapper">
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Ubicación</th>
+                        <th class="text-right">Precio Unitario</th>
+                        <th class="text-right">Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                    <tr>
+                        <td>PRD-001</td>
+                        <td>Manzanas Orgánicas Fuji</td>
+                        <td>Frutas</td>
+                        <td>120 kg</td>
+                        <td>Bodega Central</td>
+                        <td class="text-right">$1.25</td>
+                        <td class="text-right">$150.00</td>
+                    </tr>
+                    <tr>
+                        <td>PRD-002</td>
+                        <td>Leche Entera 1L</td>
+                        <td>Lácteos</td>
+                        <td>45 unidades</td>
+                        <td>Tienda Principal</td>
+                        <td class="text-right">$0.95</td>
+                        <td class="text-right">$42.75</td>
+                    </tr>
+                    <tr>
+                        <td>PRD-003</td>
+                        <td>Arroz Integral Premium</td>
+                        <td>Granos</td>
+                        <td>200 kg</td>
+                        <td>Bodega Central</td>
+                        <td class="text-right">$2.50</td>
+                        <td class="text-right">$500.00</td>
+                    </tr>
+                    <tr>
+                        <td>PRD-004</td>
+                        <td>Aceite de Oliva Extra Virgen 500ml</td>
+                        <td>Aceites</td>
+                        <td>30 unidades</td>
+                        <td>Tienda Principal</td>
+                        <td class="text-right">$8.75</td>
+                        <td class="text-right">$262.50</td>
+                    </tr>
+                    <tr>
+                        <td>PRD-005</td>
+                        <td>Café Molido Premium 250g</td>
+                        <td>Cafetería</td>
+                        <td>65 unidades</td>
+                        <td>Sucursal Norte</td>
+                        <td class="text-right">$4.50</td>
+                        <td class="text-right">$292.50</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-right"><strong>Subtotal en la página:</strong></td>
+                        <td colspan="2" class="text-right"><strong>$1,247.75</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button class="pagination-btn" disabled>
+                <span class="pagination-icon">◀</span>
+            </button>
+            <div class="pagination-info">Página 1 de 5</div>
+            <button class="pagination-btn">
+                <span class="pagination-icon">▶</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="report-footer">
+        <div class="report-metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Reporte generado el:</span>
+                <span class="metadata-value" id="generationDate">08/03/2025 15:47</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Generado por:</span>
+                <span class="metadata-value" id="generatedBy">Administrador</span>
+            </div>
+        </div>
+        <div class="notice">
+            <strong>Nota:</strong> Este reporte refleja el valor del inventario en el momento de su generación. Los precios y cantidades pueden cambiar debido a ventas, compras o ajustes posteriores.
+        </div>
+    </div>
+</div>
