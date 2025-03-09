@@ -569,7 +569,7 @@ select:focus {
 
 //
 
-//pagination
+//pagination varis paginas
 
 .pagination {
   display: flex;
@@ -640,6 +640,45 @@ select:focus {
 .next-button::before {
   content: "➡️";
   font-size: 0.8rem;
+}
+
+//
+
+//paginacion una sola pagina
+
+.pagination-only-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pagination-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--primary-button);
+  color: var(--white-color);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
 
 //

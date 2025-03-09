@@ -131,67 +131,33 @@
                     </tr>
                 </thead>
                 <tbody id="inventoryTableBody">
+                    @for (product of paginatedProducts; track $index) {
                     <tr>
-                        <td>PRD-001</td>
-                        <td>Manzanas Orgánicas Fuji</td>
-                        <td>Frutas</td>
-                        <td>120 kg</td>
-                        <td>Bodega Central</td>
-                        <td class="text-right">$1.25</td>
-                        <td class="text-right">$150.00</td>
+                        <td>{{ product.code }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.stock }}</td>
+                        <td>{{ product.location }}</td>
+                        <td class="text-right">{{ product.unitPrice | currency }}</td>
+                        <td class="text-right">{{ product.totalValue | currency }}</td>
                     </tr>
-                    <tr>
-                        <td>PRD-002</td>
-                        <td>Leche Entera 1L</td>
-                        <td>Lácteos</td>
-                        <td>45 unidades</td>
-                        <td>Tienda Principal</td>
-                        <td class="text-right">$0.95</td>
-                        <td class="text-right">$42.75</td>
-                    </tr>
-                    <tr>
-                        <td>PRD-003</td>
-                        <td>Arroz Integral Premium</td>
-                        <td>Granos</td>
-                        <td>200 kg</td>
-                        <td>Bodega Central</td>
-                        <td class="text-right">$2.50</td>
-                        <td class="text-right">$500.00</td>
-                    </tr>
-                    <tr>
-                        <td>PRD-004</td>
-                        <td>Aceite de Oliva Extra Virgen 500ml</td>
-                        <td>Aceites</td>
-                        <td>30 unidades</td>
-                        <td>Tienda Principal</td>
-                        <td class="text-right">$8.75</td>
-                        <td class="text-right">$262.50</td>
-                    </tr>
-                    <tr>
-                        <td>PRD-005</td>
-                        <td>Café Molido Premium 250g</td>
-                        <td>Cafetería</td>
-                        <td>65 unidades</td>
-                        <td>Sucursal Norte</td>
-                        <td class="text-right">$4.50</td>
-                        <td class="text-right">$292.50</td>
-                    </tr>
+                    }
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="5" class="text-right"><strong>Subtotal en la página:</strong></td>
-                        <td colspan="2" class="text-right"><strong>$1,247.75</strong></td>
+                        <td colspan="2" class="text-right"><strong>{{ subtotal | currency }}</strong></td>
                     </tr>
                 </tfoot>
             </table>
         </div>
 
-        <div class="pagination">
-            <button class="pagination-btn" disabled>
+        <div class="pagination-only-page">
+            <button class="pagination-btn" (click)="previousPage()" [disabled]="currentPage === 1">
                 <span class="pagination-icon">◀</span>
             </button>
-            <div class="pagination-info">Página 1 de 5</div>
-            <button class="pagination-btn">
+            <div class="pagination-info">Página {{ currentPage }} de {{ totalPages }}</div>
+            <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
                 <span class="pagination-icon">▶</span>
             </button>
         </div>
@@ -209,7 +175,8 @@
             </div>
         </div>
         <div class="notice">
-            <strong>Nota:</strong> Este reporte refleja el valor del inventario en el momento de su generación. Los precios y cantidades pueden cambiar debido a ventas, compras o ajustes posteriores.
+            <strong>Nota:</strong> Este reporte refleja el valor del inventario en el momento de su generación. Los
+            precios y cantidades pueden cambiar debido a ventas, compras o ajustes posteriores.
         </div>
     </div>
 </div>

@@ -2,6 +2,25 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+interface StockReport {
+  product: string;
+  category: string;
+  currentStock: {
+    value: number;
+    unit: string;
+  };
+  minStock: {
+    value: number;
+    unit: string;
+  };
+  deficit: {
+    value: number;
+    unit: string;
+  };
+  status: 'critical' | 'warning';
+  needsOrder: boolean;
+}
+
 @Component({
   selector: 'app-low-stock-report',
   standalone: true,
@@ -12,187 +31,145 @@ import { FormsModule } from '@angular/forms';
 export class LowStockReportComponent {
 
   protected currentPage: number = 1;
-  protected itemsPerPage: number = 2;
-  protected totalItems: number = 0;
+  protected itemsPerPage: number = 2; // Cambia este valor para mostrar más/menos items por página
   protected totalPages: number = 0;
-  protected visiblePages: number[] = [];
-  protected filteredProducts: any[] = [];
-  protected allProducts: any = [];
+  protected totalItems : number = 0;
+  protected totalItemsEnd: number = 0;
+  protected totalItemsStart: number = 1;
   protected Math = Math;
   protected searchTerm: string = '';
 
+  protected stockReportData: StockReport[] = [
+    {
+      product: 'Leche Entera',
+      category: 'Lácteos',
+      currentStock: { value: 5, unit: 'Litros' },
+      minStock: { value: 20, unit: 'Litros' },
+      deficit: { value: -15, unit: 'Litros' },
+      status: 'critical',
+      needsOrder: true
+    },
+    {
+      product: 'Manzanas Orgánicas Fuji',
+      category: 'Frutas',
+      currentStock: { value: 3, unit: 'Kilos' },
+      minStock: { value: 15, unit: 'Kilos' },
+      deficit: { value: -12, unit: 'Kilos' },
+      status: 'critical',
+      needsOrder: true
+    },
+    {
+      product: 'Pan Integral',
+      category: 'Panadería',
+      currentStock: { value: 8, unit: 'Unidades' },
+      minStock: { value: 10, unit: 'Unidades' },
+      deficit: { value: -2, unit: 'Unidades' },
+      status: 'warning',
+      needsOrder: true
+    },
+    {
+      product: 'Café Molido',
+      category: 'Bebidas',
+      currentStock: { value: 2, unit: 'Kilos' },
+      minStock: { value: 10, unit: 'Kilos' },
+      deficit: { value: -8, unit: 'Kilos' },
+      status: 'critical',
+      needsOrder: true
+    },
+    {
+      product: 'Arroz Integral',
+      category: 'Granos',
+      currentStock: { value: 15, unit: 'Kilos' },
+      minStock: { value: 20, unit: 'Kilos' },
+      deficit: { value: -5, unit: 'Kilos' },
+      status: 'warning',
+      needsOrder: true
+    },
+    {
+      product: 'Papel Higiénico',
+      category: 'Limpieza',
+      currentStock: { value: 12, unit: 'Paquetes' },
+      minStock: { value: 15, unit: 'Paquetes' },
+      deficit: { value: -3, unit: 'Paquetes' },
+      status: 'warning',
+      needsOrder: true
+    },
+    {
+      product: 'Aceite de Oliva',
+      category: 'Condimentos',
+      currentStock: { value: 3, unit: 'Litros' },
+      minStock: { value: 12, unit: 'Litros' },
+      deficit: { value: -9, unit: 'Litros' },
+      status: 'critical',
+      needsOrder: true
+    },
+    {
+      product: 'Yogurt Natural',
+      category: 'Lácteos',
+      currentStock: { value: 8, unit: 'Unidades' },
+      minStock: { value: 12, unit: 'Unidades' },
+      deficit: { value: -4, unit: 'Unidades' },
+      status: 'warning',
+      needsOrder: true
+    },
+    {
+      product: 'Detergente Líquido',
+      category: 'Limpieza',
+      currentStock: { value: 2, unit: 'Litros' },
+      minStock: { value: 10, unit: 'Litros' },
+      deficit: { value: -8, unit: 'Litros' },
+      status: 'critical',
+      needsOrder: true
+    }
+  ];
+
   ngOnInit(){
 
-    this.loadProducts();
   }
 
-  private loadProducts() {
-    // Ejemplo de datos - reemplazar con tu data real
-    this.allProducts = [
-      {
-        productImage: 'Imagen de manzanas',
-        name: 'Manzanas Fuji',
-        category: 'Frutas',
-        initialStock: 150,
-        sellingPrice: 1.99
-      },
-      {
-        productImage: 'Image of Leche Entera',
-        name: 'Leche Entera 1L',
-        category: 'lacteos',
-        initialStock: 80,
-        sellingPrice: 2.50
-      },
-      {
-        productImage: 'Image of Pechuga de Pollo',
-        name: 'Pechuga de Pollo 1kg',
-        category: 'Carnes',
-        initialStock: 50,
-        sellingPrice: 7.99
-      },
-      {
-        productImage: 'Image of Pan Integral',
-        name: 'Pan Integral 700g',
-        category: 'Panadería',
-        initialStock: 30,
-        sellingPrice: 3.50
-      },
-      {
-        productImage: 'Image of Arroz Blanco',
-        name: 'Arroz Blanco 1kg',
-        category: 'Granos',
-        initialStock: 200,
-        sellingPrice: 0.99
-      },
-      {
-        productImage: 'Image of Huevos Docena',
-        name: 'Huevos Docena',
-        category: 'lacteos',
-        initialStock: 120,
-        sellingPrice: 2.20
-      },
-      {
-        productImage: 'Image of Aceite de Oliva',
-        name: 'Aceite de Oliva 500ml',
-        category: 'Aceites',
-        initialStock: 60,
-        sellingPrice: 8.50
-      },
-      {
-        productImage: 'Image of Pasta Spaghetti',
-        name: 'Pasta Spaghetti 500g',
-        category: 'Pastas',
-        initialStock: 180,
-        sellingPrice: 1.10
-      },
-      {
-        productImage: 'Image of Tomates Rojos',
-        name: 'Tomates Rojos 1kg',
-        category: 'Verduras',
-        initialStock: 90,
-        sellingPrice: 2.75
-      },
-      {
-        productImage: 'Image of Plátanos Canarias',
-        name: 'Plátanos Canarias',
-        category: 'Frutas',
-        initialStock: 110,
-        sellingPrice: 1.50
-      },
-      {
-        productImage: 'Image of Queso Gouda',
-        name: 'Queso Gouda 200g',
-        category: 'lacteos',
-        initialStock: 70,
-        sellingPrice: 4.80
-      },
-      {
-        productImage: 'Image of Detergente Lavadora',
-        name: 'Detergente Lavadora 3L',
-        category: 'limpieza',
-        initialStock: 40,
-        sellingPrice: 6.20
-      },
-    ];
-
-    this.totalItems = this.allProducts.length;
-    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    this.updateVisiblePages();
-    this.updateFilteredProducts();
+  constructor() {
+    this.totalPages = Math.ceil(this.stockReportData.length / this.itemsPerPage);
+    this.totalItemsEnd = this.stockReportData.length;
   }
 
-
-  protected updateVisiblePages() {
-    const maxVisiblePages = 5;
-    let start = Math.max(1, this.currentPage - 2);
-    let end = Math.min(this.totalPages, start + maxVisiblePages - 1);
-
-    console.log(start);
-    console.log(end);
-    console.log(this.currentPage);
-    console.log(this.totalPages);
-    
-    
-    
-    
-
-    if (end - start < maxVisiblePages - 1) {
-      start = Math.max(1, end - maxVisiblePages + 1);
-    }
-
-    this.visiblePages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
-
-    console.log(this.visiblePages);
-
-  }
-
-  protected goToPage(page: number) {
-    if (page < 1 || page > this.totalPages) return;
-    this.currentPage = page;
-    this.updateVisiblePages();
-    this.updateFilteredProducts();
-  }
-
-  protected previousPage() {
-    this.goToPage(this.currentPage - 1);
-  }
-
-  protected nextPage() {
-    this.goToPage(this.currentPage + 1);
-  }
-
-  private updateFilteredProducts() {
-    console.log(this.searchTerm);
-
+  get paginatedProducts(): StockReport[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    console.log("start index filtro = ", startIndex);
-    
     const endIndex = startIndex + this.itemsPerPage;
-
-    console.log("end index filtro = ", endIndex);
-
-    const filtered = this.allProducts.filter((product: { name: string; }) =>
-      product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-
-    console.log(filtered);
-    
-
-    this.filteredProducts = filtered.slice(startIndex, endIndex);
-
-    console.log(this.filteredProducts);
-    
-
-    this.totalItems = filtered.length;
-    this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    
-
+    return this.stockReportData.slice(startIndex, endIndex);
   }
 
-  protected applySearchFilter() {
-    this.currentPage = 1; 
-    this.updateVisiblePages();
-    this.updateFilteredProducts();
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+
+  protected getStatusItem(status: string) : string {
+
+    switch(status){
+
+      case 'critical':
+        return 'critical-row';
+      
+      case 'warning':
+        return 'warning-row';
+      
+      default:
+        return '';
+    }
+  }
+
+  protected getStatusBadge(status: 'warning' | 'critical'): string{
+
+    return `status-badge ${status}`;
   }
 
 }

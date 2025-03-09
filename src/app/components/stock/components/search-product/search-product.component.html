@@ -8,8 +8,8 @@
         <div class="form-field full-width">
             <label for="productSearch" class="required">Buscar Producto</label>
             <div class="search-input-group">
-                <input type="text" id="productSearch" placeholder="Ingrese código o nombre del producto" required>
-                <button type="button" class="search-button btn-app btn-app-primary">
+                <input type="text" id="productSearch" [(ngModel)]="productSearch" placeholder="Ingrese código o nombre del producto" required>
+                <button type="button" class="search-button btn-app btn-app-primary" (click)="searchProduct()">
                     <span class="search-icon">🔍</span>
                 </button>
             </div>
@@ -19,13 +19,15 @@
 
     <div class="product-result-area" id="productResultArea">
         <!-- Sección inicial oculta, se muestra después de buscar -->
-        <div class="empty-state mb-1" id="emptyState">
-            <div class="empty-icon pulse-animation">📦</div>
-            <h2>Sin resultados</h2>
-            <p>Busque un producto para ver su información de stock</p>
-        </div>
-
-        <!-- Sección que se muestra cuando hay resultados -->
+        @if (!productFound) {
+            <div class="empty-state mb-1" id="emptyState">
+                <div class="empty-icon pulse-animation">📦</div>
+                <h2>Sin resultados</h2>
+                <p>Busque un producto para ver su información de stock</p>
+            </div>
+        }
+        @else {
+            <!-- Sección que se muestra cuando hay resultados -->
         <div class="product-details" id="productDetails">
             <div class="product-header">
                 <div class="product-title-section">
@@ -51,6 +53,7 @@
                 </button>
             </div>
         </div>
+        }
     </div>
 
     <div class="notice" id="stockTip">

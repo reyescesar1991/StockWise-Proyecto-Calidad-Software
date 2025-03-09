@@ -22,7 +22,7 @@
                     <option value="otros">Otros</option>
                 </select>
             </div>
-            
+
             <div class="form-field">
                 <label for="criticalOnly">Mostrar Solo</label>
                 <select id="criticalOnly">
@@ -31,7 +31,7 @@
                 </select>
             </div>
         </div>
-        
+
         <div class="report-buttons">
             <button class="btn-app btn-app-secondary">
                 Actualizar
@@ -80,141 +80,49 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="critical-row">
-                    <td class="product-name">Leche Entera</td>
-                    <td>Lácteos</td>
-                    <td>5 Litros</td>
-                    <td>20 Litros</td>
-                    <td class="deficit">-15 Litros</td>
-                    <td><span class="status-badge critical">Crítico</span></td>
+
+                @for (product of paginatedProducts; track $index) {
+
+                <tr [class]="getStatusItem(product.status)">
+
+                    <td class="product-name">{{product.product}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.currentStock.value}} {{product.currentStock.unit}}</td>
+                    <td>{{product.minStock.value}} {{product.minStock.unit}}</td>
+                    <td class="deficit">{{product.deficit.value}} {{product.deficit.unit}}</td>
+                    <td><span [class]="getStatusBadge(product.status)">{{product.status === 'critical' ? 'Critico' :
+                            'Bajo'}}</span></td>
                     <td class="actions-cell">
                         <button class="action-button order-button"></button>
                     </td>
                 </tr>
-                <tr class="critical-row">
-                    <td class="product-name">Manzanas Orgánicas Fuji</td>
-                    <td>Frutas</td>
-                    <td>3 Kilos</td>
-                    <td>15 Kilos</td>
-                    <td class="deficit">-12 Kilos</td>
-                    <td><span class="status-badge critical">Crítico</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="warning-row">
-                    <td class="product-name">Pan Integral</td>
-                    <td>Panadería</td>
-                    <td>8 Unidades</td>
-                    <td>10 Unidades</td>
-                    <td class="deficit">-2 Unidades</td>
-                    <td><span class="status-badge warning">Bajo</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="critical-row">
-                    <td class="product-name">Café Molido</td>
-                    <td>Bebidas</td>
-                    <td>2 Kilos</td>
-                    <td>10 Kilos</td>
-                    <td class="deficit">-8 Kilos</td>
-                    <td><span class="status-badge critical">Crítico</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="warning-row">
-                    <td class="product-name">Arroz Integral</td>
-                    <td>Granos</td>
-                    <td>15 Kilos</td>
-                    <td>20 Kilos</td>
-                    <td class="deficit">-5 Kilos</td>
-                    <td><span class="status-badge warning">Bajo</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="warning-row">
-                    <td class="product-name">Papel Higiénico</td>
-                    <td>Limpieza</td>
-                    <td>12 Paquetes</td>
-                    <td>15 Paquetes</td>
-                    <td class="deficit">-3 Paquetes</td>
-                    <td><span class="status-badge warning">Bajo</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="critical-row">
-                    <td class="product-name">Aceite de Oliva</td>
-                    <td>Condimentos</td>
-                    <td>3 Litros</td>
-                    <td>12 Litros</td>
-                    <td class="deficit">-9 Litros</td>
-                    <td><span class="status-badge critical">Crítico</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="warning-row">
-                    <td class="product-name">Yogurt Natural</td>
-                    <td>Lácteos</td>
-                    <td>8 Unidades</td>
-                    <td>12 Unidades</td>
-                    <td class="deficit">-4 Unidades</td>
-                    <td><span class="status-badge warning">Bajo</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
-                <tr class="critical-row">
-                    <td class="product-name">Detergente Líquido</td>
-                    <td>Limpieza</td>
-                    <td>2 Litros</td>
-                    <td>10 Litros</td>
-                    <td class="deficit">-8 Litros</td>
-                    <td><span class="status-badge critical">Crítico</span></td>
-                    <td class="actions-cell">
-                        <button class="action-button order-button"></button>
-                    </td>
-                </tr>
+                }
             </tbody>
         </table>
+        <div class="pagination-only-page mb-1 mt-1">
+            <button class="pagination-btn" (click)="previousPage()" [disabled]="currentPage === 1">
+                <span class="pagination-icon">◀</span>
+            </button>
+            <div class="pagination-info">Página {{ currentPage }} de {{ totalPages }}</div>
+            <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                <span class="pagination-icon">▶</span>
+            </button>
+        </div>
     </div>
 
-        <div class="pagination">
-        <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
-        <div class="pagination-numbers">
-            @for (page of visiblePages; track $index) {
-            <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
-            }
-            @if (totalPages > visiblePages[visiblePages.length - 1]) {
-            <span class="pagination-ellipsis">...</span>
-            }
-            @if (totalPages > visiblePages[visiblePages.length - 1]) {
-            <button class="pagination-number" (click)="goToPage(totalPages)">
-                {{totalPages}}</button>
-            }
-            <!-- <button class="pagination-number">2</button>
-            <button class="pagination-number">3</button>
-            <span class="pagination-ellipsis">...</span>
-            <button class="pagination-number">10</button> -->
-        </div>
-        <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
-            (click)="nextPage()"></button>
-    </div>
+    
 
     <div class="products-summary">
-        <p class="mb-1">Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
-                class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
+        <p class="mb-1">Mostrando <span class="summary-highlight">{{currentPage !== 1 ? ((currentPage - 1) * itemsPerPage) + 1 : totalItemsStart}}</span> de <span
+                class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItemsEnd)}}</span> productos</p>
         <div class="add-product-button">
             <button class="btn-app btn-app-primary">Añadir Producto</button>
         </div>
     </div>
 
     <div class="notice">
-        <p>El estado <span class="critical-text">Crítico</span> indica que el stock está por debajo del 30% del mínimo configurado.</p>
+        <p>El estado <span class="critical-text">Crítico</span> indica que el stock está por debajo del 30% del mínimo
+            configurado.</p>
         <p>Se recomienda reponer los productos en estado crítico lo antes posible para evitar quiebres de stock.</p>
     </div>
 </div>
