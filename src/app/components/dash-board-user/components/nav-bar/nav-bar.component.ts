@@ -22,7 +22,7 @@ export class NavBarComponent {
             {
                 id: 'home',
                 name: 'Inicio',
-                path: '/dashBoard',
+                path: '/dashBoard/inicio',
                 icon: 'home-icon',
                 active: true,
                 subroutes: [] // Subrutas vacías para consistencia

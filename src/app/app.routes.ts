@@ -29,6 +29,11 @@ export const routes: Routes = [
         loadComponent: () => import('./components/dash-board-user/dash-board-user.component').then(mod => mod.DashBoardUserComponent),
         children: [
 
+
+            {
+                path: 'inicio',
+                loadComponent: () => import('./components/dash-board-user/components/inicio/inicio.component').then(mod => mod.InicioComponent),
+            },
             {
                 path: 'productos',
                 loadComponent: () => import('./components/products/products.component').then(mod => mod.ProductosComponent),
