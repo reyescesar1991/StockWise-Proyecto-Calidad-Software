@@ -93,34 +93,6 @@
     color: #6c757d;
   }
   
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 0.25rem;
-    margin-top: 1.5rem;
-  }
-  
-  .pagination-btn {
-    padding: 0.5rem 0.75rem;
-    border: 1px solid var(--border-color);
-    background-color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    min-width: 2.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .pagination-btn.active {
-    background-color: var(--primary-button);
-    color: white;
-    border-color: var(--primary-button);
-  }
-  
-  .pagination-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
   /* Estilos para el modal */
   .modal {
     display: none;

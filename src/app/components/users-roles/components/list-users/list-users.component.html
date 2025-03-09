@@ -1,147 +1,86 @@
 <div class="manage-user-container scroll-y">
-    <div class="form-header-content">
-        <h1>Gestión de Usuarios</h1>
-        <p>Lista de usuarios registrados en el sistema de gestión de inventario</p>
-    </div>
+  <div class="form-header-content">
+    <h1>Gestión de Usuarios</h1>
+    <p>Lista de usuarios registrados en el sistema de gestión de inventario</p>
+  </div>
 
-    <div class="user-list-actions">
-        <div class="search-filter">
-            <input type="text" id="userSearch" placeholder="Buscar usuario...">
-            <select id="userFilter">
-                <option value="all">Todos los roles</option>
-                <option value="1">Empleado de Almacén</option>
-                <option value="2">Supervisor de Inventario</option>
-                <option value="3">Gestor de Inventario</option>
-                <option value="4">Administrador de Inventario</option>
-            </select>
-            <button class="btn-app btn-app-secondary">Filtrar</button>
-        </div>
-        <div class="flex-container-row full-width">
-            <button class="btn-app btn-app-primary" id="addUserBtn">
-                <i class="fas fa-plus"></i> Nuevo Usuario
-            </button>
-        </div>
+  <div class="user-list-actions">
+    <div class="search-filter">
+      <input type="text" id="userSearch" placeholder="Buscar usuario...">
+      <select id="userFilter">
+        <option value="all">Todos los roles</option>
+        <option value="1">Empleado de Almacén</option>
+        <option value="2">Supervisor de Inventario</option>
+        <option value="3">Gestor de Inventario</option>
+        <option value="4">Administrador de Inventario</option>
+      </select>
+      <button class="btn-app btn-app-secondary">Filtrar</button>
     </div>
+    <div class="flex-container-row full-width">
+      <button class="btn-app btn-app-primary" id="addUserBtn">
+        <i class="fas fa-plus"></i> Nuevo Usuario
+      </button>
+    </div>
+  </div>
 
-    <div class="table-container">
-        <table class="users-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Sede</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>USR001</td>
-                    <td>Carlos Ramírez</td>
-                    <td>Administrador de Inventario</td>
-                    <td>Sede Principal</td>
-                    <td><span class="status-badge active">Activo</span></td>
-                    <td class="actions-cell">
-                        <a href="edit-user.html?id=USR001" class="action-btn edit-btn" title="Modificar usuario">
-                          Editar
-                        </a>
-                        <button class="action-btn delete-btn" data-user-id="USR001" title="Eliminar usuario">
-                          Eliminar
-                        </button>
-                      </td>
-                </tr>
-                <tr>
-                    <td>USR002</td>
-                    <td>Ana Martínez</td>
-                    <td>Supervisor de Inventario</td>
-                    <td>Sede Norte</td>
-                    <td><span class="status-badge active">Activo</span></td>
-                    <td class="actions-cell">
-                        <a href="edit-user.html?id=USR001" class="action-btn edit-btn" title="Modificar usuario">
-                          Editar
-                        </a>
-                        <button class="action-btn delete-btn" data-user-id="USR001" title="Eliminar usuario">
-                          Eliminar
-                        </button>
-                      </td>
-                </tr>
-                <tr>
-                    <td>USR003</td>
-                    <td>Luis Gómez</td>
-                    <td>Gestor de Inventario</td>
-                    <td>Sede Sur</td>
-                    <td><span class="status-badge active">Activo</span></td>
-                    <td class="actions-cell">
-                        <a href="edit-user.html?id=USR001" class="action-btn edit-btn" title="Modificar usuario">
-                          Editar
-                        </a>
-                        <button class="action-btn delete-btn" data-user-id="USR001" title="Eliminar usuario">
-                          Eliminar
-                        </button>
-                      </td>
-                </tr>
-                <tr>
-                    <td>USR004</td>
-                    <td>María Pérez</td>
-                    <td>Empleado de Almacén</td>
-                    <td>Sede Este</td>
-                    <td><span class="status-badge inactive">Inactivo</span></td>
-                    <td class="actions-cell">
-                        <a href="edit-user.html?id=USR001" class="action-btn edit-btn" title="Modificar usuario">
-                          Editar
-                        </a>
-                        <button class="action-btn delete-btn" data-user-id="USR001" title="Eliminar usuario">
-                          Eliminar
-                        </button>
-                      </td>
-                </tr>
-                <tr>
-                    <td>USR005</td>
-                    <td>Juan López</td>
-                    <td>Empleado de Almacén</td>
-                    <td>Sede Principal</td>
-                    <td><span class="status-badge active">Activo</span></td>
-                    <td class="actions-cell">
-                        <a href="edit-user.html?id=USR001" class="action-btn edit-btn" title="Modificar usuario">
-                          Editar
-                        </a>
-                        <button class="action-btn delete-btn" data-user-id="USR001" title="Eliminar usuario">
-                          Eliminar
-                        </button>
-                      </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="table-container">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Rol</th>
+          <th>Sede</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
 
-    <div class="pagination">
-        <button class="pagination-btn" disabled>
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="pagination-btn active">1</button>
-        <button class="pagination-btn">2</button>
-        <button class="pagination-btn">3</button>
-        <button class="pagination-btn">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
+        @for (user of paginatedProducts; track $index) {
 
-    <!-- Modal de confirmación para eliminar usuario -->
-    <div class="modal" id="deleteUserModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Confirmar eliminación</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro que desea eliminar al usuario <span id="userToDelete"></span>?</p>
-                <p class="warning-text">Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-app btn-app-secondary" id="cancelDeleteBtn">Cancelar</button>
-                <button class="btn-app btn-app-danger" id="confirmDeleteBtn">Eliminar</button>
-            </div>
-        </div>
+        <tr>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.role}}</td>
+          <td>{{user.location}}</td>
+          <td><span [class]="getStatusUser(user.status)">{{user.status === 'active' ? 'Activo' : 'Inactivo'}}</span>
+          </td>
+          <td class="actions-cell">
+            <button class="action-btn edit-btn" title="Modificar usuario">Editar</button>
+            <button class="action-btn delete-btn" title="Eliminar usuario">Eliminar</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-only-page mt-1">
+    <button class="pagination-btn" (click)="previousPage()" [disabled]="currentPage === 1">
+        <span class="pagination-icon">◀</span>
+    </button>
+    <div class="pagination-info">Página {{ currentPage }} de {{ totalPages }}</div>
+    <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+        <span class="pagination-icon">▶</span>
+    </button>
+</div>
+
+  <!-- Modal de confirmación para eliminar usuario -->
+  <div class="modal" id="deleteUserModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirmar eliminación</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro que desea eliminar al usuario <span id="userToDelete"></span>?</p>
+        <p class="warning-text">Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-app btn-app-secondary" id="cancelDeleteBtn">Cancelar</button>
+        <button class="btn-app btn-app-danger" id="confirmDeleteBtn">Eliminar</button>
+      </div>
     </div>
+  </div>
 </div>
