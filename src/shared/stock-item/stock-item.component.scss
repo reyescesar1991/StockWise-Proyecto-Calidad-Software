@@ -1,0 +1,25 @@
+.list-item {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.item-stock {
+    font-size: 14px;
+}
+
+.item-stock.warning {
+    color: var(--warning-color);
+}
+
+.item-stock.error {
+    color: var(--error-color);
+}

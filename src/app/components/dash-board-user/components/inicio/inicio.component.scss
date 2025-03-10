@@ -213,32 +213,6 @@
     margin-bottom: 16px;
 }
 
-.list-item {
-    padding: 12px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.list-item:last-child {
-    border-bottom: none;
-}
-
-.item-name {
-    font-weight: 500;
-    margin-bottom: 4px;
-}
-
-.item-stock {
-    font-size: 14px;
-}
-
-.item-stock.warning {
-    color: var(--warning-color);
-}
-
-.item-stock.error {
-    color: var(--error-color);
-}
-
 .secondary-button {
     background-color: var(--light-gray);
     color: var(--text-color);
@@ -253,60 +227,6 @@
 
 .secondary-button:hover {
     background-color: var(--border-color);
-}
-
-.activity-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 12px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.activity-item:last-child {
-    border-bottom: none;
-}
-
-.activity-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-    color: var(--white-color);
-    flex-shrink: 0;
-}
-
-.activity-icon.success {
-    background-color: var(--success-color);
-}
-
-.activity-icon.warning {
-    background-color: var(--warning-color);
-}
-
-.activity-icon.error {
-    background-color: var(--error-color);
-}
-
-.activity-icon.info {
-    background-color: var(--info-color);
-}
-
-.activity-content {
-    flex: 1;
-}
-
-.activity-title {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 4px;
-}
-
-.activity-time {
-    font-size: 12px;
-    color: #718096;
 }
 
 .quick-links {

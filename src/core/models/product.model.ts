@@ -13,4 +13,5 @@ export interface IProductModel{
     status: string, //TODO: Agregar al form de registro
     location: string, //TODO: Agregar al form de registro
     optimalStock: string, //TODO: Agregar al form de registro
+    currentStock: number,
 }

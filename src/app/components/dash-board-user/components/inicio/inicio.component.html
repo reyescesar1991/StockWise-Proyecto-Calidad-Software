@@ -80,26 +80,10 @@
             <div class="panel">
                 <h2>Alertas de Stock Bajo</h2>
                 <div class="list-container">
-                    <div class="list-item">
-                        <div class="item-name">Manzanas Fuji</div>
-                        <div class="item-stock warning">Stock Actual: 8 / Stock Mínimo: 15</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-name">Leche Entera</div>
-                        <div class="item-stock error">Stock Actual: 5 / Stock Mínimo: 10</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-name">Pan Integral</div>
-                        <div class="item-stock warning">Stock Actual: 12 / Stock Mínimo: 20</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-name">Papel Higiénico</div>
-                        <div class="item-stock warning">Stock Actual: 14 / Stock Mínimo: 25</div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-name">Aceite de Oliva</div>
-                        <div class="item-stock error">Stock Actual: 3 / Stock Mínimo: 8</div>
-                    </div>
+                    @for (item of itemStockData; track $index) {
+
+                        <app-stock-item [dataItem]="item"></app-stock-item>
+                    }
                 </div>
                 <button class="secondary-button">Ver Todos los Productos con Stock Bajo</button>
             </div>
@@ -109,42 +93,11 @@
             <div class="panel">
                 <h2>Actividad Reciente</h2>
                 <div class="list-container">
-                    <div class="activity-item">
-                        <div class="activity-icon success">
-                            <i class="fas fa-plus-circle"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Entrada de 50 unidades de 'Manzanas Fuji'</div>
-                            <div class="activity-time">10:30 AM</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon warning">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Producto 'Pan Integral' alcanzó Stock Mínimo</div>
-                            <div class="activity-time">8:00 AM</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon error">
-                            <i class="fas fa-minus-circle"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Salida de 25 unidades de 'Leche Entera'</div>
-                            <div class="activity-time">Ayer - 4:45 PM</div>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon info">
-                            <i class="fas fa-sync"></i>
-                        </div>
-                        <div class="activity-content">
-                            <div class="activity-title">Actualización de precio 'Aceite de Oliva'</div>
-                            <div class="activity-time">Ayer - 2:15 PM</div>
-                        </div>
-                    </div>
+
+                    @for (history of historyData; track $index) {
+
+                        <app-activity-item [dataHistory]="history"></app-activity-item>
+                    }
                 </div>
                 
                 <h3>Acciones Rápidas</h3>
