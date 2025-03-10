@@ -1,0 +1,7 @@
+<div class="status-item">
+    <div class="status-label">{{dataStock.title}}</div>
+    <div class="status-bar">
+        <div [class]="getStatusStockType(dataStock.typeStatus)" [style.width]="getStatusPorcentageStock(dataStock.porcentage)"></div>
+    </div>
+    <div class="status-percentage">{{dataStock.porcentage}}%</div>
+</div>

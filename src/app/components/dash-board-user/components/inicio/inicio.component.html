@@ -3,35 +3,11 @@
     
     <!-- Fila Superior (Tarjetas de Resumen) -->
     <div class="summary-cards">
-        <div class="card">
-            <div class="card-icon product-icon">
-                <i class="fas fa-box"></i>
-            </div>
-            <div class="card-content">
-                <h3>Total Productos</h3>
-                <p class="card-value">256</p>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-icon money-icon">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-            <div class="card-content">
-                <h3>Valor Inventario (Venta)</h3>
-                <p class="card-value">$12,450 USD</p>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-icon alert-icon">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div class="card-content">
-                <h3>Productos Stock Bajo</h3>
-                <p class="card-value">12</p>
-            </div>
-        </div>
+
+        @for (item of summaryCardsData; track $index) {
+
+            <app-summary-cards [summaryItem]="item"></app-summary-cards>
+        }
     </div>
     
     <!-- Fila Central (Contenido personalizado) -->
@@ -39,36 +15,21 @@
         <div class="quick-actions-panel">
             <h2>Acciones Rápidas</h2>
             <div class="action-buttons">
-                <button class="primary-button"><i class="fas fa-plus"></i> Nuevo Producto</button>
-                <button class="primary-button"><i class="fas fa-truck-loading"></i> Registrar Entrada</button>
-                <button class="primary-button"><i class="fas fa-sign-out-alt"></i> Registrar Salida</button>
-                <button class="primary-button"><i class="fas fa-barcode"></i> Escanear Código</button>
+                
+                @for (button of actionsQuickButtons; track $index) {
+                    <app-action-quick-button [actionButton]="button"></app-action-quick-button>
+                }
+
             </div>
             
             <div class="inventory-status">
                 <h3>Estado del Inventario</h3>
                 <div class="status-indicators">
-                    <div class="status-item">
-                        <div class="status-label">Productos Activos</div>
-                        <div class="status-bar">
-                            <div class="status-fill success" style="width: 85%"></div>
-                        </div>
-                        <div class="status-percentage">85%</div>
-                    </div>
-                    <div class="status-item">
-                        <div class="status-label">Capacidad Almacén</div>
-                        <div class="status-bar">
-                            <div class="status-fill warning" style="width: 68%"></div>
-                        </div>
-                        <div class="status-percentage">68%</div>
-                    </div>
-                    <div class="status-item">
-                        <div class="status-label">Productos Agotados</div>
-                        <div class="status-bar">
-                            <div class="status-fill error" style="width: 7%"></div>
-                        </div>
-                        <div class="status-percentage">7%</div>
-                    </div>
+
+                    @for (item of stockStatusData; track $index) {
+
+                        <app-stock-item-status-dashboard [dataStock]="item"></app-stock-item-status-dashboard>
+                    }
                 </div>
             </div>
         </div>
@@ -102,9 +63,10 @@
                 
                 <h3>Acciones Rápidas</h3>
                 <div class="quick-links">
-                    <button class="action-link"><i class="fas fa-plus"></i> Añadir Producto</button>
-                    <button class="action-link"><i class="fas fa-arrow-right"></i> Entrada de Stock</button>
-                    <button class="action-link"><i class="fas fa-chart-bar"></i> Ver Reportes</button>
+                    @for (button of actionsQuickReportsButtons; track $index) {
+
+                        <app-action-quick-button [actionButton]="button"></app-action-quick-button>
+                    }
                 </div>
             </div>
         </div>

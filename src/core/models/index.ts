@@ -3,4 +3,7 @@ export {ICountry} from './country.model';
 export {IHeadquarter} from './headquarter.modal';
 export {IProductModel} from './product.model';
 export {IHistoryActivity} from './historyActivity.model';
-export {IProductStartUI} from './productStartUI.model'
+export {IProductStartUI} from './productStartUI.model';
+export {IStatusStockUI} from './statusStockUI.model';
+export {ISummaryCardsModel} from './summary-cards.model';
+export {IActionQuickButton} from './UI/actionQuickButton.model';

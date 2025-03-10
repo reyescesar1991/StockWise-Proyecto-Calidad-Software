@@ -1,19 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { IHistoryActivity, IProductStartUI } from '../../../../../core/models';
+import { IHistoryActivity, IProductStartUI, IStatusStockUI, ISummaryCardsModel } from '../../../../../core/models';
 import { ActivityItemComponent } from '../../../../../shared/activity-item/activity-item.component';
 import { StockItemComponent } from '../../../../../shared/stock-item/stock-item.component';
+import { StockItemStatusDashboardComponent } from '../../../../../shared/stock-item-status-dashboard/stock-item-status-dashboard.component';
+import { SummaryCardsComponent } from '../../../../../shared/summary-cards/summary-cards.component';
+import { ActionQuickButtonComponent } from '../../../../../shared/action-quick-button/action-quick-button.component';
+import { ACTION_QUICK_BUTTONS, ACTION_QUICK_BUTTONS_REPORTS } from '../../../../../core/constants';
 
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule, ActivityItemComponent, StockItemComponent],
+  imports: [CommonModule, ActivityItemComponent, StockItemComponent, StockItemStatusDashboardComponent, SummaryCardsComponent, ActionQuickButtonComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
 export class InicioComponent {
 
+  protected actionsQuickButtons = ACTION_QUICK_BUTTONS;
+  protected actionsQuickReportsButtons = ACTION_QUICK_BUTTONS_REPORTS;
   protected historyData : Array<IHistoryActivity> = [
 
     {
@@ -71,4 +77,50 @@ export class InicioComponent {
       status : 'error',
     },
   ]
+
+  protected stockStatusData : Array<IStatusStockUI> = [
+
+    {
+      title : 'Productos Activos',
+      porcentage : 85,
+      typeStatus : 'success'
+    },
+    {
+      title : 'Capacidad Almacén',
+      porcentage : 68,
+      typeStatus : 'warning'
+    },
+    {
+      title : 'Productos Agotados',
+      porcentage : 7,
+      typeStatus : 'error'
+    }
+  ]
+
+  protected summaryCardsData : Array<ISummaryCardsModel> = [
+    
+    {
+      iconType : 'product-icon',
+      icon : 'fas fa-box',
+      titleCard : 'Total Productos',
+      valueCard : 256,
+      unit : ''
+    },
+    {
+      iconType : 'money-icon',
+      icon : 'fas fa-shopping-cart',
+      titleCard : 'Valor Inventario (Venta)',
+      valueCard : 12.450,
+      unit : '$',
+    },
+    {
+      iconType : 'alert-icon',
+      icon : 'fas fa-exclamation-triangle',
+      titleCard : 'Productos Stock Bajo',
+      valueCard : 12,
+      unit : ''
+    }
+  ];
+
+  
 }
