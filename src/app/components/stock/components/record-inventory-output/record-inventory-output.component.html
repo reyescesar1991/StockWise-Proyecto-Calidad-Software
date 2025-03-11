@@ -13,6 +13,18 @@
                     <option value="venta">Venta</option>
                     <option value="merma">Merma</option>
                 </select>
+                @if (this.recordOuputInventoryForm.get('outflowType')?.invalid && (this.recordOuputInventoryForm.get('outflowType')?.dirty || this.recordOuputInventoryForm.get('outflowType')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('outflowType')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field full-width">
@@ -24,6 +36,18 @@
                     <option value="3">Pan Integral 500g</option>
                     <option value="4">Arroz Blanco 1kg</option>
                 </select>
+                @if (this.recordOuputInventoryForm.get('nameProduct')?.invalid && (this.recordOuputInventoryForm.get('nameProduct')?.dirty || this.recordOuputInventoryForm.get('nameProduct')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('nameProduct')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
@@ -35,6 +59,18 @@
             <div class="form-field">
                 <label for="quantity" class="required">Cantidad a Retirar</label>
                 <input type="number" formControlName="quantitySale" id="quantity" placeholder="Ej: 5" min="1" required>
+                @if (this.recordOuputInventoryForm.get('quantitySale')?.invalid && (this.recordOuputInventoryForm.get('quantitySale')?.dirty || this.recordOuputInventoryForm.get('quantitySale')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('quantitySale')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field" id="mermaReasonField" style="display: none;">
@@ -55,11 +91,36 @@
                     <span class="input-group-prefix">$</span>
                     <input type="number" id="salePrice" formControlName="salePrice" placeholder="0.00" step="0.01" min="0" required>
                 </div>
+                @if (this.recordOuputInventoryForm.get('salePrice')?.invalid && (this.recordOuputInventoryForm.get('salePrice')?.dirty || this.recordOuputInventoryForm.get('salePrice')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('salePrice')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field full-width">
                 <label for="observations">Observaciones</label>
                 <textarea id="observations" formControlName="observations" placeholder="Detalles adicionales sobre esta salida de stock"></textarea>
+                @if (this.recordOuputInventoryForm.get('observations')?.invalid && (this.recordOuputInventoryForm.get('observations')?.dirty || this.recordOuputInventoryForm.get('observations')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('observations')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field full-width" id="mermaDetailsField" style="display: none;">
@@ -70,17 +131,41 @@
             <div class="form-field">
                 <label for="date" class="required">Fecha</label>
                 <input type="date" formControlName="dateSale" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
+                @if (this.recordOuputInventoryForm.get('dateSale')?.invalid && (this.recordOuputInventoryForm.get('dateSale')?.dirty || this.recordOuputInventoryForm.get('dateSale')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('dateSale')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="documentNumber">N° de Documento</label>
                 <input type="text" id="documentNumber" formControlName="documentNumber" placeholder="Factura, boleta, etc." required>
+                @if (this.recordOuputInventoryForm.get('documentNumber')?.invalid && (this.recordOuputInventoryForm.get('documentNumber')?.dirty || this.recordOuputInventoryForm.get('documentNumber')?.touched)) {
+
+                    <div *ngIf="this.recordOuputInventoryForm.get('documentNumber')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
                 <div class="help-text">Opcional, referencia del documento</div>
             </div>
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Salida</button>
+                <button type="submit" class="btn-app btn-app-primary" [disabled]="this.recordOuputInventoryForm.invalid" (click)="getFormValue()">Registrar Salida</button>
             </div>
         </div>
     </form>

@@ -5,11 +5,12 @@ import { IRegistrySaleStockForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { registrySaleStockFormSchema } from '../../../../../core/form_Schemas';
 import { FunctionDateService } from '../../../../../core/functions/date.functions';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-record-inventory-output',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './record-inventory-output.component.html',
   styleUrl: './record-inventory-output.component.scss',
   providers: [DatePipe, FunctionDateService]
@@ -41,13 +42,13 @@ export class RecordInventoryOutputComponent {
         nonNullable: false,
       }
       ),
-      mermaReason: this.fb.control('', 
+      mermaReason: this.fb.control('Producto Dañado', 
         {
           validators : [zodValidator(registrySaleStockFormSchema.shape.mermaReason)],
           nonNullable: false,
         }
       ),
-      mermaDetails: this.fb.control('' , 
+      mermaDetails: this.fb.control('holaaaa' , 
         {
           validators: [zodValidator(registrySaleStockFormSchema.shape.mermaDetails)],
           nonNullable: false,
@@ -56,7 +57,7 @@ export class RecordInventoryOutputComponent {
       salePrice: this.fb.control(0 , 
         {
           validators : [zodValidator(registrySaleStockFormSchema.shape.salePrice)],
-          nonNullable: false,
+          nonNullable: true,
         }
       ),
       observations: this.fb.control('', 
