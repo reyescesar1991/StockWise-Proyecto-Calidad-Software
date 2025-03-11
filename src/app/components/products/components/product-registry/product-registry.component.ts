@@ -43,23 +43,23 @@ export class ProductRegistryComponent {
         nonNullable: false,
       }),
 
-      sellingPrice: this.fb.control(0, {
+      sellingPrice: this.fb.control(0.11, {
         validators: [zodValidator(registryProductFormSchema.shape.sellingPrice)],
         nonNullable: false,
       }),
 
-      costPrice: this.fb.control(0, {
+      costPrice: this.fb.control(0.1, {
 
         validators: [zodValidator(registryProductFormSchema.shape.costPrice)],
         nonNullable: false,
       }),
 
-      initialStock: this.fb.control(0, {
+      initialStock: this.fb.control(5, {
         validators: [zodValidator(registryProductFormSchema.shape.initialStock)],
         nonNullable: false,
       }),
 
-      minStock: this.fb.control(0, {
+      minStock: this.fb.control(10, {
         validators: [zodValidator(registryProductFormSchema.shape.minStock)],
         nonNullable: false,
       }),
