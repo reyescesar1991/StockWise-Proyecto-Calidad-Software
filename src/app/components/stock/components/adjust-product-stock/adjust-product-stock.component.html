@@ -116,7 +116,7 @@
 
             <div class="form-field">
                 <label for="date" class="required">Fecha del Ajuste</label>
-                <input type="date" formControlName="dateAdjust" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
+                <input type="date" formControlName="dateAdjust" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required readonly>
                 @if (this.adjustProductForm.get('dateAdjust')?.invalid && (this.adjustProductForm.get('dateAdjust')?.dirty || this.adjustProductForm.get('dateAdjust')?.touched)) {
 
                     <div *ngIf="this.adjustProductForm.get('dateAdjust')?.errors as errors">

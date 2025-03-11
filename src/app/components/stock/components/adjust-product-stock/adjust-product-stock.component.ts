@@ -30,7 +30,7 @@ export class AdjustProductStockComponent {
           nonNullable: false,
         }
       ),
-      actualStock : this.fb.control(0, 
+      actualStock : this.fb.control(1, 
         {
           validators : [zodValidator(adjustProductStockFormSchema.shape.actualStock)],
 
