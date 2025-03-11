@@ -19,7 +19,7 @@ export class ProductRegistryComponent {
 
   protected selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
 
     this.registryProductForm = this.fb.group<IRegistryProductForm>({
 

@@ -70,6 +70,7 @@
                 <div class="form-field">
                     <label for="category" class="required">Categoría</label>
                     <select id="category" formControlName="category" required>
+                        <option value="" disabled selected>Seleccione una unidad</option>
                         <option value="frutas" selected>Frutas</option>
                         <option value="verduras">Verduras</option>
                         <option value="lacteos">Lácteos</option>
@@ -149,6 +150,7 @@
                 <div class="form-field">
                     <label for="unit" class="required">Unidad de Medida</label>
                     <select id="unit" formControlName="unit" required>
+                        <option value="" disabled selected>Seleccione una unidad</option>
                         <option value="kilo" selected>Kilo</option>
                         <option value="gramo">Gramo</option>
                         <option value="litro">Litro</option>
@@ -245,6 +247,7 @@
                 <div class="form-field">
                     <label for="productStatus" class="required">Estado</label>
                     <select id="productStatus" formControlName="productStatus" required>
+                        <option value="" disabled selected>Seleccione un estado</option>
                         <option value="active" selected>Activo</option>
                         <option value="inactive">Inactivo</option>
                     </select>
@@ -263,7 +266,7 @@
                 </div>
 
                 <div class="form-field">
-                    <label for="statusReason">Razón de cambio (si inactivo)</label>
+                    <label for="statusReason" class="required">Razón de cambio (si inactivo)</label>
                     <input type="text" formControlName="statusReason" id="statusReason" placeholder="Ej: Producto descontinuado">
                     @if (this.modifyProductForm.get('statusReason')?.invalid && (this.modifyProductForm.get('statusReason')?.dirty || this.modifyProductForm.get('statusReason')?.touched)) {
 

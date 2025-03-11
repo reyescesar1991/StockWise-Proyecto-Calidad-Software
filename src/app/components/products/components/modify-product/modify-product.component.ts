@@ -48,13 +48,13 @@ export class ModifyProductComponent {
           nonNullable: false
         }
       ),
-      sellingPrice: this.fb.control(null, 
+      sellingPrice: this.fb.control(0.11, 
         {
           validators: [zodValidator(modifyProductFormSchema.shape.sellingPrice)],
           nonNullable: false,
         }
       ),
-      costPrice: this.fb.control(null, 
+      costPrice: this.fb.control(0.1, 
         {
           validators: [zodValidator(modifyProductFormSchema.shape.costPrice)],
           nonNullable: false,
@@ -66,7 +66,7 @@ export class ModifyProductComponent {
           nonNullable: false,
         }
       ),
-      minStock: this.fb.control(null, 
+      minStock: this.fb.control(10, 
         {
           validators: [zodValidator(modifyProductFormSchema.shape.minStock)],
           nonNullable: false,
