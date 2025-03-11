@@ -17,19 +17,19 @@
                         <option value="4">Tomates Orgánicos - Verduras</option>
                         <option value="5">Agua Mineral - Bebidas</option>
                     </select>
-                    @if (this.addStockForm.get('nameProduct')?.invalid && (this.addStockForm.get('nameProduct')?.dirty || this.addStockForm.get('nameProduct')?.touched)) {
-
-                        <div *ngIf="this.addStockForm.get('nameProduct')?.errors as errors">
-
-                            @if (errors['zodError']) {
-
-                                <app-label-type typeMessage="error">
-                                    {{errors['zodError'].message}}
-                                </app-label-type>
-                            }
-                        </div>
-                    }
                 </div>
+                @if (this.addStockForm.get('nameProduct')?.invalid && (this.addStockForm.get('nameProduct')?.dirty || this.addStockForm.get('nameProduct')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('nameProduct')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
                 
             </div>
 
@@ -62,7 +62,7 @@
                 <label for="receptionDate" class="required">Fecha de Recepción</label>
                 <input type="date" formControlName="receptionDate"
                     [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'"    id="receptionDate"
-                    required>
+                    required readonly>
                 @if (this.addStockForm.get('receptionDate')?.invalid && (this.addStockForm.get('receptionDate')?.dirty || this.addStockForm.get('receptionDate')?.touched)) {
 
                     <div *ngIf="this.addStockForm.get('receptionDate')?.errors as errors">
@@ -102,7 +102,7 @@
             </div>
 
             <div class="form-field">
-                <label for="batchNumber">Número de Lote</label>
+                <label for="batchNumber" class="required">Número de Lote</label>
                 <input type="text" id="batchNumber" formControlName="batchNumber" placeholder="Ej: LOT-2025-001">
                 @if (this.addStockForm.get('batchNumber')?.invalid && (this.addStockForm.get('batchNumber')?.dirty || this.addStockForm.get('batchNumber')?.touched)) {
 
@@ -121,7 +121,7 @@
             </div>
 
             <div class="form-field full-width">
-                <label for="notes">Notas Adicionales</label>
+                <label for="notes" class="required">Notas Adicionales</label>
                 <textarea id="notes" formControlName="notes" placeholder="Información adicional sobre este ingreso de stock..."></textarea>
                 @if (this.addStockForm.get('notes')?.invalid && (this.addStockForm.get('notes')?.dirty || this.addStockForm.get('notes')?.touched)) {
 

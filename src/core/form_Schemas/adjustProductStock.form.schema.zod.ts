@@ -7,7 +7,7 @@ export const adjustProductStockFormSchema = z.object({
     productName : z.string().nullable().refine(value => value && value.trim().length > 0, {
         message: "Tipo de dato requerido",
     }),
-    actualStock: z.number().gte(1, {message: 'El nuevo stock no puede ser cero'}).nullable().nullable().refine(value => value !== null, {
+    actualStock: z.number().gte(1, {message: 'El nuevo stock no puede ser cero'}).nullable().refine(value => value !== null, {
         message: "Tipo de dato requerido",
     }),
     adjustmentReason: z.string().nullable().refine(value => value && value.trim().length > 0, {

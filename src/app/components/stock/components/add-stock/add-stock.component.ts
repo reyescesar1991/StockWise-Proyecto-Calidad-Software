@@ -30,7 +30,7 @@ export class AddStockComponent {
           nonNullable: false,
         }
       ),
-      quantityReceived: this.fb.control(0, 
+      quantityReceived: this.fb.control(1, 
         {
           validators: [zodValidator(addStockFormSchema.shape.quantityReceived)],
           nonNullable: false,
