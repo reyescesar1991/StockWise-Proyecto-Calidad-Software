@@ -5,11 +5,12 @@ import { IRegistryStockForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { addStockFormSchema } from '../../../../../core/form_Schemas';
 import { FunctionDateService } from '../../../../../core/functions/date.functions';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-add-stock',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgIf],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgIf, LabelTypeComponent],
   templateUrl: './add-stock.component.html',
   styleUrl: './add-stock.component.scss',
   providers: [DatePipe, FunctionDateService]

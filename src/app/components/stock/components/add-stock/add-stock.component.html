@@ -17,9 +17,20 @@
                         <option value="4">Tomates Orgánicos - Verduras</option>
                         <option value="5">Agua Mineral - Bebidas</option>
                     </select>
-                    <button type="button" class="btn-search-product"></button>
+                    @if (this.addStockForm.get('nameProduct')?.invalid && (this.addStockForm.get('nameProduct')?.dirty || this.addStockForm.get('nameProduct')?.touched)) {
+
+                        <div *ngIf="this.addStockForm.get('nameProduct')?.errors as errors">
+
+                            @if (errors['zodError']) {
+
+                                <app-label-type typeMessage="error">
+                                    {{errors['zodError'].message}}
+                                </app-label-type>
+                            }
+                        </div>
+                    }
                 </div>
-                <div class="help-text">Si no encuentra el producto, utilice el botón de búsqueda</div>
+                
             </div>
 
             <div class="form-field">
@@ -33,6 +44,18 @@
                     <input type="number" id="quantityReceived" formControlName="quantityReceived" min="1" placeholder="Ej: 10" required>
                     <span class="unit-display">Kilos</span>
                 </div>
+                @if (this.addStockForm.get('quantityReceived')?.invalid && (this.addStockForm.get('quantityReceived')?.dirty || this.addStockForm.get('quantityReceived')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('quantityReceived')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
@@ -40,6 +63,18 @@
                 <input type="date" formControlName="receptionDate"
                     [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'"    id="receptionDate"
                     required>
+                @if (this.addStockForm.get('receptionDate')?.invalid && (this.addStockForm.get('receptionDate')?.dirty || this.addStockForm.get('receptionDate')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('receptionDate')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
@@ -52,17 +87,54 @@
                     <option value="4">Hortalizas Frescas Ltd.</option>
                     <option value="5">Embotelladoras Unidas</option>
                 </select>
+                @if (this.addStockForm.get('supplier')?.invalid && (this.addStockForm.get('supplier')?.dirty || this.addStockForm.get('supplier')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('supplier')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="batchNumber">Número de Lote</label>
                 <input type="text" id="batchNumber" formControlName="batchNumber" placeholder="Ej: LOT-2025-001">
-                <div class="help-text">Útil para trazabilidad en productos perecederos</div>
+                @if (this.addStockForm.get('batchNumber')?.invalid && (this.addStockForm.get('batchNumber')?.dirty || this.addStockForm.get('batchNumber')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('batchNumber')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }@else {
+                    <div class="help-text">Útil para trazabilidad en productos perecederos</div>
+                }
             </div>
 
             <div class="form-field full-width">
                 <label for="notes">Notas Adicionales</label>
                 <textarea id="notes" formControlName="notes" placeholder="Información adicional sobre este ingreso de stock..."></textarea>
+                @if (this.addStockForm.get('notes')?.invalid && (this.addStockForm.get('notes')?.dirty || this.addStockForm.get('notes')?.touched)) {
+
+                    <div *ngIf="this.addStockForm.get('notes')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="stock-summary">
