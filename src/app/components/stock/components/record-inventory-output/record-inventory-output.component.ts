@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IRegistrySaleStockForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { registrySaleStockFormSchema } from '../../../../../core/form_Schemas';
@@ -19,6 +19,7 @@ export class RecordInventoryOutputComponent {
 
   protected recordOuputInventoryForm: FormGroup<IRegistrySaleStockForm>;
   protected today = new Date();
+  protected isMerma : boolean = false;
 
 
   constructor(private readonly fb: FormBuilder, private readonly functionDateService : FunctionDateService) {
@@ -42,19 +43,19 @@ export class RecordInventoryOutputComponent {
         nonNullable: false,
       }
       ),
-      mermaReason: this.fb.control('Producto Dañado', 
+      mermaReason: this.fb.control('', 
         {
           validators : [zodValidator(registrySaleStockFormSchema.shape.mermaReason)],
           nonNullable: false,
         }
       ),
-      mermaDetails: this.fb.control('holaaaa' , 
+      mermaDetails: this.fb.control('' , 
         {
           validators: [zodValidator(registrySaleStockFormSchema.shape.mermaDetails)],
           nonNullable: false,
         }
       ),
-      salePrice: this.fb.control(0 , 
+      salePrice: this.fb.control(0.11, 
         {
           validators : [zodValidator(registrySaleStockFormSchema.shape.salePrice)],
           nonNullable: true,
@@ -79,6 +80,35 @@ export class RecordInventoryOutputComponent {
         }
       )
     })
+  }
+
+  ngOnInit(){
+
+    this.recordOuputInventoryForm.get('outflowType')?.valueChanges.subscribe(value => {
+        this.getTypeOutputOperation(value);
+    });
+  }
+
+  protected getTypeOutputOperation(value : string | null) : void{
+
+    console.log(value);
+    
+
+    if(value !== 'merma'){
+
+      this.isMerma = false;
+      this.recordOuputInventoryForm.get('mermaDetails')?.removeValidators([Validators.required, Validators.minLength(5)]);
+      this.recordOuputInventoryForm.get('mermaReason')?.removeValidators([Validators.required]);
+      this.recordOuputInventoryForm.get('mermaDetails')?.setValue('');
+      this.recordOuputInventoryForm.get('mermaReason')?.setValue('');
+      this.recordOuputInventoryForm.updateValueAndValidity();
+      return
+    }
+
+    this.isMerma = true;
+    this.recordOuputInventoryForm.get('mermaDetails')?.addValidators([Validators.required, Validators.minLength(5) ]);
+    this.recordOuputInventoryForm.get('mermaReason')?.addValidators([Validators.required]);
+    this.recordOuputInventoryForm.updateValueAndValidity();
   }
 
 

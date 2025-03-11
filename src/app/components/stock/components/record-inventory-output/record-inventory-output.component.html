@@ -73,17 +73,26 @@
                 }
             </div>
 
-            <div class="form-field" id="mermaReasonField" style="display: none;">
-                <label for="mermaReason" class="required">Motivo de Merma</label>
-                <select id="mermaReason" formControlName="mermaReason">
-                    <option value="" disabled selected>Seleccione el motivo</option>
-                    <option value="dañado">Producto Dañado</option>
-                    <option value="caducado">Producto Caducado</option>
-                    <option value="robado">Producto Robado/Extraviado</option>
-                    <option value="calidad">Problemas de Calidad</option>
-                    <option value="otro">Otro</option>
-                </select>
-            </div>
+            @if (isMerma) {
+                <div class="form-field" id="mermaReasonField">
+                    <label for="mermaReason" class="required">Motivo de Merma</label>
+                    <select id="mermaReason" formControlName="mermaReason">
+                        <option value="" disabled selected>Seleccione el motivo</option>
+                        <option value="dañado">Producto Dañado</option>
+                        <option value="caducado">Producto Caducado</option>
+                        <option value="robado">Producto Robado/Extraviado</option>
+                        <option value="calidad">Problemas de Calidad</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                    @if (this.recordOuputInventoryForm.get('mermaReason')?.invalid && (this.recordOuputInventoryForm.get('mermaReason')?.dirty || this.recordOuputInventoryForm.get('mermaReason')?.touched)) {
+                        @if (this.recordOuputInventoryForm.get('mermaReason')?.hasError('required')) {
+                          <app-label-type typeMessage="error">
+                            Este campo es requerido
+                          </app-label-type>
+                        }
+                    }
+                </div>
+            }
 
             <div class="form-field" id="salesPriceField">
                 <label for="salePrice" class="required">Precio de Venta</label>
@@ -123,14 +132,28 @@
                 }
             </div>
 
-            <div class="form-field full-width" id="mermaDetailsField" style="display: none;">
-                <label for="mermaDetails" class="required">Detalles de la Merma</label>
-                <textarea id="mermaDetails" formControlName="mermaDetails" placeholder="Describa en detalle la razón de la merma y cualquier acción tomada"></textarea>
-            </div>
+            @if (isMerma) {
+                <div class="form-field full-width" id="mermaDetailsField">
+                    <label for="mermaDetails" class="required">Detalles de la Merma</label>
+                    <textarea id="mermaDetails" formControlName="mermaDetails" placeholder="Describa en detalle la razón de la merma y cualquier acción tomada"></textarea>
+                    @if (this.recordOuputInventoryForm.get('mermaDetails')?.invalid && (this.recordOuputInventoryForm.get('mermaDetails')?.dirty || this.recordOuputInventoryForm.get('mermaDetails')?.touched)) {
+                        @if (this.recordOuputInventoryForm.get('mermaDetails')?.hasError('required')) {
+                          <app-label-type typeMessage="error">
+                            Este campo es requerido
+                          </app-label-type>
+                        }
+                        @if (this.recordOuputInventoryForm.get('mermaDetails')?.hasError('minlength')) {
+                          <app-label-type typeMessage="error">
+                            Mínimo 5 caracteres
+                          </app-label-type>
+                        }
+                    }
+                </div>
+            }
 
             <div class="form-field">
                 <label for="date" class="required">Fecha</label>
-                <input type="date" formControlName="dateSale" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
+                <input type="date" formControlName="dateSale" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" readonly required>
                 @if (this.recordOuputInventoryForm.get('dateSale')?.invalid && (this.recordOuputInventoryForm.get('dateSale')?.dirty || this.recordOuputInventoryForm.get('dateSale')?.touched)) {
 
                     <div *ngIf="this.recordOuputInventoryForm.get('dateSale')?.errors as errors">
@@ -146,7 +169,7 @@
             </div>
 
             <div class="form-field">
-                <label for="documentNumber">N° de Documento</label>
+                <label for="documentNumber" class="required">N° de Documento</label>
                 <input type="text" id="documentNumber" formControlName="documentNumber" placeholder="Factura, boleta, etc." required>
                 @if (this.recordOuputInventoryForm.get('documentNumber')?.invalid && (this.recordOuputInventoryForm.get('documentNumber')?.dirty || this.recordOuputInventoryForm.get('documentNumber')?.touched)) {
 
@@ -160,12 +183,14 @@
                         }
                     </div>
                 }
-                <div class="help-text">Opcional, referencia del documento</div>
+                @else {
+                    <div class="help-text">Referencia del documento</div>
+                }
             </div>
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" [disabled]="this.recordOuputInventoryForm.invalid" (click)="getFormValue()">Registrar Salida</button>
+                <button type="submit" class="btn-app btn-app-primary" [disabled]="recordOuputInventoryForm.invalid" (click)="getFormValue()">Registrar Salida</button>
             </div>
         </div>
     </form>
