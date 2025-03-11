@@ -15,6 +15,18 @@
                     <option value="3">Pan Integral 500g</option>
                     <option value="4">Arroz Blanco 1kg</option>
                 </select>
+                @if (this.adjustProductForm.get('nameProduct')?.invalid && (this.adjustProductForm.get('nameProduct') || this.adjustProductForm.get('nameProduct')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('nameProduct')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
@@ -26,7 +38,21 @@
             <div class="form-field">
                 <label for="actualStock" class="required">Stock Real</label>
                 <input type="number" formControlName="actualStock" id="actualStock" placeholder="Ingrese el stock real" min="0" required>
-                <div class="help-text">Stock verificado físicamente</div>
+                @if (this.adjustProductForm.get('actualStock')?.invalid && (this.adjustProductForm.get('actualStock')?.dirty || this.adjustProductForm.get('actualStock')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('actualStock')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }@else {
+                    <div class="help-text">Stock verificado físicamente</div>
+                }
+                
             </div>
 
             <div class="form-field">
@@ -55,21 +81,72 @@
                     <option value="devolucion">Devolución de Cliente</option>
                     <option value="otro">Otro Motivo</option>
                 </select>
+                @if (this.adjustProductForm.get('adjustmentReason')?.invalid && (this.adjustProductForm.get('adjustmentReason')?.dirty || this.adjustProductForm.get('adjustmentReason')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('adjustmentReason')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field full-width">
                 <label for="adjustmentDetails" class="required">Detalles del Ajuste</label>
                 <textarea id="adjustmentDetails" formControlName="adjustmentDetails" placeholder="Describa en detalle la razón del ajuste, cuándo y cómo se detectó la discrepancia, y cualquier acción adicional tomada" required></textarea>
+                @if (this.adjustProductForm.get('adjustmentDetails')?.invalid && (this.adjustProductForm.get('adjustmentDetails')?.dirty || this.adjustProductForm.get('adjustmentDetails')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('adjustmentDetails')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="date" class="required">Fecha del Ajuste</label>
                 <input type="date" formControlName="dateAdjust" [value]="today | date:'yyyy-MM-dd'"  [min]="today | date:'yyyy-MM-dd'" id="date" required>
+                @if (this.adjustProductForm.get('dateAdjust')?.invalid && (this.adjustProductForm.get('dateAdjust')?.dirty || this.adjustProductForm.get('dateAdjust')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('dateAdjust')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field">
                 <label for="adjustedBy" class="required">Ajustado por</label>
                 <input type="text" formControlName="adjustedBy" id="adjustedBy" placeholder="Nombre del responsable" required>
+                @if (this.adjustProductForm.get('adjustedBy')?.invalid && (this.adjustProductForm.get('adjustedBy')?.dirty || this.adjustProductForm.get('adjustedBy')?.touched)) {
+
+                    <div *ngIf="this.adjustProductForm.get('adjustedBy')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="form-field full-width">
@@ -84,7 +161,7 @@
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Ajuste</button>
+                <button type="submit" class="btn-app btn-app-primary" [disabled]="adjustProductForm.invalid" (click)="getFormValue()">Registrar Ajuste</button>
             </div>
         </div>
     </form>

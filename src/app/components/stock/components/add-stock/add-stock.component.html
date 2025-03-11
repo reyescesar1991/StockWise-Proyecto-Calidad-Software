@@ -154,7 +154,7 @@
 
             <div class="form-buttons mt-1">
                 <button type="button" class="btn-app btn-app-secondary me-1">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" (click)="getFormValue()">Registrar Entrada</button>
+                <button type="submit" class="btn-app btn-app-primary" [disabled]="addStockForm.invalid" (click)="getFormValue()">Registrar Entrada</button>
             </div>
         </div>
     </form>

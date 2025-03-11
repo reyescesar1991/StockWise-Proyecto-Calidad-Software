@@ -5,11 +5,12 @@ import { IAdjustProductStockForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { adjustProductStockFormSchema } from '../../../../../core/form_Schemas';
 import { FunctionDateService } from '../../../../../core/functions/date.functions';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 
 @Component({
   selector: 'app-adjust-product-stock',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './adjust-product-stock.component.html',
   styleUrl: './adjust-product-stock.component.scss',
   providers: [DatePipe, FunctionDateService]
@@ -29,10 +30,10 @@ export class AdjustProductStockComponent {
           nonNullable: false,
         }
       ),
-      actualStock : this.fb.control(null, 
+      actualStock : this.fb.control(0, 
         {
           validators : [zodValidator(adjustProductStockFormSchema.shape.actualStock)],
-          nonNullable: false,
+
         }
       ),
       adjustmentReason : this.fb.control('', 
