@@ -80,38 +80,38 @@
                 </div>
             </div>
             }
-            @if (filteredProducts.length > 0) {
-                <div class="pagination">
-                    <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
-                    <div class="pagination-numbers">
-                        @for (page of visiblePages; track $index) {
-                        <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
-                        }
-                        @if (totalPages > visiblePages[visiblePages.length - 1]) {
-                        <span class="pagination-ellipsis">...</span>
-                        }
-                        @if (totalPages > visiblePages[visiblePages.length - 1]) {
-                        <button class="pagination-number" (click)="goToPage(totalPages)">
-                            {{totalPages}}</button>
-                        }
-                        <!-- <button class="pagination-number">2</button>
-                        <button class="pagination-number">3</button>
-                        <span class="pagination-ellipsis">...</span>
-                        <button class="pagination-number">10</button> -->
-                    </div>
-                    <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
-                        (click)="nextPage()"></button>
-                </div>
-            
-                <div class="products-summary">
-                    <p class="mb-1 summary-highlight">Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
-                            class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
-                    <div class="add-product-button">
-                        <button class="btn-app btn-app-primary">Añadir Producto</button>
-                    </div>
-                </div>
-            }
         </div>
+        @if (filteredProducts.length > 0) {
+            <div class="pagination">
+                <button class="pagination-button prev-button" [disabled]="currentPage === 1" (click)="previousPage()"></button>
+                <div class="pagination-numbers">
+                    @for (page of visiblePages; track $index) {
+                    <button class="pagination-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{page}}</button>
+                    }
+                    @if (totalPages > visiblePages[visiblePages.length - 1]) {
+                    <span class="pagination-ellipsis">...</span>
+                    }
+                    @if (totalPages > visiblePages[visiblePages.length - 1]) {
+                    <button class="pagination-number" (click)="goToPage(totalPages)">
+                        {{totalPages}}</button>
+                    }
+                    <!-- <button class="pagination-number">2</button>
+                    <button class="pagination-number">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-number">10</button> -->
+                </div>
+                <button class="pagination-button next-button" [disabled]="currentPage === totalPages"
+                    (click)="nextPage()"></button>
+            </div>
+        
+            <div class="products-summary">
+                <p class="mb-1 summary-highlight">Mostrando <span class="summary-highlight">{{(currentPage - 1) * itemsPerPage}}</span> de <span
+                        class="summary-highlight">{{Math.min(currentPage * itemsPerPage, totalItems)}}</span> productos</p>
+                <div class="add-product-button">
+                    <button class="btn-app btn-app-primary">Añadir Producto</button>
+                </div>
+            </div>
+        }
 
         <div class="search-tip notice">
             Puede refinar su búsqueda utilizando palabras clave específicas, seleccionando una categoría o estableciendo

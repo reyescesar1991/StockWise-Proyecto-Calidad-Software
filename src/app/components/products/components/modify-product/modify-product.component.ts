@@ -20,11 +20,11 @@ export class ModifyProductComponent {
   protected modifyProductForm: FormGroup<IModifyProductForm>;
   protected selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
 
     this.modifyProductForm = this.fb.group<IModifyProductForm>({
 
-      productCode: this.fb.control('',
+      productCode: this.fb.control('FRUT-001',
         {
           validators: [zodValidator(modifyProductFormSchema.shape.productCode)],
           nonNullable: false,

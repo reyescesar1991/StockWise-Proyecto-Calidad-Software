@@ -124,42 +124,17 @@
         <div class="form-field full-width">
           <label for="permissions">Permisos específicos</label>
           <div class="permissions-grid">
-            <div class="permission-item">
-              <input type="checkbox" id="perm_view_inventory" name="permissions[]" value="ver_inventario">
-              <label for="perm_view_inventory">Ver inventario</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_register_stock_in" name="permissions[]" value="registrar_entrada_stock">
-              <label for="perm_register_stock_in">Registrar entradas</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_register_stock_out" name="permissions[]" value="registrar_salida_stock">
-              <label for="perm_register_stock_out">Registrar salidas</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_adjust_stock" name="permissions[]" value="ajustar_stock">
-              <label for="perm_adjust_stock">Ajustar stock</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_manage_categories" name="permissions[]" value="gestionar_categorias">
-              <label for="perm_manage_categories">Gestionar categorías</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_manage_suppliers" name="permissions[]" value="gestionar_proveedores">
-              <label for="perm_manage_suppliers">Gestionar proveedores</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_generate_basic_reports" name="permissions[]" value="generar_informes_basicos">
-              <label for="perm_generate_basic_reports">Informes básicos</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_generate_advanced_reports" name="permissions[]" value="generar_informes_avanzados">
-              <label for="perm_generate_advanced_reports">Informes avanzados</label>
-            </div>
-            <div class="permission-item">
-              <input type="checkbox" id="perm_analyze_stock" name="permissions[]" value="analizar_stock">
-              <label for="perm_analyze_stock">Analizar stock</label>
-            </div>
+
+            @for (permission of arrayPermissions; track $index) {
+              <div class="permission-item">
+                <input type="checkbox"
+                [id]="'perm_' + permission.permission"
+                [checked]="permission.can"
+                (change)="updatePermission(permission.permission)"
+                [value]="permission.can">
+                <label [for]="'perm_' + permission.permission">{{permission.label}}</label>
+              </div>
+            }
           </div>
         </div>
         
@@ -177,7 +152,7 @@
       
       <div class="form-actions">
         <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-        <button type="submit" class="btn-app btn-app-primary">Crear usuario</button>
+        <button type="submit" class="btn-app btn-app-primary" (click)="getPermissions()">Crear usuario</button>
       </div>
     </form>
   </div>

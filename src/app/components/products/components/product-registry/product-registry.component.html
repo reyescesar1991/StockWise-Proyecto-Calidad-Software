@@ -215,25 +215,16 @@
                 </div>
                 <input type="file" id="productImage" accept="image/*" multiple style="display: none;"
                     (change)="onFileChange($event)">
-                @if (this.registryProductForm.get('productImage')?.invalid &&
-                (this.registryProductForm.get('productImage')?.dirty ||
-                this.registryProductForm.get('productImage')?.touched)) {
-
-                <div *ngIf="this.registryProductForm.get('productImage')?.errors as errors">
-
-                    @if (errors['zodError']) {
-
-                    <app-label-type typeMessage="error">
-                        {{errors['zodError'].message}}
-                    </app-label-type>
-                    }
-                </div>
-                }
+                    @if (this.registryProductForm.get('productImage')?.errors?.['zodError']) {
+                        <app-label-type typeMessage="error">
+                          {{this.registryProductForm.get('productImage')?.errors?.['zodError'].message}}
+                        </app-label-type>
+                      }
             </div>
 
             <div class="form-buttons full-width">
                 <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-                <button type="submit" class="btn-app btn-app-primary" (click)="getValueRegistryProductForm()">Registrar
+                <button type="submit" class="btn-app btn-app-primary" [disabled]="registryProductForm.invalid" (click)="getValueRegistryProductForm()">Registrar
                     Producto</button>
             </div>
         </div>

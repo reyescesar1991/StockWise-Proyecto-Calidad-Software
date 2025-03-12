@@ -24,9 +24,17 @@ export const  modifyProductFormSchema = z.object({
     minStock: z.number().gte(10, {message: 'El valor mínimo de aviso de stock bajo para los productos no puede ser menor a 10 unidades'}).nullable().refine(value => value !== null, {
         message: "Tipo de dato requerido",
     }),
-    productImage: z.any().refine(file => file instanceof File, {
-        message: "Debe ser un archivo válido"
-    }).optional(),
+    productImage: z
+        .instanceof(File, { message: "Debe ser un archivo válido" })
+        .nullable()
+        .optional()
+        .refine(file => {
+            // Solo validar si existe un archivo
+            if (file) {
+                return file instanceof File;
+            }
+            return true; // Permitir valor ausente
+        }, { message: "Archivo inválido" }),
     productStatus: z.string().nullable().refine(value => value && value.trim().length > 0, {
         message: "Tipo de dato requerido",
     }),

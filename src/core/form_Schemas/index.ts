@@ -7,3 +7,4 @@ export { modifyProductFormSchema} from './modifyProduct.form.schema.zod';
 export { adjustProductStockFormSchema} from './adjustProductStock.form.schema.zod';
 export { addStockFormSchema} from './addStock.form.schema.zod';
 export { registrySaleStockFormSchema} from './registrySaleStock.form.schema.zod';
+export { addUserFormSchema} from './addUser.form.schema.zod';
