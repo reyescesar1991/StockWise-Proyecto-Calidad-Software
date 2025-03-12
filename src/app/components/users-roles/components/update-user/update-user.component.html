@@ -43,14 +43,14 @@
     
         <form class="user-edit-form">
             <div class="form-tabs">
-                <button type="button" class="tab-button active" data-tab="personal">Información personal</button>
-                <button type="button" class="tab-button" data-tab="contact">Contacto</button>
-                <button type="button" class="tab-button" data-tab="work">Laboral</button>
-                <button type="button" class="tab-button" data-tab="permissions">Permisos</button>
-                <button type="button" class="tab-button" data-tab="security">Seguridad</button>
+                <button type="button" class="tab-button active" (click)="changeTab('personal')" [ngClass]="{ 'active': isTabActive('personal') }" data-tab="personal">Información personal</button>
+                <button type="button" class="tab-button" [ngClass]="{ 'active': isTabActive('contact') }" (click)="changeTab('contact')" data-tab="contact">Contacto</button>
+                <button type="button" class="tab-button" [ngClass]="{ 'active': isTabActive('work') }" (click)="changeTab('work')" data-tab="work">Laboral</button>
+                <button type="button" class="tab-button" [ngClass]="{ 'active': isTabActive('permissions') }" (click)="changeTab('permissions')" data-tab="permissions">Permisos</button>
+                <button type="button" class="tab-button" [ngClass]="{ 'active': isTabActive('security') }" (click)="changeTab('security')" data-tab="security">Seguridad</button>
             </div>
     
-            <div class="form-section active" id="personal-section">
+            <div class="form-section" [class.active]="isTabActive('personal')" id="personal-section">
                 <h3>Información personal</h3>
     
                 <div class="form-row">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
     
-                <div class="form-field full-width">
+                <!-- <div class="form-field full-width">
                     <label for="profileImage">Imagen de perfil</label>
                     <div class="image-upload-container">
                         <div class="current-image">
@@ -90,10 +90,10 @@
                             <button type="button" class="btn-app btn-app-danger">Eliminar imagen</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
     
-            <div class="form-section" id="contact-section">
+            <div class="form-section" [class.active]="isTabActive('contact')" id="contact-section">
                 <h3>Información de contacto</h3>
     
                 <div class="form-row">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
     
-                <div class="form-row">
+                <!-- <div class="form-row">
                     <div class="form-field">
                         <label for="emergencyContact">Contacto de emergencia</label>
                         <input type="text" id="emergencyContact" name="emergencyContact" value="Marta Rodríguez">
@@ -126,7 +126,7 @@
                         <label for="emergencyPhone">Teléfono de emergencia</label>
                         <input type="tel" id="emergencyPhone" name="emergencyPhone" value="1145678901">
                     </div>
-                </div>
+                </div> -->
     
                 <div class="form-field full-width">
                     <label for="address">Dirección</label>
@@ -134,7 +134,7 @@
                 </div>
             </div>
     
-            <div class="form-section" id="work-section">
+            <div class="form-section" [class.active]="isTabActive('work')" id="work-section">
                 <h3>Información laboral</h3>
     
                 <div class="form-row">
@@ -179,19 +179,19 @@
                 </div>
     
                 <div class="form-row">
-                    <div class="form-field">
+                    <div class="form-field full-width">
                         <label for="hireDate">Fecha de contratación</label>
                         <input type="date" id="hireDate" name="hireDate" value="2022-03-15">
                     </div>
     
-                    <div class="form-field">
+                    <!-- <div class="form-field">
                         <label for="employeeNumber">Número de empleado</label>
                         <input type="text" id="employeeNumber" name="employeeNumber" value="EMP-2022-056">
-                    </div>
+                    </div> -->
                 </div>
             </div>
     
-            <div class="form-section" id="permissions-section">
+            <div class="form-section" [class.active]="isTabActive('permissions')" id="permissions-section">
                 <h3>Permisos</h3>
     
                 <div class="form-field full-width">
@@ -251,14 +251,14 @@
                     </div>
                 </div>
     
-                <div class="form-field full-width">
+                <!-- <div class="form-field full-width">
                     <label for="customPermissions">Permisos personalizados adicionales</label>
                     <textarea id="customPermissions" name="customPermissions"
                         placeholder="Permisos adicionales separados por comas...">acceso_informes_semanales, visualizar_historial_completo</textarea>
-                </div>
+                </div> -->
             </div>
     
-            <div class="form-section" id="security-section">
+            <div class="form-section" [class.active]="isTabActive('security')" id="security-section">
                 <h3>Seguridad</h3>
     
                 <div class="form-field full-width">
@@ -302,18 +302,24 @@
                     <label>Opciones de seguridad</label>
                     <div class="security-options">
                         <div class="security-option">
-                            <input type="checkbox" id="force_password_reset" name="force_password_reset">
+                            <div>
+                                <input type="checkbox" id="force_password_reset" name="force_password_reset">
+                            </div>
                             <label for="force_password_reset">Forzar cambio de contraseña en próximo inicio de
                                 sesión</label>
                         </div>
     
                         <div class="security-option">
-                            <input type="checkbox" id="two_factor_auth" name="two_factor_auth" checked>
+                            <div>
+                                <input type="checkbox" id="two_factor_auth" name="two_factor_auth" checked>
+                            </div>
                             <label for="two_factor_auth">Autenticación de dos factores</label>
                         </div>
     
                         <div class="security-option">
-                            <input type="checkbox" id="account_lock" name="account_lock">
+                            <div>
+                                <input type="checkbox" id="account_lock" name="account_lock">
+                            </div>
                             <label for="account_lock">Bloquear cuenta temporalmente</label>
                         </div>
                     </div>

@@ -58,6 +58,12 @@ export class CreateUserComponent {
           nonNullable : false,
         }
       ),
+      codeCountry : this.fb.control('', 
+        {
+          validators : [zodValidator(addUserFormSchema.shape.codeCountry)],
+          nonNullable : false,
+        }
+      ),
       phoneNumber : this.fb.control('' , 
         {
           validators : [zodValidator(addUserFormSchema.shape.phoneNumber)],

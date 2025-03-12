@@ -372,6 +372,11 @@
   .tab-button:focus:not(:active)::after, .btn-app:focus:not(:active)::after {
     animation: ripple 1s ease-out;
   }
+
+  .security-option div{
+
+    flex-basis: 10%;
+  }
   
   @keyframes ripple {
     0% {

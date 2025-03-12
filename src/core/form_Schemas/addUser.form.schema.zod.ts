@@ -32,6 +32,10 @@ export const addUserFormSchema = z.object({
         message: "Tipo de dato requerido",
     }),
 
+    codeCountry : z.string().nullable().refine(value => value && value.trim().length > 0, {
+        message: "Tipo de dato requerido",
+    }),
+
     phoneNumber: z.string().regex(/^(0412|0416|0424|0414)\d{7}$/, { message: 'Formato de telefono erroneo' })
         .nullable()
         .refine(value => value && value.trim().length > 0, {

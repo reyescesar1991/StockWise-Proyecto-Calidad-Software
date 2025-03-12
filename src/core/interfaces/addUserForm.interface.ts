@@ -9,6 +9,7 @@ export interface IAddUserForm{
     lastNameUser: FormControl<string | null>;
     password: FormControl<string | null>;
     confirmPassword: FormControl<string | null>;
+    codeCountry : FormControl<string | null>;
     phoneNumber: FormControl<string | null>;
     address: FormControl<string | null>;
     rol: FormControl<string | null>;

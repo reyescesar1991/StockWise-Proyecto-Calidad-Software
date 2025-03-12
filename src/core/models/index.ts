@@ -8,3 +8,4 @@ export {IStatusStockUI} from './statusStockUI.model';
 export {ISummaryCardsModel} from './summary-cards.model';
 export {IActionQuickButton} from './UI/actionQuickButton.model';
 export {IPermissionsModel} from './permissions.model';
+export {ISecurityPermissionsModel} from './security.model';
