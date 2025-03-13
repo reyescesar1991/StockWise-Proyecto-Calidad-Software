@@ -1,15 +1,17 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { PERMISSIONS_LIST } from '../../../../../core/constants';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { IAddUserForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { addUserFormSchema } from '../../../../../core/form_Schemas';
+import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.scss'
 })
@@ -17,6 +19,7 @@ export class CreateUserComponent {
 
   protected arrayPermissions = PERMISSIONS_LIST;
   protected addUserForm : FormGroup<IAddUserForm>;
+  private readonly subscriptions = new Subscription();
 
   constructor(private readonly fb : FormBuilder){
 
@@ -54,7 +57,7 @@ export class CreateUserComponent {
       ),
       confirmPassword : this.fb.control('' , 
         {
-          validators : [zodValidator(addUserFormSchema.shape.confirmPassword)],
+          validators : [this.confirmPasswordValidator()],
           nonNullable : false,
         }
       ),
@@ -111,6 +114,22 @@ export class CreateUserComponent {
         }
       )
     });
+
+    console.log(this.addUserForm.getRawValue());
+  }
+
+  ngOnInit(){
+
+    this.subscriptions.add(
+      this.addUserForm.get('password')?.valueChanges.subscribe(() => {
+        this.addUserForm.get('confirmPassword')?.updateValueAndValidity();
+      })
+    );
+  }
+
+  ngOnDestroy(){
+
+    this.subscriptions.unsubscribe();
   }
 
 
@@ -136,5 +155,15 @@ export class CreateUserComponent {
 
     console.log(this.arrayPermissions);
     
+  }
+
+  confirmPasswordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.parent) return null;
+      const password = control.parent.get('password')?.value;
+      const confirmPassword = control.value;
+      
+      return password === confirmPassword ? null : { passwordMismatch: true };
+    };
   }
 }

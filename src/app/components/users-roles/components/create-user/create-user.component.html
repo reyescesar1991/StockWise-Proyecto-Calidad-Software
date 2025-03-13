@@ -1,163 +1,251 @@
 <div class="manage-user-container scroll-y">
-    <div class="form-header-content">
-      <h1>Crear nuevo usuario</h1>
-      <p>Complete el formulario para registrar un nuevo usuario en el sistema de gestión de inventario</p>
-    </div>
-  
-    <form class="user-create-form">
-      <div class="form-section">
-        <h2>Información personal</h2>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="idUser" class="required">ID de usuario</label>
-            <input type="text" id="idUser" name="idUser" placeholder="Ingrese el ID único del usuario">
-          </div>
-          
-          <div class="form-field">
-            <label for="email" class="required">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com">
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="name" class="required">Nombres</label>
-            <input type="text" id="name" name="name" placeholder="Nombres del usuario">
-          </div>
-          
-          <div class="form-field">
-            <label for="lastName" class="required">Apellidos</label>
-            <input type="text" id="lastName" name="lastName" placeholder="Apellidos del usuario">
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="password" class="required">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="Ingrese la contraseña">
-          </div>
-          
-          <div class="form-field">
-            <label for="confirmPassword" class="required">Confirmar contraseña</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme la contraseña">
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-section">
-        <h2>Información de contacto</h2>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="codeCountry" class="required">Código de país</label>
-            <select id="codeCountry" name="codeCountry">
-              <option value="" disabled selected>Seleccione un código</option>
-              <option value="+57">+57 (Colombia)</option>
-              <option value="+52">+52 (México)</option>
-              <option value="+51">+51 (Perú)</option>
-              <option value="+54">+54 (Argentina)</option>
-              <option value="+56">+56 (Chile)</option>
-              <option value="+58">+58 (Venezuela)</option>
-              <option value="+593">+593 (Ecuador)</option>
-            </select>
-          </div>
-          
-          <div class="form-field">
-            <label for="phoneNumber" class="required">Número telefónico</label>
-            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Número telefónico">
-          </div>
+  <div class="form-header-content">
+    <h1>Crear nuevo usuario</h1>
+    <p>Complete el formulario para registrar un nuevo usuario en el sistema de gestión de inventario</p>
+  </div>
 
-          <div class="form-field full-width">
-            <label for="address">Dirección</label>
-            <input type="text" id="address" name="address">
-        </div>
-        </div>
-      </div>
-      
-      <div class="form-section">
-        <h2>Información laboral</h2>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="rol" class="required">Rol en la empresa</label>
-            <select id="rol" name="rol">
-              <option value="" disabled selected>Seleccione un rol</option>
-              <option value="1">Empleado de Almacén</option>
-              <option value="2">Supervisor de Inventario</option>
-              <option value="3">Gestor de Inventario</option>
-              <option value="4">Administrador de Inventario</option>
-            </select>
-          </div>
-          
-          <div class="form-field">
-            <label for="headquarters" class="required">Sede</label>
-            <select id="headquarters" name="headquarters">
-              <option value="" disabled selected>Seleccione una sede</option>
-              <option value="1">Sede Principal</option>
-              <option value="2">Sede Norte</option>
-              <option value="3">Sede Sur</option>
-              <option value="4">Sede Este</option>
-              <option value="5">Sede Oeste</option>
-            </select>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="department">Departamento</label>
-            <select id="department" name="department">
-              <option value="" disabled selected>Seleccione un departamento</option>
-              <option value="1">Logística</option>
-              <option value="2">Almacén</option>
-              <option value="3">Compras</option>
-              <option value="4">Ventas</option>
-              <option value="5">Administración</option>
-            </select>
-          </div>
-          
-          <div class="form-field">
-            <label for="position">Cargo</label>
-            <input type="text" id="position" name="position" placeholder="Cargo del usuario">
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-section">
-        <h2>Permisos adicionales</h2>
-        
-        <div class="form-field full-width">
-          <label for="permissions">Permisos específicos</label>
-          <div class="permissions-grid">
+  <form class="user-create-form" [formGroup]="addUserForm">
+    <div class="form-section">
+      <h2>Información personal</h2>
 
-            @for (permission of arrayPermissions; track $index) {
-              <div class="permission-item">
-                <input type="checkbox"
-                [id]="'perm_' + permission.permission"
-                [checked]="permission.can"
-                (change)="updatePermission(permission.permission)"
-                [value]="permission.can">
-                <label [for]="'perm_' + permission.permission">{{permission.label}}</label>
-              </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="idUser" class="required">ID de usuario</label>
+          <input type="text" id="idUser" name="idUser" formControlName="idUser"
+            placeholder="Ingrese el ID único del usuario" required>
+          @if (this.addUserForm.get('idUser')?.invalid && (this.addUserForm.get('idUser')?.dirty ||
+          this.addUserForm.get('idUser')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('idUser')?.errors as errors">
+
+            @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
             }
           </div>
+          }
         </div>
-        
-        <div class="form-field full-width">
-          <div class="notice">
-            <p>Los permisos específicos solo se aplicarán si son compatibles con el rol seleccionado. El rol "Administrador de Inventario" incluye todos los permisos por defecto.</p>
+
+        <div class="form-field">
+          <label for="email" class="required">Correo electrónico</label>
+          <input type="email" id="email" name="email" formControlName="email" placeholder="correo@ejemplo.com" required>
+          @if (this.addUserForm.get('email')?.invalid && (this.addUserForm.get('email')?.dirty ||
+          this.addUserForm.get('email')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('email')?.errors as errors">
+
+            @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+            }
           </div>
+          }
         </div>
       </div>
-      
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name" class="required">Nombres</label>
+          <input type="text" id="name" name="name" formControlName="nameUser" placeholder="Nombres del usuario"
+            required>
+          @if (this.addUserForm.get('nameUser')?.invalid && (this.addUserForm.get('nameUser')?.dirty ||
+          this.addUserForm.get('nameUser')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('nameUser')?.errors as errors">
+
+            @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="lastName" class="required">Apellidos</label>
+          <input type="text" id="lastName" name="lastName" formControlName="lastNameUser"
+            placeholder="Apellidos del usuario" required>
+          @if (this.addUserForm.get('lastNameUser')?.invalid && (this.addUserForm.get('lastNameUser')?.dirty ||
+          this.addUserForm.get('lastNameUser')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('lastNameUser')?.errors as errors">
+
+            @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+            }
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="password" class="required">Contraseña</label>
+          <input type="password" id="password" formControlName="password" name="password"
+            placeholder="Ingrese la contraseña">
+          @if (this.addUserForm.get('password')?.invalid && (this.addUserForm.get('password')?.dirty ||
+          this.addUserForm.get('password')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('password')?.errors as errors">
+
+            @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="confirmPassword" class="required">Confirmar contraseña</label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" name="confirmPassword"
+            placeholder="Confirme la contraseña">
+          @if (this.addUserForm.get('confirmPassword')?.invalid && (this.addUserForm.get('confirmPassword')?.dirty ||
+          this.addUserForm.get('confirmPassword')?.touched)) {
+          @if (this.addUserForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+          <app-label-type typeMessage="error">
+            Las contraseñas no coinciden
+          </app-label-type>
+          }
+          }
+          @if (this.addUserForm.get('confirmPassword')?.invalid &&
+          (this.addUserForm.get('confirmPassword')?.dirty || this.addUserForm.get('confirmPassword')?.touched)) {
+
+          <div *ngIf="this.addUserForm.get('confirmPassword')?.errors as errors">
+
+            @if (errors['zodError']) {
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Información de contacto</h2>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="codeCountry" class="required">Código de país</label>
+          <select id="codeCountry" name="codeCountry">
+            <option value="" disabled selected>Seleccione un código</option>
+            <option value="+57">+57 (Colombia)</option>
+            <option value="+52">+52 (México)</option>
+            <option value="+51">+51 (Perú)</option>
+            <option value="+54">+54 (Argentina)</option>
+            <option value="+56">+56 (Chile)</option>
+            <option value="+58">+58 (Venezuela)</option>
+            <option value="+593">+593 (Ecuador)</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="phoneNumber" class="required">Número telefónico</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Número telefónico">
+        </div>
+
+        <div class="form-field full-width">
+          <label for="address">Dirección</label>
+          <input type="text" id="address" name="address">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Información laboral</h2>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="rol" class="required">Rol en la empresa</label>
+          <select id="rol" name="rol">
+            <option value="" disabled selected>Seleccione un rol</option>
+            <option value="1">Empleado de Almacén</option>
+            <option value="2">Supervisor de Inventario</option>
+            <option value="3">Gestor de Inventario</option>
+            <option value="4">Administrador de Inventario</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="headquarters" class="required">Sede</label>
+          <select id="headquarters" name="headquarters">
+            <option value="" disabled selected>Seleccione una sede</option>
+            <option value="1">Sede Principal</option>
+            <option value="2">Sede Norte</option>
+            <option value="3">Sede Sur</option>
+            <option value="4">Sede Este</option>
+            <option value="5">Sede Oeste</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="department">Departamento</label>
+          <select id="department" name="department">
+            <option value="" disabled selected>Seleccione un departamento</option>
+            <option value="1">Logística</option>
+            <option value="2">Almacén</option>
+            <option value="3">Compras</option>
+            <option value="4">Ventas</option>
+            <option value="5">Administración</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="position">Cargo</label>
+          <input type="text" id="position" name="position" placeholder="Cargo del usuario">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Permisos adicionales</h2>
+
       <div class="form-field full-width">
-        <label for="notes">Notas adicionales</label>
-        <textarea id="notes" name="notes" placeholder="Información adicional sobre el usuario..."></textarea>
+        <label for="permissions">Permisos específicos</label>
+        <div class="permissions-grid">
+
+          @for (permission of arrayPermissions; track $index) {
+          <div class="permission-item">
+            <input type="checkbox" [id]="'perm_' + permission.permission" [checked]="permission.can"
+              (change)="updatePermission(permission.permission)" [value]="permission.can">
+            <label [for]="'perm_' + permission.permission">{{permission.label}}</label>
+          </div>
+          }
+        </div>
       </div>
-      
-      <div class="form-actions">
-        <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-        <button type="submit" class="btn-app btn-app-primary" (click)="getPermissions()">Crear usuario</button>
+
+      <div class="form-field full-width">
+        <div class="notice">
+          <p>Los permisos específicos solo se aplicarán si son compatibles con el rol seleccionado. El rol
+            "Administrador de Inventario" incluye todos los permisos por defecto.</p>
+        </div>
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div class="form-field full-width">
+      <label for="notes">Notas adicionales</label>
+      <textarea id="notes" name="notes" placeholder="Información adicional sobre el usuario..."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
+      <button type="submit" class="btn-app btn-app-primary" (click)="getPermissions()">Crear usuario</button>
+    </div>
+  </form>
+</div>
