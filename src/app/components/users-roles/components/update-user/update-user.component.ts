@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { USER_PERMISSIONS_SECURITY } from '../../../../../core/constants';
+import { PERMISSIONS_LIST, USER_PERMISSIONS_SECURITY } from '../../../../../core/constants';
 
 @Component({
   selector: 'app-update-user',
@@ -15,7 +15,8 @@ export class UpdateUserComponent {
   protected userFound : boolean = false;
   protected user : string = '';
   protected activeTab: string = 'personal'; // Tab inicial
-  protected arrayPermissionsSecurity = USER_PERMISSIONS_SECURITY;
+  protected arrayPermissions = PERMISSIONS_LIST;
+  protected arrayUserSecurity = USER_PERMISSIONS_SECURITY;
 
 
   protected searchUser(){
@@ -39,5 +40,27 @@ export class UpdateUserComponent {
   // Método para verificar si un tab está activo
   protected isTabActive(tab: string): boolean {
     return this.activeTab === tab;
+  }
+
+  protected updatePermissionSecurity(permissionName : string) : void{
+
+    const pem = this.arrayUserSecurity.find(p => p.permission === permissionName);
+
+    if(pem){
+
+      const checked = !pem.can;
+      pem.can = checked;
+    }
+  }
+
+  protected updatePermission(permissionName : string) : void{
+
+    const pem = this.arrayPermissions.find(p => p.permission === permissionName);
+
+    if(pem){
+
+      const checked = !pem.can;
+      pem.can = checked;
+    }
   }
 }

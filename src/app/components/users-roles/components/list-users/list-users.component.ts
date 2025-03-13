@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 
 interface User {
@@ -16,7 +18,7 @@ interface User {
 @Component({
   selector: 'app-list-users',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   templateUrl: './list-users.component.html',
   styleUrl: './list-users.component.scss'
 })

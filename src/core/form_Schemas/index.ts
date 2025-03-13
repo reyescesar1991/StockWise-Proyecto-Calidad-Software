@@ -8,3 +8,4 @@ export { adjustProductStockFormSchema} from './adjustProductStock.form.schema.zo
 export { addStockFormSchema} from './addStock.form.schema.zod';
 export { registrySaleStockFormSchema} from './registrySaleStock.form.schema.zod';
 export { addUserFormSchema} from './addUser.form.schema.zod';
+export { updateUserFormSchema} from './updateUser.form.schema.zod';

@@ -204,7 +204,22 @@
                 <div class="form-field full-width">
                     <label>Permisos específicos</label>
                     <div class="permissions-grid">
-                        <div class="permission-item">
+
+                        @for (permission of arrayPermissions; track $index) {
+                            
+                            <div class="permission-item">
+                                <input type="checkbox" 
+                                    [name]="'perm_' + permission.permission" 
+                                    [id]="'perm_' + permission.permission"
+                                    [checked]="permission.can"
+                                    [value]="permission.can"
+                                    (change)="updatePermission(permission.permission)"
+                                >
+                                <label [for]="'perm_' + permission.permission">{{permission.label}}</label>
+                            </div>
+                        }
+
+                        <!-- <div class="permission-item">
                             <input type="checkbox" id="perm_view_inventory" name="permissions[]" value="ver_inventario"
                                 checked disabled>
                             <label for="perm_view_inventory" class="disabled">Ver inventario</label>
@@ -247,7 +262,7 @@
                         <div class="permission-item">
                             <input type="checkbox" id="perm_analyze_stock" name="permissions[]" value="analizar_stock">
                             <label for="perm_analyze_stock">Analizar stock</label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
     
@@ -301,27 +316,22 @@
                 <div class="form-field full-width">
                     <label>Opciones de seguridad</label>
                     <div class="security-options">
-                        <div class="security-option">
-                            <div>
-                                <input type="checkbox" id="force_password_reset" name="force_password_reset">
+
+                        @for (securityItem of arrayUserSecurity; track $index) {
+
+                            <div class="security-option">
+                                <div>
+                                    <input type="checkbox" 
+                                        [id]="securityItem.id" 
+                                        [name]="securityItem.id"
+                                        [value]="securityItem.can"
+                                        (change)="updatePermissionSecurity(securityItem.permission)"
+                                        [checked]="securityItem.can"
+                                    >
+                                </div>
+                                <label [for]="securityItem.id">{{securityItem.label}}</label>
                             </div>
-                            <label for="force_password_reset">Forzar cambio de contraseña en próximo inicio de
-                                sesión</label>
-                        </div>
-    
-                        <div class="security-option">
-                            <div>
-                                <input type="checkbox" id="two_factor_auth" name="two_factor_auth" checked>
-                            </div>
-                            <label for="two_factor_auth">Autenticación de dos factores</label>
-                        </div>
-    
-                        <div class="security-option">
-                            <div>
-                                <input type="checkbox" id="account_lock" name="account_lock">
-                            </div>
-                            <label for="account_lock">Bloquear cuenta temporalmente</label>
-                        </div>
+                        }
                     </div>
                 </div>
     

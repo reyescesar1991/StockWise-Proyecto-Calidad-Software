@@ -8,3 +8,4 @@ export { IAdjustProductStockForm} from './adjustProductStockForm.interface';
 export { IRegistrySaleStockForm} from './registrySaleStockForm.interface';
 export { IRegistryStockForm} from './addStockForm.interface';
 export { IAddUserForm} from './addUserForm.interface';
+export { IUpdateUserForm} from './updateUserForm.interface';

@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-import { IPermissionsModel } from "../models";
+import { IPermissionsModel, ISecurityPermissionsModel } from "../models";
 
 export interface IUpdateUserForm{
 
@@ -15,6 +15,6 @@ export interface IUpdateUserForm{
     department : FormControl<string | null>;
     position : FormControl<string | null>;
     hireDate : FormControl<string | null>;
-    permissions: FormControl<IPermissionsModel | null>;
-    
+    permissions: FormControl<IPermissionsModel[] | null>;
+    permissionsSecurity : FormControl<ISecurityPermissionsModel[] | null>
 }
