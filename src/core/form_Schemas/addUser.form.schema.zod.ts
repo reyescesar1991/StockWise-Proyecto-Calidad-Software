@@ -76,12 +76,12 @@ export const addUserFormSchema = z.object({
     )
         .nullable()
         .refine(value => {
-            // Validación personalizada si necesitas al menos un permiso activo
-            if (value === null) return true; // Permitir null si es opcional
-            return value.some(perm => perm.can === true); // Al menos un permiso activo
+           // Validación personalizada si necesitas al menos un permiso activo
+            if (value === null) return true; 
+            return value.some(perm => perm.can === true); 
         }, {
             message: "Debe seleccionar al menos un permiso"
-    }),
+    }).optional(),
 
     notes: z.string().min(5, { message: 'El usuario debe tener una nota inicial' }).nullable().refine(value => value && value.trim().length > 0, {
         message: "Tipo de dato requerido",

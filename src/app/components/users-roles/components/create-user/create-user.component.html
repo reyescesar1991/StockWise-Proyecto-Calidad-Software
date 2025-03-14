@@ -141,7 +141,7 @@
       <div class="form-row">
         <div class="form-field">
           <label for="codeCountry" class="required">Código de país</label>
-          <select id="codeCountry" name="codeCountry">
+          <select id="codeCountry" formControlName="codeCountry" name="codeCountry">
             <option value="" disabled selected>Seleccione un código</option>
             <option value="+57">+57 (Colombia)</option>
             <option value="+52">+52 (México)</option>
@@ -151,16 +151,52 @@
             <option value="+58">+58 (Venezuela)</option>
             <option value="+593">+593 (Ecuador)</option>
           </select>
+          @if (this.addUserForm.get('codeCountry')?.invalid && (this.addUserForm.get('codeCountry')?.dirty || this.addUserForm.get('codeCountry')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('codeCountry')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
 
         <div class="form-field">
           <label for="phoneNumber" class="required">Número telefónico</label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Número telefónico">
+          <input type="tel" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" placeholder="Número telefónico">
+          @if (this.addUserForm.get('phoneNumber')?.invalid && (this.addUserForm.get('phoneNumber')?.dirty || this.addUserForm.get('phoneNumber')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('phoneNumber')?.errors as errors">
+
+              @if (errors['zodError']) {
+                
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
 
         <div class="form-field full-width">
           <label for="address">Dirección</label>
-          <input type="text" id="address" name="address">
+          <input type="text" id="address" formControlName="address" name="address">
+          @if (this.addUserForm.get('address')?.invalid && (this.addUserForm.get('address')?.dirty || this.addUserForm.get('address')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('address')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -171,18 +207,31 @@
       <div class="form-row">
         <div class="form-field">
           <label for="rol" class="required">Rol en la empresa</label>
-          <select id="rol" name="rol">
+          <select id="rol" formControlName="rol" name="rol">
             <option value="" disabled selected>Seleccione un rol</option>
             <option value="1">Empleado de Almacén</option>
             <option value="2">Supervisor de Inventario</option>
             <option value="3">Gestor de Inventario</option>
             <option value="4">Administrador de Inventario</option>
           </select>
+          @if (this.addUserForm.get('rol')?.invalid && (this.addUserForm.get('rol')?.dirty || this.addUserForm.get('rol')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('rol')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
 
         <div class="form-field">
           <label for="headquarters" class="required">Sede</label>
-          <select id="headquarters" name="headquarters">
+          <select id="headquarters" formControlName="headquarters" name="headquarters">
             <option value="" disabled selected>Seleccione una sede</option>
             <option value="1">Sede Principal</option>
             <option value="2">Sede Norte</option>
@@ -190,13 +239,25 @@
             <option value="4">Sede Este</option>
             <option value="5">Sede Oeste</option>
           </select>
+          @if (this.addUserForm.get('headquarters')?.invalid && (this.addUserForm.get('headquarters')?.dirty || this.addUserForm.get('headquarters')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('headquarters')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-field">
           <label for="department">Departamento</label>
-          <select id="department" name="department">
+          <select id="department" formControlName="department" name="department">
             <option value="" disabled selected>Seleccione un departamento</option>
             <option value="1">Logística</option>
             <option value="2">Almacén</option>
@@ -204,11 +265,35 @@
             <option value="4">Ventas</option>
             <option value="5">Administración</option>
           </select>
+          @if (this.addUserForm.get('department')?.invalid && (this.addUserForm.get('department')?.dirty || this.addUserForm.get('department')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('department')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
 
         <div class="form-field">
           <label for="position">Cargo</label>
-          <input type="text" id="position" name="position" placeholder="Cargo del usuario">
+          <input type="text" id="position" formControlName="job" name="position" placeholder="Cargo del usuario">
+          @if (this.addUserForm.get('job')?.invalid && (this.addUserForm.get('job')?.dirty || this.addUserForm.get('job')?.touched)) {
+
+            <div *ngIf="this.addUserForm.get('job')?.errors as errors">
+
+              @if (errors['zodError']) {
+
+                <app-label-type typeMessage="error">
+                  {{errors['zodError'].message}}
+                </app-label-type>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -240,12 +325,24 @@
 
     <div class="form-field full-width">
       <label for="notes">Notas adicionales</label>
-      <textarea id="notes" name="notes" placeholder="Información adicional sobre el usuario..."></textarea>
+      <textarea id="notes" formControlName="notes" name="notes" placeholder="Información adicional sobre el usuario..."></textarea>
+      @if (this.addUserForm.get('notes')?.invalid && (this.addUserForm.get('notes')?.dirty || this.addUserForm.get('notes')?.touched)) {
+
+        <div *ngIf="this.addUserForm.get('notes')?.errors as errors">
+
+          @if (errors['zodError']) {
+
+            <app-label-type typeMessage="error">
+              {{errors['zodError'].message}}
+            </app-label-type>
+          }
+        </div>
+      }
     </div>
 
     <div class="form-actions">
-      <button type="button" class="btn-app btn-app-secondary">Cancelar</button>
-      <button type="submit" class="btn-app btn-app-primary" (click)="getPermissions()">Crear usuario</button>
+      <button type="button" class="btn-app btn-app-secondary" (click)="getPermissions()">Cancelar</button>
+      <button type="submit" class="btn-app btn-app-primary" [disabled]="addUserForm.invalid" (click)="getPermissions()">Crear usuario</button>
     </div>
   </form>
 </div>

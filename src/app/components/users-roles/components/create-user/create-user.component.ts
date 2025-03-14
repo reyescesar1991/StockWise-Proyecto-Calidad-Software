@@ -147,13 +147,16 @@ export class CreateUserComponent {
 
     console.log(this.arrayPermissions);
     console.log(this.addUserForm.get('permissions')?.value);
-    
-    
+
+    // Actualiza el control del formulario
+  this.addUserForm.get('permissions')?.setValue(this.arrayPermissions);
+  this.addUserForm.get('permissions')?.updateValueAndValidity();
   }
   
   protected getPermissions(){
 
-    console.log(this.arrayPermissions);
+    console.log(this.addUserForm.getRawValue());
+    
     
   }
 
