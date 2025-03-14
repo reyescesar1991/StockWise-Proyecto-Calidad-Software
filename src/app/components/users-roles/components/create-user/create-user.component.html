@@ -167,7 +167,7 @@
 
         <div class="form-field">
           <label for="phoneNumber" class="required">Número telefónico</label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" placeholder="Número telefónico">
+          <input type="tel" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber" placeholder="Número telefónico" maxlength="11">
           @if (this.addUserForm.get('phoneNumber')?.invalid && (this.addUserForm.get('phoneNumber')?.dirty || this.addUserForm.get('phoneNumber')?.touched)) {
 
             <div *ngIf="this.addUserForm.get('phoneNumber')?.errors as errors">
