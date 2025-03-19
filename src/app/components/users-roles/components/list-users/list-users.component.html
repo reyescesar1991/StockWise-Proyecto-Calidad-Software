@@ -48,7 +48,7 @@
           </td>
           <td class="actions-cell">
             <button class="action-btn edit-btn" title="Modificar usuario">Editar</button>
-            <button class="action-btn delete-btn" title="Eliminar usuario">Eliminar</button>
+            <button class="action-btn delete-btn" title="Eliminar usuario" (click)="toggleDeleteModal()">Eliminar</button>
           </td>
         </tr>
         }
@@ -84,3 +84,5 @@
     </div>
   </div>
 </div>
+
+<app-modal-component modalType="warning" [isOpen]="isDeleteModalOpen" (onClose)="setDeleteModalVisibility(false)"></app-modal-component>

@@ -1,0 +1,128 @@
+/* modal-component.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-container {
+    background-color: var(--content-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  
+  .modal-overlay.active .modal-container {
+    transform: translateY(0);
+  }
+  
+  .modal-header {
+    padding: 16px 20px;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    margin: 0;
+    color: var(--titles-color);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .close-button:hover {
+    color: var(--error-color);
+  }
+  
+  .modal-content {
+    padding: 20px;
+    overflow-y: auto;
+    color: var(--text-color);
+    flex: 1;
+  }
+  
+  .modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  .modal-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
+  }
+  
+  .modal-button.cancel {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+  }
+  
+  .modal-button.cancel:hover {
+    background-color: var(--border-color);
+  }
+  
+  .modal-button.confirm {
+    background-color: var(--primary-button);
+    color: var(--white-color);
+  }
+  
+  .modal-button.confirm:hover {
+    background-color: var(--primary-button-hover);
+  }
+  
+  /* Estilos adicionales para diferentes tipos de modales */
+  .modal-container.error .modal-header {
+    border-bottom: 2px solid var(--error-color);
+  }
+  
+  .modal-container.success .modal-header {
+    border-bottom: 2px solid var(--success-color);
+  }
+  
+  .modal-container.warning .modal-header {
+    border-bottom: 2px solid var(--warning-color);
+  }
+  
+  .modal-container.info .modal-header {
+    border-bottom: 2px solid var(--info-color);
+  }

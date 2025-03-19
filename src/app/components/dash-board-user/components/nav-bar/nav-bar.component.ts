@@ -182,7 +182,7 @@ protected routeInformation: string = '';
 protected activeRouteId: string | null = null; //ruta activa para remarcarla
 protected isMobileView: boolean = false;
 
-constructor(private renderer: Renderer2, private el: ElementRef, private router: Router) { }
+constructor(private readonly renderer: Renderer2, private readonly el: ElementRef, private readonly router: Router) { }
 
 ngOnInit(): void {
   this.setupMobileMenuInitialState();

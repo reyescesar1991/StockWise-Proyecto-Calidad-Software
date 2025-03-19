@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ModalComponentComponent } from '../../../../../shared/modal-component/modal-component.component';
 
 
 interface User {
@@ -18,7 +19,7 @@ interface User {
 @Component({
   selector: 'app-list-users',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ModalComponentComponent],
   templateUrl: './list-users.component.html',
   styleUrl: './list-users.component.scss'
 })
@@ -27,6 +28,7 @@ export class ListUsersComponent {
   protected currentPage: number = 1;
   protected itemsPerPage: number = 2; // Cambia este valor para mostrar más/menos items por página
   protected totalPages: number = 0;
+  protected isDeleteModalOpen: boolean = false;
 
   protected usersData: User[] = [
     {
@@ -96,21 +98,29 @@ export class ListUsersComponent {
     return this.usersData.slice(startIndex, endIndex);
   }
 
-  nextPage(): void {
+  protected nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
 
-  previousPage(): void {
+  protected previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
 
-  protected getStatusUser(status : string) : string {
+  protected getStatusUser(status: string): string {
 
     return `status-badge ${status}`;
+  }
+
+  protected toggleDeleteModal(): void {
+    this.isDeleteModalOpen = !this.isDeleteModalOpen;
+  }
+
+  protected setDeleteModalVisibility(visible: boolean): void {
+    this.isDeleteModalOpen = visible;
   }
 
 }
