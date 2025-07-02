@@ -25,7 +25,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'dashBoard',
+        path: 'dashboard',
         loadComponent: () => import('./components/dash-board-user/dash-board-user.component').then(mod => mod.DashBoardUserComponent),
         children: [
 
