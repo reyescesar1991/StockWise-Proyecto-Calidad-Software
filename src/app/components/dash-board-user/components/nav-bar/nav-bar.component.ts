@@ -9,7 +9,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
-export class NavBarComponent {
+export class NavbarComponent {
 
   @Output() hiddenContent = new EventEmitter<string>();
   @Output() showContent = new EventEmitter<string>();
@@ -22,7 +22,7 @@ export class NavBarComponent {
             {
                 id: 'home',
                 name: 'Inicio',
-                path: '/dashBoard/inicio',
+                path: '/dashboard/inicio',
                 icon: 'home-icon',
                 active: true,
                 subroutes: [] // Subrutas vacías para consistencia
@@ -36,32 +36,32 @@ export class NavBarComponent {
             {
                 id: 'products',
                 name: 'Productos',
-                path: '/dashBoard/productos',
+                path: '/dashboard/productos',
                 icon: 'products-icon',
                 active: false,
                 subroutes: [
                     {
                         id: 'products-registry',
                         name: 'Registrar producto',
-                        path: '/dashBoard/productos/registrar-producto',
+                        path: '/dashboard/productos/registrar-producto',
                         active: false
                     },
                     {
                         id: 'products-modify',
                         name: 'Modificar producto',
-                        path: '/dashBoard/productos/modificar-producto',
+                        path: '/dashboard/productos/modificar-producto',
                         active: false
                     },
                     {
                         id: 'products-list',
                         name: 'Listado de productos',
-                        path: '/dashBoard/productos/lista-productos',
+                        path: '/dashboard/productos/lista-productos',
                         active: false
                     },
                     {
                         id: 'products-search',
-                        name: 'Buscar producto',
-                        path: '/dashBoard/productos/buscar-producto',
+                        name: 'buscar producto',
+                        path: '/dashboard/productos/buscar-producto',
                         active: false
                     }
                 ]
@@ -69,32 +69,32 @@ export class NavBarComponent {
             {
                 id: 'inventory-management',
                 name: 'Gestión de Stock',
-                path: '/dashBoard/inventario',
+                path: '/dashboard/inventario',
                 icon: 'inventory-icon',
                 active: false,
                 subroutes: [
                     {
                         id: 'inventory-add',
                         name: 'Agregar inventario',
-                        path: '/dashBoard/inventario/agregar-inventario',
+                        path: '/dashboard/inventario/agregar-inventario',
                         active: false
                     },
                     {
                         id: 'inventory-sales',
                         name: 'Registrar venta',
-                        path: '/dashBoard/inventario/registrar-venta',
+                        path: '/dashboard/inventario/registrar-venta',
                         active: false
                     },
                     {
                         id: 'inventory-adjust',
                         name: 'Ajustar producto',
-                        path: '/dashBoard/inventario/ajustar-producto',
+                        path: '/dashboard/inventario/ajustar-producto',
                         active: false
                     },
                     {
                         id: 'inventory-search',
-                        name: 'Buscar producto',
-                        path: '/dashBoard/inventario/buscar-producto',
+                        name: 'buscar producto',
+                        path: '/dashboard/inventario/buscar-producto',
                         active: false
                     }
                 ]
@@ -108,26 +108,26 @@ export class NavBarComponent {
             {
                 id: 'general-reports',
                 name: 'Reportes',
-                path: '/dashBoard/reportes',
+                path: '/dashboard/reportes',
                 icon: 'reports-icon',
                 active: false,
                 subroutes: [
                     {
                         id: 'report-general',
                         name: 'Estado general',
-                        path: '/dashBoard/reportes/reporte-general',
+                        path: '/dashboard/reportes/reporte-general',
                         active: false
                     },
                     {
                         id: 'report-low-stock',
-                        name: 'Bajo stock',
-                        path: '/dashBoard/reportes/reporte-bajo-stock',
+                        name: 'bajo stock',
+                        path: '/dashboard/reportes/reporte-bajo-stock',
                         active: false
                     },
                     {
                         id: 'report-total-stock',
                         name: 'Valor total inventario',
-                        path: '/dashBoard/reportes/reporte-total-stock',
+                        path: '/dashboard/reportes/reporte-total-stock',
                         active: false
                     }
                 ]
@@ -141,26 +141,26 @@ export class NavBarComponent {
             {
                 id: 'users',
                 name: 'Usuarios',
-                path: '/dashBoard/usuarios',
+                path: '/dashboard/usuarios',
                 icon: 'users-icon',
                 active: false,
                 subroutes: [
                     {
                         id: 'users-create',
                         name: 'Crear usuario',
-                        path: '/dashBoard/usuarios/crear-usuario',
+                        path: '/dashboard/usuarios/crear-usuario',
                         active: false
                     },
                     {
                         id: 'users-update',
                         name: 'Modificar usuario',
-                        path: '/dashBoard/usuarios/modificar-usuario',
+                        path: '/dashboard/usuarios/modificar-usuario',
                         active: false
                     },
                     {
                         id: 'users-list',
                         name: 'Listar usuarios',
-                        path: '/dashBoard/usuarios/listar-usuarios',
+                        path: '/dashboard/usuarios/listar-usuarios',
                         active: false
                     }
                 ]
