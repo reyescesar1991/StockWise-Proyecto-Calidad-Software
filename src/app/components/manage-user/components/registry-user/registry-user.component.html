@@ -6,7 +6,7 @@
 
     <form [formGroup]="registryUserForm">
         <div class="form-group mb-1">
-            <label for="idUser">ID de usuario</label>
+            <label for="idUser">Nombre de usuario</label>
             <input type="text" name="idUser" formControlName="idUser" id="idUser" placeholder="Ingrese su ID de usuario" required>
             @if (this.registryUserForm.get('idUser')?.invalid && (this.registryUserForm.get('idUser')?.dirty || this.registryUserForm.get('idUser')?.touched)) {
 
