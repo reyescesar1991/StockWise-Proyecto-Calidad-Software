@@ -1,0 +1,35 @@
+<!-- El overlay oscuro que cubre toda la pantalla -->
+<div class="modal-overlay">
+
+  <!-- Contenedor principal del modal, centrado -->
+  <div class="modal-content">
+
+    <!-- Encabezado -->
+    <div class="modal-header">
+      <h2>Verificación de Dos Pasos</h2>
+      <p>Ingresa el código de 6 dígitos de tu aplicación de autenticación.</p>
+    </div>
+
+    <!-- Contenedor para los 6 campos de entrada del código -->
+    <div class="code-inputs" #codeInputContainer>
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+    </div>
+
+    <!-- Espacio para mostrar mensajes de error -->
+    <div class="error-text">
+      <!-- El mensaje de error se insertará aquí dinámicamente -->
+    </div>
+
+    <!-- Botón de acción principal -->
+    <button class="btn btn-primary mt-1">Verificar Código</button>
+
+    <!-- Opciones adicionales -->
+    <a class="resend-link">¿No recibiste el código? Reenviar</a>
+  </div>
+
+</div>

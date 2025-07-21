@@ -71,7 +71,7 @@
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  width: 100%;
+  width: 450px;
 }
 
 .manage-user-container { 
@@ -714,3 +714,5 @@ select:focus {
   width: 100%;
 }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
