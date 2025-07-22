@@ -15,3 +15,20 @@ export interface ILoginResponse {
   // Aquí puedes añadir más propiedades que devuelva tu API dentro de 'data',
   // como información del usuario, roles, etc.
 }
+
+/**
+ * Interfaz para la estructura del objeto 'data' en la respuesta del login con factor de autenticacion.
+ */
+export interface ILogin2faResponse {
+  userId: string;
+  preAuthToken : string;
+
+}
+
+/**
+ * Interfaz para la estructura del objeto request para el segundo factor.
+ */
+export interface IVerify2FALogin {
+  userId: string;
+  code : string;
+}

@@ -8,3 +8,12 @@ export interface ApiResponse<T> {
   data: T;
 }
 
+/**
+ * Interfaz para estandarizar las respuestas de la API de error.
+ */
+export interface ApiResponseError{
+  message: string;
+  code: number;
+  stack: string;
+}
+

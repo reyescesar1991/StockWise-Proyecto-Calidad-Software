@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3001/api' // URL de tu API para desarrollo local
+  apiUrl: 'http://localhost:3001/api', // URL de tu API para desarrollo local
+  useDummyData: false // <--- ¡Añade esta línea!
 };
 

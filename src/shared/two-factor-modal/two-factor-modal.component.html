@@ -11,23 +11,25 @@
     </div>
 
     <!-- Contenedor para los 6 campos de entrada del código -->
-    <div class="code-inputs" #codeInputContainer>
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
-      <input type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+    <div class="code-inputs">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
+      <input #codeInput type="text" maxlength="1" class="code-input" pattern="[0-9]*" inputmode="numeric">
     </div>
 
     <!-- Espacio para mostrar mensajes de error -->
-    <div class="error-text">
-      <!-- El mensaje de error se insertará aquí dinámicamente -->
+    <div class="error-text" *ngIf="errorMessage">
+      {{ errorMessage }}
     </div>
 
-    <!-- Botón de acción principal -->
-    <button class="btn btn-primary mt-1">Verificar Código</button>
-
+    <!-- Botones de acción -->
+    <div class="modal-actions">
+      <button class="btn btn-primary" (click)="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" (click)="verifyCode2FA()">Verificar Código</button>
+    </div>
     <!-- Opciones adicionales -->
     <a class="resend-link">¿No recibiste el código? Reenviar</a>
   </div>
