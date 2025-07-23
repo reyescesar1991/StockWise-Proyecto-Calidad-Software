@@ -1,129 +1,144 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { IRecoveryUserForm } from '../../../../../core/interfaces';
 import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { recoveryUserFormSchema } from '../../../../../core/form_Schemas';
 import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
 import { SnackNotificationService } from '../../../../../core/services/snackBar.service';
+import { AuthService } from '../../../../../core/services/auth.service';
+import { IVerify2FA } from '../../../../../core/interfaces/auth/login.interface';
+import { ICustomIdUser } from '../../../../../core/interfaces/dataUser/customIdUser.interface';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { TwoFactorModalComponent } from '../../../../../shared/two-factor-modal/two-factor-modal.component';
+import { ApiResponse } from '../../../../../core/interfaces/api/api-response.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recovery-user',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgIf, LabelTypeComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    LabelTypeComponent,
+  ],
   templateUrl: './recovery-user.component.html',
-  styleUrl: './recovery-user.component.scss'
+  styleUrl: './recovery-user.component.scss',
 })
 export class RecoveryUserComponent {
-
-  protected recoveryUserForm : FormGroup<IRecoveryUserForm>;
-  private buttonValidateUser : boolean = true;
+  protected recoveryUserForm: FormGroup<IRecoveryUserForm>;
   private controlSecurityCode: boolean = false;
-  private buttonSecurityCode : boolean = false;
-  private buttonRecoveryUser : boolean = false;
-  private readonly idValid = '5656ADAD';
-  private readonly securityCodeDummy = '34FG34DA';
-  protected securityCodeVisibility : string = 'visible';
+  protected securityCodeVisibility: string = 'visible';
 
-  constructor(private fb : FormBuilder, private snackBar : SnackNotificationService){
-
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.recoveryUserForm = this.fb.group<IRecoveryUserForm>({
-
-      idUser : this.fb.control('', 
-        { validators : [zodValidator(recoveryUserFormSchema.shape.idUser)],
-          nonNullable: false,
-        }
-      ),
-      securityCode : this.fb.control('',
-        {validators: [zodValidator(recoveryUserFormSchema.shape.securityCode)],
-          nonNullable: false,
-        }
-      )
-    })
+      idUser: this.fb.control('', {
+        validators: [zodValidator(recoveryUserFormSchema.shape.idUser)],
+        nonNullable: false,
+      }),
+    });
   }
 
-  private changeStatusUser(status : boolean){
+  private authService = inject(AuthService);
+  private snackBar = inject(SnackNotificationService);
+  private router = inject(Router);
 
-    this.securityCodeVisibility = status ? 'visible' : 'hidden';
-  }
 
-
-  protected getValueForm(){
-
-    console.log(this.recoveryUserForm.getRawValue());
-    
-  }
-
-  protected getButtonValidateUser() : boolean{
-
-    return this.buttonValidateUser;
-  }
-
-  protected setButtonValidateUser(status: boolean) : void{
-
-    this.buttonValidateUser = status;
-  }
-
-  protected validateUser(){
-
+  protected getValueIdUser(): ICustomIdUser {
     const idValue = this.recoveryUserForm.get('idUser')?.value;
 
-    if(this.idValid !== idValue){
+    const params: ICustomIdUser = {
+      userId: idValue as string,
+    };
 
-      this.snackBar.error('El id no coincide con ninguno registrado en la base de datos', 5000);
-    }
-    else{
-
-      this.changeStatusUser(true)
-      this.setButtonValidateUser(false);
-      this.setControlSecurityCode(true);
-      this.setButtonSecurityCode(true);
-    }
+    return params;
   }
 
-  protected getControlSecurityCode() : boolean{
+  protected validateUser() {
 
+    this.authService.request2FARecoveryPassword(this.getValueIdUser()).subscribe({
+      next: () => this.handleValidateUserSuccess(),
+      error: (response) => this.handleValidateUserError(response),
+    });
+  }
+
+  protected handleValidateUserSuccess(): void {
+    const userId = this.recoveryUserForm.get('idUser')?.value;
+    if (!userId) {
+      this.snackBar.error(
+        'Error interno: No se pudo obtener el ID de usuario.',
+        5000
+      );
+      return;
+    }
+
+    const dialogRef = this.dialog.open(TwoFactorModalComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        userId: userId,
+        typeOperation: '03',
+      },
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((wasSuccessful) => {
+      if (wasSuccessful) {
+        this.authService.recoveryUsername(this.getValueIdUser()).subscribe({
+          next: (response) => this.handleRecoveryUsernameSuccess(response),
+          error: (response) => this.handleRecoveryUsernameError(response),
+        });
+        // this.snackBar.success(
+        //   'Código correcto. Su usuario fue enviado a su correo registrado.',
+        //   5000
+        // );
+        // this.recoveryUserForm.get('idUser')?.disable();
+      }
+    });
+  }
+
+  protected handleRecoveryUsernameSuccess(response : ApiResponse<void>) : void {
+    
+    this.snackBar.success(response.message, 10000);
+    this.router.navigate(['/login']);
+  }
+
+  protected handleRecoveryUsernameError(response : HttpErrorResponse) : void {
+
+    this.snackBar.error(response.error.message, 10000);
+    this.router.navigate(['/login']);
+  }
+
+  protected handleValidateUserError(response: HttpErrorResponse): void {
+    this.snackBar.error(response.error.message);
+  }
+
+  protected getControlSecurityCode(): boolean {
     return this.controlSecurityCode;
   }
 
-  protected setControlSecurityCode(status : boolean) : void{
-
+  protected setControlSecurityCode(status: boolean): void {
     this.controlSecurityCode = status;
   }
 
-  protected validateSecurityCode(){
-
+  protected validateSecurityCode() {
     const securityCodeValue = this.recoveryUserForm.get('securityCode')?.value;
 
-    if(this.securityCodeDummy !== securityCodeValue){
-
-      this.snackBar.error('El código de seguridad no coincide con el enviado, intente de nuevo', 5000);
-    }
-    else{
-
-      this.setButtonSecurityCode(false);
-      this.setButtonRecoveryUser(true);
+    if (securityCodeValue) {
+      this.snackBar.error(
+        'El código de seguridad no coincide con el enviado, intente de nuevo',
+        5000
+      );
+    } else {
       this.snackBar.success('Código correcto', 3000);
     }
-  }
-
-  protected getButtonSecurityCode() : boolean{
-
-    return this.buttonSecurityCode;
-  }
-
-  protected setButtonSecurityCode(status : boolean) : void{
-
-    this.buttonSecurityCode = status;
-  }
-
-  protected getButtonRecoveryUser(): boolean{
-
-    return this.buttonRecoveryUser;
-  }
-
-  protected setButtonRecoveryUser(status : boolean) : void{
-
-    this.buttonRecoveryUser = status;
   }
 }

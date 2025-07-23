@@ -1,65 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
-    --titles-color: #2d3748;
-    --primary-button: #667eea;
-    --primary-button-hover: #5a6fd3;
-    --white-color: white;
-    --sidebar-bg: #1a202c;
-    --header-bg: #f7fafc;
-    --content-bg: #ffffff;
-    --nav-hover: #4a5568;
-    --border-color: #e2e8f0;
-    --light-gray: #f7f8fc;
-    --text-color: #4a5568;
-    --error-color: #e53e3e;
-    --success-color: #38a169;
-    --warning-color: #dd6b20;
-    --info-color: #3182ce;
+  --titles-color: #2d3748;
+  --primary-button: #667eea;
+  --primary-button-hover: #5a6fd3;
+  --white-color: white;
+  --sidebar-bg: #1a202c;
+  --header-bg: #f7fafc;
+  --content-bg: #ffffff;
+  --nav-hover: #4a5568;
+  --border-color: #e2e8f0;
+  --light-gray: #f7f8fc;
+  --text-color: #4a5568;
+  --error-color: #e53e3e;
+  --success-color: #38a169;
+  --warning-color: #dd6b20;
+  --info-color: #3182ce;
 }
 
 //Containers
 
-.container-two-fields{
+.container-two-fields {
 
   display: flex;
   justify-content: space-between;
 }
 
-.container-two-fields > div:first-child {
+.container-two-fields>div:first-child {
   flex-basis: 45%;
 }
 
-.container-two-fields > div:last-child {
+.container-two-fields>div:last-child {
   flex-basis: 55%;
 }
 
-.flex-container-column{
+.flex-container-column {
 
   display: flex;
   flex-direction: column;
 }
 
-.flex-container-row{
+.flex-container-row {
 
   display: flex;
 }
 
-.flex-center{
+.flex-center {
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.full-width{
+.full-width {
 
   width: 100%;
 }
@@ -70,17 +70,19 @@
   background: rgba(255, 255, 255, 0.95);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   width: 450px;
 }
 
-.manage-user-container { 
+.manage-user-container {
   @include manage-user-container-base-styles;
   max-width: 450px;
 }
 
-.manage--registry-user-container{
+.manage--registry-user-container {
   @include manage-user-container-base-styles;
+  width: 700px;
+  height: 800px;
   max-width: 700px;
 }
 
@@ -89,44 +91,44 @@
 //Indicaciones para el usuario en el manejo de gestion de usuario
 
 .manage-user-header {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .manage-user-header h1 {
-    color: var(--titles-color);
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+  color: var(--titles-color);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .manage-user-header p {
-    color: #718096;
-    font-size: 0.9rem;
+  color: #718096;
+  font-size: 0.9rem;
 }
 
 //
 
 // clases para el boton primario del manejo de gestion de usuario
 .btn {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background: var(--primary-button);
-    color: var(--white-color);
-    margin-bottom: 1rem;
+  background: var(--primary-button);
+  color: var(--white-color);
+  margin-bottom: 1rem;
 }
 
 .btn-primary:hover {
-    background: #5a67d8;
-    transform: translateY(-1px);
+  background: #5a67d8;
+  transform: translateY(-1px);
 }
 
 //
@@ -136,19 +138,20 @@
 
 .form-group input,
 .form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    outline: none;
-    border-color: var(--primary-button);
+  outline: none;
+  border-color: var(--primary-button);
 }
+
 //
 
 
@@ -172,7 +175,8 @@ select option {
 }
 
 /* Pseudo-elementos para simular estilos de opción */
-select option:hover, select option:focus {
+select option:hover,
+select option:focus {
   background-color: var(--hover-color);
   color: var(--titles-color);
 }
@@ -189,9 +193,17 @@ select:focus {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
-  70% { box-shadow: 0 0 0 6px rgba(102, 126, 234, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(102, 126, 234, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+  }
 }
 
 ///
@@ -205,134 +217,251 @@ select:focus {
 
 /* Definición de Keyframes modificados para Fade In de Arriba a Abajo (Más Suave y Directo) */
 @keyframes enhancedFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-100%); /* Inicia fuera de la vista, 100% arriba */
-      filter: blur(10px) brightness(70%); /* Desenfoque inicial más fuerte y menos brillo para inicio más sutil */
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);      /* Termina en su posición normal, desde arriba */
-      filter: blur(0px) brightness(100%); /* Termina nítido y con brillo normal */
-    }
-  }
-  
-  /* Definición de Keyframes modificados para Fade Out de Arriba a Abajo (Más Suave y Directo) */
-  @keyframes enhancedFadeOut {
-    0% {
-      opacity: 1;
-      transform: translateY(0);      /* Inicia en su posición normal */
-      filter: blur(0px) brightness(100%); /* Inicia nítido y con brillo normal */
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(100%); /* Termina fuera de la vista, 100% abajo */
-      filter: blur(10px) brightness(70%); /* Desenfoque final más fuerte y menos brillo para fin más sutil */
-    }
-  }
-  
-  /* Clases CSS para aplicar las animaciones (SIN CAMBIOS EN LOS NOMBRES) */
-  .fade-in-animation {
-    animation: enhancedFadeIn .5s ease-out forwards; /* Duración reducida a 1s y easing ease-out para fade-in más directo */
-  }
-  
-  .fade-out-animation {
-    animation: enhancedFadeOut 0.5s ease-in forwards; /* Duración reducida a 0.5s y easing ease-in para fade-out más directo */
-  }
-  
-  /* Clase para el estado inicial "hidden" (opcional, SIN CAMBIOS EN EL NOMBRE) */
-  .hidden-state { /* SIN CAMBIOS EN LA CLASE HIDDEN-STATE, pero ajustado para inicio desde arriba y más difuminado */
+  0% {
     opacity: 0;
-    transform: translateY(-100%); /* Inicia fuera de la vista, 100% arriba */
-    filter: blur(10px) brightness(70%); /* Desenfoque inicial más fuerte y menos brillo para inicio más sutil */
+    transform: translateY(-100%);
+    /* Inicia fuera de la vista, 100% arriba */
+    filter: blur(10px) brightness(70%);
+    /* Desenfoque inicial más fuerte y menos brillo para inicio más sutil */
   }
 
-  //Margenes genericos
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    /* Termina en su posición normal, desde arriba */
+    filter: blur(0px) brightness(100%);
+    /* Termina nítido y con brillo normal */
+  }
+}
+
+/* Definición de Keyframes modificados para Fade Out de Arriba a Abajo (Más Suave y Directo) */
+@keyframes enhancedFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    /* Inicia en su posición normal */
+    filter: blur(0px) brightness(100%);
+    /* Inicia nítido y con brillo normal */
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+    /* Termina fuera de la vista, 100% abajo */
+    filter: blur(10px) brightness(70%);
+    /* Desenfoque final más fuerte y menos brillo para fin más sutil */
+  }
+}
+
+/* Clases CSS para aplicar las animaciones (SIN CAMBIOS EN LOS NOMBRES) */
+.fade-in-animation {
+  animation: enhancedFadeIn .5s ease-out forwards;
+  /* Duración reducida a 1s y easing ease-out para fade-in más directo */
+}
+
+.fade-out-animation {
+  animation: enhancedFadeOut 0.5s ease-in forwards;
+  /* Duración reducida a 0.5s y easing ease-in para fade-out más directo */
+}
+
+/* Clase para el estado inicial "hidden" (opcional, SIN CAMBIOS EN EL NOMBRE) */
+.hidden-state {
+  /* SIN CAMBIOS EN LA CLASE HIDDEN-STATE, pero ajustado para inicio desde arriba y más difuminado */
+  opacity: 0;
+  transform: translateY(-100%);
+  /* Inicia fuera de la vista, 100% arriba */
+  filter: blur(10px) brightness(70%);
+  /* Desenfoque inicial más fuerte y menos brillo para inicio más sutil */
+}
+
+//Margenes genericos
 
 /* styles.scss o main.scss (o tu archivo de estilos globales) */
 
 /* Margen Superior (margin-top) */
-.mt-0-5 { margin-top: 0.5rem !important; }
-.mt-1 { margin-top: 1rem !important; }
-.mt-1-5 { margin-top: 1.5rem !important; }
-.mt-2 { margin-top: 2rem !important; }
-.mt-2-5 { margin-top: 2.5rem !important; }
-.mt-3 { margin-top: 3rem !important; }
+.mt-0-5 {
+  margin-top: 0.5rem !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mt-1-5 {
+  margin-top: 1.5rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-2-5 {
+  margin-top: 2.5rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
 
 /* Margen Inferior (margin-bottom) */
-.mb-0-5 { margin-bottom: 0.5rem !important; }
-.mb-1 { margin-bottom: 1rem !important; }
-.mb-1-5 { margin-bottom: 1.5rem !important; }
-.mb-2 { margin-bottom: 2rem !important; }
-.mb-2-5 { margin-bottom: 2.5rem !important; }
-.mb-3 { margin-bottom: 3rem !important; }
+.mb-0-5 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-1-5 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-2-5 {
+  margin-bottom: 2.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
 
 /* Margen Izquierdo (margin-left) */
-.ms-0-5 { margin-left: 0.5rem !important; }
-.ms-1 { margin-left: 1rem !important; }
-.ms-1-5 { margin-left: 1.5rem !important; }
-.ms-2 { margin-left: 2rem !important; }
-.ms-2-5 { margin-left: 2.5rem !important; }
-.ms-3 { margin-left: 3rem !important; }
+.ms-0-5 {
+  margin-left: 0.5rem !important;
+}
+
+.ms-1 {
+  margin-left: 1rem !important;
+}
+
+.ms-1-5 {
+  margin-left: 1.5rem !important;
+}
+
+.ms-2 {
+  margin-left: 2rem !important;
+}
+
+.ms-2-5 {
+  margin-left: 2.5rem !important;
+}
+
+.ms-3 {
+  margin-left: 3rem !important;
+}
 
 /* Margen Derecho (margin-right) */
-.me-0-5 { margin-right: 0.5rem !important; }
-.me-1 { margin-right: 1rem !important; }
-.me-1-5 { margin-right: 1.5rem !important; }
-.me-2 { margin-right: 2rem !important; }
-.me-2-5 { margin-right: 2.5rem !important; }
-.me-3 { margin-right: 3rem !important; }
+.me-0-5 {
+  margin-right: 0.5rem !important;
+}
+
+.me-1 {
+  margin-right: 1rem !important;
+}
+
+.me-1-5 {
+  margin-right: 1.5rem !important;
+}
+
+.me-2 {
+  margin-right: 2rem !important;
+}
+
+.me-2-5 {
+  margin-right: 2.5rem !important;
+}
+
+.me-3 {
+  margin-right: 3rem !important;
+}
 
 /* Margen General (margin - aplica a todos los lados) */
-.m-0-5 { margin: 0.5rem !important; }
-.m-1 { margin: 1rem !important; }
-.m-1-5 { margin: 1.5rem !important; }
-.m-2 { margin: 2rem !important; }
-.m-2-5 { margin: 2.5rem !important; }
-.m-3 { margin: 3rem !important; }
+.m-0-5 {
+  margin: 0.5rem !important;
+}
+
+.m-1 {
+  margin: 1rem !important;
+}
+
+.m-1-5 {
+  margin: 1.5rem !important;
+}
+
+.m-2 {
+  margin: 2rem !important;
+}
+
+.m-2-5 {
+  margin: 2.5rem !important;
+}
+
+.m-3 {
+  margin: 3rem !important;
+}
 
 
 //scroll en y 
 
 /* Estilos para el contenedor del scrollbar (ajústalo si es necesario) */
-.scroll-y { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  overflow-y: auto; /* Asegura que el scroll aparezca solo verticalmente cuando sea necesario */
-  scrollbar-width: thin; /* Para navegadores Firefox */
-  scrollbar-color: var(--primary-button) transparent; /* Para navegadores Firefox: thumb y track */
+.scroll-y {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  overflow-y: auto;
+  /* Asegura que el scroll aparezca solo verticalmente cuando sea necesario */
+  scrollbar-width: thin;
+  /* Para navegadores Firefox */
+  scrollbar-color: var(--primary-button) transparent;
+  /* Para navegadores Firefox: thumb y track */
   height: 750px;
 }
 
 /* Estilos para el track del scrollbar (la barra de fondo) */
-.scroll-y::-webkit-scrollbar-track { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  background-color: transparent; /* Fondo transparente para el track */
+.scroll-y::-webkit-scrollbar-track {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: transparent;
+  /* Fondo transparente para el track */
 }
 
 /* Estilos para el thumb del scrollbar (la parte que se arrastra) */
-.scroll-y::-webkit-scrollbar-thumb { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  background-color: var(--primary-button); /* Color principal para el thumb */
-  border-radius: 6px; /* Bordes redondeados para el thumb (ajusta el valor si prefieres) */
-  border: 2px solid transparent; /* Borde transparente para un mejor aspecto */
-  background-clip: padding-box; /* Para que el fondo no se extienda bajo el borde */
+.scroll-y::-webkit-scrollbar-thumb {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button);
+  /* Color principal para el thumb */
+  border-radius: 6px;
+  /* Bordes redondeados para el thumb (ajusta el valor si prefieres) */
+  border: 2px solid transparent;
+  /* Borde transparente para un mejor aspecto */
+  background-clip: padding-box;
+  /* Para que el fondo no se extienda bajo el borde */
 }
 
 /* Estilo hover para el thumb del scrollbar */
-.scroll-y::-webkit-scrollbar-thumb:hover { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  background-color: var(--primary-button-hover); /* Color hover al pasar el ratón */
+.scroll-y::-webkit-scrollbar-thumb:hover {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button-hover);
+  /* Color hover al pasar el ratón */
 }
 
 /* Estilo active (cuando se está arrastrando) para el thumb del scrollbar (opcional) */
-.scroll-y::-webkit-scrollbar-thumb:active { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  background-color: var(--primary-button-hover); /* Mismo color hover al hacer clic y arrastrar, o puedes usar otro color */
+.scroll-y::-webkit-scrollbar-thumb:active {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: var(--primary-button-hover);
+  /* Mismo color hover al hacer clic y arrastrar, o puedes usar otro color */
 }
 
 /* Estilo para el botón de "corner" del scrollbar (esquina inferior derecha) - Opcional */
-.scroll-y::-webkit-scrollbar-corner { /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
-  background-color: transparent; /* Fondo transparente para la esquina */
+.scroll-y::-webkit-scrollbar-corner {
+  /* Reemplaza '.scroll-y' con el selector real de tu contenedor */
+  background-color: transparent;
+  /* Fondo transparente para la esquina */
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
 
-  .scroll-y{
+  .scroll-y {
 
     height: 480px;
   }
@@ -437,18 +566,18 @@ select:focus {
   margin-top: 0.5rem;
 }
 
-  /* Animación sutil al pasar sobre los elementos del formulario */
-  .form-field input:hover,
-  .form-field select:hover,
-  .form-field textarea:hover {
-    border-color: var(--primary-button-hover);
-  }
-  
-  /* Mejorar la visualización de campo obligatorio */
-  .required::after {
-    font-size: 1.2rem;
-    vertical-align: middle;
-  }
+/* Animación sutil al pasar sobre los elementos del formulario */
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-color: var(--primary-button-hover);
+}
+
+/* Mejorar la visualización de campo obligatorio */
+.required::after {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
 
 //
 
@@ -560,8 +689,15 @@ select:focus {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 //estilos exito
@@ -693,26 +829,47 @@ select:focus {
 
 //medias querys
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
 
-  .form-buttons button{
+  .form-buttons button {
 
     width: 100%;
     margin-bottom: .5rem;
+  }
+
+      .manage--registry-user-container {
+
+      width: 300px;
+      max-height: 500px;
+    }
+
+    .form-container{
+
+    overflow-y: auto;
+    height: 300px;
+      padding: 0rem;
+    }
+
+  .pagination-numbers {
+    gap: 0.25rem;
+  }
+
+  .pagination-number {
+    width: 32px;
+    height: 32px;
+  }
+
+  .form-field {
+    width: 100%;
+  }
 }
 
-.pagination-numbers {
-  gap: 0.25rem;
+html,
+body {
+  height: 100%;
 }
 
-.pagination-number {
-  width: 32px;
-  height: 32px;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-.form-field {
-  width: 100%;
-}
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

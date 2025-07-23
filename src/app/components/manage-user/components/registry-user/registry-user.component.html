@@ -4,7 +4,7 @@
         <p>Ingrese los datos para registrar el nuevo usuario</p>
     </div>
 
-    <form [formGroup]="registryUserForm">
+    <form [formGroup]="registryUserForm" class="form-container">
         <div class="form-group mb-1">
             <label for="idUser">Nombre de usuario</label>
             <input type="text" name="idUser" formControlName="idUser" id="idUser" placeholder="Ingrese su ID de usuario" required>
@@ -23,15 +23,11 @@
         </div>
 
         <div class="form-group mb-1">
-            <label for="rol">Rol en la empresa</label>
-            <select name="rol" id="rol" formControlName="rol">
-                @for (rol of roles; track $index) {
-                    <option [value]="rol.id"> {{rol.nombre}}</option>
-                }
-            </select>
-            @if (this.registryUserForm.get('rol')?.invalid && (this.registryUserForm.get('rol')?.dirty || this.registryUserForm.get('rol')?.touched)) {
+            <label for="username">Username</label>
+            <input type="text" name="username" formControlName="username" id="username" placeholder="Ingrese el username" required>
+            @if (this.registryUserForm.get('username')?.invalid && (this.registryUserForm.get('username')?.dirty || this.registryUserForm.get('username')?.touched)) {
 
-                <div *ngIf="this.registryUserForm.get('rol')?.errors as errors">
+                <div *ngIf="this.registryUserForm.get('username')?.errors as errors">
 
                     @if (errors['zodError']) {
 
@@ -41,6 +37,49 @@
                     }
                 </div>
             }
+        </div>
+
+        <div class="container-two-fields">
+            <div class="form-group mb-1">
+                <label for="rol">Rol en la empresa</label>
+                <select name="rol" id="rol" formControlName="rol">
+                    @for (rol of roles; track $index) {
+                        <option [value]="rol.id"> {{rol.nombre}}</option>
+                    }
+                </select>
+                @if (this.registryUserForm.get('rol')?.invalid && (this.registryUserForm.get('rol')?.dirty || this.registryUserForm.get('rol')?.touched)) {
+
+                    <div *ngIf="this.registryUserForm.get('rol')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="form-group mb-1 ms-1 no-margin-left">
+                <label for="secondFactorAuth">Segundo Factor de Autenticación</label>
+                <select name="secondFactorAuth" id="secondFactorAuth" formControlName="secondFactorAuth">
+                    <option value="habilitado">Habilitado</option>
+                    <option value="inhabilitado">Inhabilitado</option>
+                </select>
+                @if (this.registryUserForm.get('secondFactorAuth')?.invalid && (this.registryUserForm.get('secondFactorAuth')?.dirty || this.registryUserForm.get('secondFactorAuth')?.touched)) {
+
+                    <div *ngIf="this.registryUserForm.get('secondFactorAuth')?.errors as errors">
+
+                        @if (errors['zodError']) {
+
+                            <app-label-type typeMessage="error">
+                                {{errors['zodError'].message}}
+                            </app-label-type>
+                        }
+                    </div>
+                }
+            </div>
         </div>
 
         <div class="form-group mb-1">
@@ -82,7 +121,7 @@
                 }
             </div>
     
-            <div class="form-group mb-1 ms-1">
+            <div class="form-group mb-1 ms-1 no-margin-left">
                 <label for="lastName">Apellidos</label>
                 <input type="text" name="lastName" id="lastName" formControlName="lastName" placeholder="Ingrese sus apellidos" required>
                 @if (this.registryUserForm.get('lastName')?.invalid && (this.registryUserForm.get('lastName')?.dirty || this.registryUserForm.get('lastName')?.touched)) {
@@ -122,7 +161,7 @@
                 }
             </div>
 
-            <div class="form-group mb-1 ms-1">
+            <div class="form-group mb-1 ms-1 no-margin-left">
                 <label for="phoneNumber">Número Teléfonico</label>
                 <input type="text" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" placeholder="Ingrese su número teléfonico" required>
                 @if (this.registryUserForm.get('phoneNumber')?.invalid && (this.registryUserForm.get('phoneNumber')?.dirty || this.registryUserForm.get('phoneNumber')?.touched)) {
@@ -158,7 +197,7 @@
                 }
             </div>
     
-            <div class="form-group mb-1 ms-1">
+            <div class="form-group mb-1 ms-1 no-margin-left">
                 <label for="password">Contraseña</label>
                 <input type="password" name="password" id="password" formControlName="password" placeholder="Ingrese la contraseña" required>
                 @if (this.registryUserForm.get('password')?.invalid && (this.registryUserForm.get('password')?.dirty || this.registryUserForm.get('password')?.touched)) {

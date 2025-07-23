@@ -28,7 +28,15 @@ export interface ILogin2faResponse {
 /**
  * Interfaz para la estructura del objeto request para el segundo factor.
  */
-export interface IVerify2FALogin {
+export interface IVerify2FA {
   userId: string;
   code : string;
+}
+
+/**
+ * Interfaz para la estructura del objeto request para el paso final de recuperar contraseña.
+ */
+export interface IRequestConfirmRecoveryPassword {
+  idUser: string;
+  newPassword : string;
 }
