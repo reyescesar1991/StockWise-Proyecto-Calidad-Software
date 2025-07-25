@@ -6,6 +6,7 @@ import { zodValidator } from '../../../../../core/zodValidator/zod.validator';
 import { registryUserFormSchema } from '../../../../../core/form_Schemas';
 import { ICountry, IHeadquarter, IRol } from '../../../../../core/models';
 import { LabelTypeComponent } from '../../../../../shared/label-type/label-type.component';
+import { IDepartment } from '../../../../../core/models/department.model';
 
 @Component({
   selector: 'app-registry-user',
@@ -49,6 +50,8 @@ export class RegistryUserComponent {
     {idPais : '+58'}
   ]
 
+  protected headquarterIsSelected : boolean = false;
+
   protected headquarters : Array<IHeadquarter> = [
     {
       idHeadquarter : '01',
@@ -64,6 +67,29 @@ export class RegistryUserComponent {
     }
   ]
 
+  protected departments : Array<IDepartment> = [
+    {
+      idDepartment : '01',
+      nameDepartment : 'Ventas'
+    },
+    {
+      idDepartment : '02',
+      nameDepartment : 'Almacen'
+    },
+    {
+      idDepartment : '03',
+      nameDepartment : 'RRHH'
+    },
+    {
+      idDepartment : '04',
+      nameDepartment : 'Administracion'
+    },
+    {
+      idDepartment : '05',
+      nameDepartment : 'Compras'
+    }
+  ];
+
   constructor(private fb: FormBuilder) {
 
     this.registryUserForm = this.fb.group<IRegistryUserForm>({
@@ -75,6 +101,11 @@ export class RegistryUserComponent {
 
       name: this.fb.control('', {
         validators: [zodValidator(registryUserFormSchema.shape.name)],
+        nonNullable: false,
+      }),
+
+      username: this.fb.control('', {
+        validators: [zodValidator(registryUserFormSchema.shape.username)],
         nonNullable: false,
       }),
 
@@ -116,6 +147,20 @@ export class RegistryUserComponent {
         }
       ),
 
+      secondFactorAuth: this.fb.control('',
+        {
+          validators: [zodValidator(registryUserFormSchema.shape.secondFactorAuth)],
+          nonNullable: false,
+        }
+      ),
+
+      department: this.fb.control('',
+        {
+          validators: [zodValidator(registryUserFormSchema.shape.department)],
+          nonNullable: false,
+        }
+      ),
+
       phoneNumber: this.fb.control('',
         {
           validators: [zodValidator(registryUserFormSchema.shape.phoneNumber)],
@@ -128,6 +173,12 @@ export class RegistryUserComponent {
   protected getValueForm(){
     
     console.log(this.registryUserForm.getRawValue());
+    
+  }
+
+  protected selectHeadquarter(headquarterId: string){
+
+    console.log(headquarterId);
     
   }
 }

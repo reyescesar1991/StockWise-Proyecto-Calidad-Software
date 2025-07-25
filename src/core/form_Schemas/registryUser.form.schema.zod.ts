@@ -9,6 +9,8 @@ export const registryUserFormSchema = z.object({
 
     name : z.string().regex(/^[a-zA-Z\s]+$/, {message: 'Nombre con formato erroneo, no se permiten caracteres númericos ni especiales'}),
 
+    username : z.string().min(6, "El usuario debe tener al menos 6 carácteres"),
+
     lastName : z.string().regex(/^[a-zA-Z\s]+$/, {message: 'Nombre con formato erroneo, no se permiten caracteres númericos ni especiales'}),
 
     rol: z.string(),
@@ -23,6 +25,10 @@ export const registryUserFormSchema = z.object({
     phoneNumber : z.string().regex(/^(0412|0416|0424|0414)\d{7}$/ , {message: 'Formato de telefono erroneo'}),
 
     headquarters : z.string(),
+
+    secondFactorAuth : z.string(),
+
+    department : z.string(),
 })
 
 export type RegistryUserFormSchema = z.infer<typeof registryUserFormSchema>;

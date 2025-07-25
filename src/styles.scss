@@ -837,18 +837,24 @@ select:focus {
     margin-bottom: .5rem;
   }
 
-      .manage--registry-user-container {
 
-      width: 300px;
-      max-height: 500px;
-    }
+  .manage-user-container {
 
-    .form-container{
+    width: 345px;
+  }
+
+  .manage--registry-user-container {
+
+    width: 300px;
+    max-height: 500px;
+  }
+
+  .form-container {
 
     overflow-y: auto;
     height: 300px;
-      padding: 0rem;
-    }
+    padding: 0rem;
+  }
 
   .pagination-numbers {
     gap: 0.25rem;

@@ -84,7 +84,7 @@
 
         <div class="form-group mb-1">
             <label for="headquarters">Sede</label>
-            <select name="headquarters" id="headquarters" formControlName="headquarters">
+            <select #headquartersSelect name="headquarters" id="headquarters" formControlName="headquarters" (change)="selectHeadquarter(headquartersSelect.value)">
                 @for (headquarter of headquarters; track $index) {
                     <option [value]="headquarter.idHeadquarter">{{headquarter.nameHeadquarter}}</option>
                 }
@@ -102,6 +102,29 @@
                 </div>
             }
         </div>
+
+        @if (registryUserForm.get('headquarters')?.value) {
+            <div class="form-group mb-1">
+            <label for="department">Departamento</label>
+            <select name="department" id="department" formControlName="department">
+                @for (department of departments; track $index) {
+                    <option [value]="department.idDepartment">{{department.nameDepartment}}</option>
+                }
+            </select>
+            @if (this.registryUserForm.get('department')?.invalid && (this.registryUserForm.get('department')?.dirty || this.registryUserForm.get('department')?.touched)) {
+
+                <div *ngIf="this.registryUserForm.get('department')?.errors as errors">
+
+                    @if (errors['zodError']) {
+
+                        <app-label-type typeMessage="error">
+                            {{errors['zodError'].message}}
+                        </app-label-type>
+                    }
+                </div>
+            }
+        </div>
+        }
 
         <div class="container-two-fields">
             <div class="form-group mb-1">
