@@ -233,6 +233,7 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  //TODO: USER SESSION EN VEZ DE LOCAL
   setToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
   }

@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Output, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, inject, Output, Renderer2 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { MenuService } from '../../../../../core/services/menu.service';
+import { SnackNotificationService } from '../../../../../core/services/snackBar.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IMenuRequest, IMenuResponse } from '../../../../../core/interfaces/menu/menu.interface';
+import { ApiResponse } from '../../../../../core/interfaces/api/api-response.interface';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,324 +21,350 @@ export class NavbarComponent {
   // Objeto simulado que podría venir del backend
   protected navigationConfig = [
     {
-        id: 'principal',
-        title: 'Principal',
-        routes: [
-            {
-                id: 'home',
-                name: 'Inicio',
-                path: '/dashboard/inicio',
-                icon: 'home-icon',
-                active: true,
-                subroutes: [] // Subrutas vacías para consistencia
-            }
-        ]
+      id: 'principal',
+      title: 'Principal',
+      routes: [
+        {
+          id: 'home',
+          name: 'Inicio',
+          path: '/dashboard/inicio',
+          icon: 'home-icon',
+          active: true,
+          subroutes: [] // Subrutas vacías para consistencia
+        }
+      ]
     },
     {
-        id: 'inventory',
-        title: 'Inventario',
-        routes: [
+      id: 'inventory',
+      title: 'Inventario',
+      routes: [
+        {
+          id: 'products',
+          name: 'Productos',
+          path: '/dashboard/productos',
+          icon: 'products-icon',
+          active: false,
+          subroutes: [
             {
-                id: 'products',
-                name: 'Productos',
-                path: '/dashboard/productos',
-                icon: 'products-icon',
-                active: false,
-                subroutes: [
-                    {
-                        id: 'products-registry',
-                        name: 'Registrar producto',
-                        path: '/dashboard/productos/registrar-producto',
-                        active: false
-                    },
-                    {
-                        id: 'products-modify',
-                        name: 'Modificar producto',
-                        path: '/dashboard/productos/modificar-producto',
-                        active: false
-                    },
-                    {
-                        id: 'products-list',
-                        name: 'Listado de productos',
-                        path: '/dashboard/productos/lista-productos',
-                        active: false
-                    },
-                    {
-                        id: 'products-search',
-                        name: 'buscar producto',
-                        path: '/dashboard/productos/buscar-producto',
-                        active: false
-                    }
-                ]
+              id: 'products-registry',
+              name: 'Registrar producto',
+              path: '/dashboard/productos/registrar-producto',
+              active: false
             },
             {
-                id: 'inventory-management',
-                name: 'Gestión de Stock',
-                path: '/dashboard/inventario',
-                icon: 'inventory-icon',
-                active: false,
-                subroutes: [
-                    {
-                        id: 'inventory-add',
-                        name: 'Agregar inventario',
-                        path: '/dashboard/inventario/agregar-inventario',
-                        active: false
-                    },
-                    {
-                        id: 'inventory-sales',
-                        name: 'Registrar venta',
-                        path: '/dashboard/inventario/registrar-venta',
-                        active: false
-                    },
-                    {
-                        id: 'inventory-adjust',
-                        name: 'Ajustar producto',
-                        path: '/dashboard/inventario/ajustar-producto',
-                        active: false
-                    },
-                    {
-                        id: 'inventory-search',
-                        name: 'buscar producto',
-                        path: '/dashboard/inventario/buscar-producto',
-                        active: false
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: 'reports',
-        title: 'Reportes',
-        routes: [
-            {
-                id: 'general-reports',
-                name: 'Reportes',
-                path: '/dashboard/reportes',
-                icon: 'reports-icon',
-                active: false,
-                subroutes: [
-                    {
-                        id: 'report-general',
-                        name: 'Estado general',
-                        path: '/dashboard/reportes/reporte-general',
-                        active: false
-                    },
-                    {
-                        id: 'report-low-stock',
-                        name: 'bajo stock',
-                        path: '/dashboard/reportes/reporte-bajo-stock',
-                        active: false
-                    },
-                    {
-                        id: 'report-total-stock',
-                        name: 'Valor total inventario',
-                        path: '/dashboard/reportes/reporte-total-stock',
-                        active: false
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        id: 'admin',
-        title: 'Administración',
-        routes: [
-            {
-                id: 'users',
-                name: 'Usuarios',
-                path: '/dashboard/usuarios',
-                icon: 'users-icon',
-                active: false,
-                subroutes: [
-                    {
-                        id: 'users-create',
-                        name: 'Crear usuario',
-                        path: '/dashboard/usuarios/crear-usuario',
-                        active: false
-                    },
-                    {
-                        id: 'users-update',
-                        name: 'Modificar usuario',
-                        path: '/dashboard/usuarios/modificar-usuario',
-                        active: false
-                    },
-                    {
-                        id: 'users-list',
-                        name: 'Listar usuarios',
-                        path: '/dashboard/usuarios/listar-usuarios',
-                        active: false
-                    }
-                ]
+              id: 'products-modify',
+              name: 'Modificar producto',
+              path: '/dashboard/productos/modificar-producto',
+              active: false
             },
             {
-                id: 'settings',
-                name: 'Configuración',
-                path: '/settings',
-                icon: 'settings-icon',
-                active: false,
-                subroutes: [] // Mantenemos subroutes vacío para consistencia
+              id: 'products-list',
+              name: 'Listado de productos',
+              path: '/dashboard/productos/lista-productos',
+              active: false
+            },
+            {
+              id: 'products-search',
+              name: 'buscar producto',
+              path: '/dashboard/productos/buscar-producto',
+              active: false
             }
-        ]
+          ]
+        },
+        {
+          id: 'inventory-management',
+          name: 'Gestión de Stock',
+          path: '/dashboard/inventario',
+          icon: 'inventory-icon',
+          active: false,
+          subroutes: [
+            {
+              id: 'inventory-add',
+              name: 'Agregar inventario',
+              path: '/dashboard/inventario/agregar-inventario',
+              active: false
+            },
+            {
+              id: 'inventory-sales',
+              name: 'Registrar venta',
+              path: '/dashboard/inventario/registrar-venta',
+              active: false
+            },
+            {
+              id: 'inventory-adjust',
+              name: 'Ajustar producto',
+              path: '/dashboard/inventario/ajustar-producto',
+              active: false
+            },
+            {
+              id: 'inventory-search',
+              name: 'buscar producto',
+              path: '/dashboard/inventario/buscar-producto',
+              active: false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'reports',
+      title: 'Reportes',
+      routes: [
+        {
+          id: 'general-reports',
+          name: 'Reportes',
+          path: '/dashboard/reportes',
+          icon: 'reports-icon',
+          active: false,
+          subroutes: [
+            {
+              id: 'report-general',
+              name: 'Estado general',
+              path: '/dashboard/reportes/reporte-general',
+              active: false
+            },
+            {
+              id: 'report-low-stock',
+              name: 'bajo stock',
+              path: '/dashboard/reportes/reporte-bajo-stock',
+              active: false
+            },
+            {
+              id: 'report-total-stock',
+              name: 'Valor total inventario',
+              path: '/dashboard/reportes/reporte-total-stock',
+              active: false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'admin',
+      title: 'Administración',
+      routes: [
+        {
+          id: 'users',
+          name: 'Usuarios',
+          path: '/dashboard/usuarios',
+          icon: 'users-icon',
+          active: false,
+          subroutes: [
+            {
+              id: 'users-create',
+              name: 'Crear usuario',
+              path: '/dashboard/usuarios/crear-usuario',
+              active: false
+            },
+            {
+              id: 'users-update',
+              name: 'Modificar usuario',
+              path: '/dashboard/usuarios/modificar-usuario',
+              active: false
+            },
+            {
+              id: 'users-list',
+              name: 'Listar usuarios',
+              path: '/dashboard/usuarios/listar-usuarios',
+              active: false
+            }
+          ]
+        },
+        {
+          id: 'settings',
+          name: 'Configuración',
+          path: '/settings',
+          icon: 'settings-icon',
+          active: false,
+          subroutes: [] // Mantenemos subroutes vacío para consistencia
+        }
+      ]
     }
-];
+  ];
 
 
-protected routeInformation: string = '';
-protected activeRouteId: string | null = null; //ruta activa para remarcarla
-protected isMobileView: boolean = false;
+  protected routeInformation: string = '';
+  protected activeRouteId: string | null = null; //ruta activa para remarcarla
+  protected isMobileView: boolean = false;
+  private menuService = inject(MenuService);
+  private snackbar = inject(SnackNotificationService);
 
-constructor(private readonly renderer: Renderer2, private readonly el: ElementRef, private readonly router: Router) { }
+  constructor(private readonly renderer: Renderer2, private readonly el: ElementRef, private readonly router: Router) { }
 
-ngOnInit(): void {
-  this.setupMobileMenuInitialState();
-}
+  ngOnInit(): void {
+    this.setupMobileMenuInitialState();
 
-toggleSidebar(): void {
-  const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
-  const menuArrow = this.el.nativeElement.querySelector('#menuArrow');
-  const sidebar = this.el.nativeElement.querySelector('#sidebar');
-
-  if (sidebarContent && menuArrow && sidebar) {
-    // Reemplazamos toggleClass por la lógica de addClass y removeClass para sidebarContent
-    if (sidebarContent.classList.contains('show')) {
-      this.renderer.removeClass(sidebarContent, 'show');
-    } else {
-      this.renderer.addClass(sidebarContent, 'show');
-    }
-
-    // Reemplazamos toggleClass por la lógica de addClass y removeClass para menuArrow
-    if (menuArrow.classList.contains('open')) {
-      this.renderer.removeClass(menuArrow, 'open');
-    } else {
-      this.renderer.addClass(menuArrow, 'open');
-      this.sendDisplayHidden();
-    }
-
-    // Reemplazamos toggleClass por la lógica de addClass y removeClass para sidebar
-    if (sidebar.classList.contains('collapsed')) {
-      this.renderer.removeClass(sidebar, 'collapsed');
-    } else {
-      this.renderer.addClass(sidebar, 'collapsed');
-      this.sendDisplayShow();
-    }
+    this.getMenu();
   }
-}
+
+  private getMenu(): void {
+
+    const params: IMenuRequest = {
+
+      idUser: "USER0044"
+    }
+
+    this.menuService.getMenu(params).subscribe({
+      next: (response) => this.handleGetMenuSuccess(response),
+      error: (response) => this.handleGetMenuError(response)
+    });
+  }
+
+  private handleGetMenuSuccess(response: ApiResponse<IMenuResponse>): void {
+    this.navigationConfig = response.data.menu;
+  }
+
+  private handleGetMenuError(response: HttpErrorResponse): void {
+    this.snackbar.error(response.error.message, 10000);
+  }
 
 
+  toggleSidebar(): void {
+    const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
+    const menuArrow = this.el.nativeElement.querySelector('#menuArrow');
+    const sidebar = this.el.nativeElement.querySelector('#sidebar');
 
-toggleSubroutes(event: Event): void { /* ... your toggleSubroutes method ... */ }
-
-onSubrouteClick(subroute: any, route: any): void {
-  this.setActiveRoute(subroute.id);
-  this.updateRouteInfo(route.name + ' / ' + subroute.name);
-  // Optionally navigate if needed: this.router.navigate([subroute.path]);
-}
-
-onNavLinkClick(event: Event, route: any): void {
-  event.preventDefault(); // Prevent default link behavior
-
-  this.setActiveRoute(route.id);
-  this.updateRouteInfo(route.name);
-
-  if (route.subroutes && route.subroutes.length > 0) {
-    const navLinkElement = event.currentTarget as HTMLElement;
-    const subroutesElement = navLinkElement.nextElementSibling as HTMLElement;
-    const chevronElement = navLinkElement.querySelector('.chevron-down') as HTMLElement;
-
-    if (subroutesElement && chevronElement) {
-      if (subroutesElement.classList.contains('open')) {
-        this.renderer.removeClass(subroutesElement, 'open');
+    if (sidebarContent && menuArrow && sidebar) {
+      // Reemplazamos toggleClass por la lógica de addClass y removeClass para sidebarContent
+      if (sidebarContent.classList.contains('show')) {
+        this.renderer.removeClass(sidebarContent, 'show');
       } else {
-        this.renderer.addClass(subroutesElement, 'open');
+        this.renderer.addClass(sidebarContent, 'show');
       }
 
-      if (chevronElement.classList.contains('open')) {
-        this.renderer.removeClass(chevronElement, 'open');
+      // Reemplazamos toggleClass por la lógica de addClass y removeClass para menuArrow
+      if (menuArrow.classList.contains('open')) {
+        this.renderer.removeClass(menuArrow, 'open');
       } else {
-        this.renderer.addClass(chevronElement, 'open');
+        this.renderer.addClass(menuArrow, 'open');
+        this.sendDisplayHidden();
+      }
+
+      // Reemplazamos toggleClass por la lógica de addClass y removeClass para sidebar
+      if (sidebar.classList.contains('collapsed')) {
+        this.renderer.removeClass(sidebar, 'collapsed');
+      } else {
+        this.renderer.addClass(sidebar, 'collapsed');
+        this.sendDisplayShow();
       }
     }
-  } else {
-    // No subroutes logic...
-    // Optionally navigate if needed: this.router.navigate([route.path]);
   }
-}
 
-updateRouteInfo(routeName: string): void {
-  this.routeInformation = routeName;
-}
 
-setActiveRoute(routeId: string): void {
-  this.activeRouteId = routeId;
 
-  const navLinks = this.el.nativeElement.querySelectorAll('.nav-link, .subroute-link');
+  toggleSubroutes(event: Event): void { /* ... your toggleSubroutes method ... */ }
 
-  navLinks.forEach((linkElement: HTMLElement) => {
-    this.renderer.removeClass(linkElement, 'active');
-  });
+  onSubrouteClick(subroute: any, route: any): void {
+    this.setActiveRoute(subroute.id);
+    this.updateRouteInfo(route.name + ' / ' + subroute.name);
+    // Optionally navigate if needed: this.router.navigate([subroute.path]);
+  }
 
-  const targetRoute = this.el.nativeElement.querySelector(`[data-route-id="${routeId}"]`) as HTMLElement;
+  onNavLinkClick(event: Event, route: any): void {
+    event.preventDefault(); // Prevent default link behavior
 
-  if (targetRoute) {
-    this.renderer.addClass(targetRoute, 'active');
+    this.setActiveRoute(route.id);
+    this.updateRouteInfo(route.name);
 
-    if (targetRoute.classList.contains('subroute-link')) {
-      const parentMenu = targetRoute.closest('.subroutes') as HTMLElement;
-      if (parentMenu) {
-        this.renderer.addClass(parentMenu, 'open');
+    if (route.subroutes && route.subroutes.length > 0) {
+      const navLinkElement = event.currentTarget as HTMLElement;
+      const subroutesElement = navLinkElement.nextElementSibling as HTMLElement;
+      const chevronElement = navLinkElement.querySelector('.chevron-down') as HTMLElement;
 
-        const parentLink = parentMenu.previousElementSibling as HTMLElement;
-        if (parentLink) {
-          const chevron = parentLink.querySelector('.chevron-down') as HTMLElement;
-          if (chevron) {
-            this.renderer.addClass(chevron, 'open');
+      if (subroutesElement && chevronElement) {
+        if (subroutesElement.classList.contains('open')) {
+          this.renderer.removeClass(subroutesElement, 'open');
+        } else {
+          this.renderer.addClass(subroutesElement, 'open');
+        }
+
+        if (chevronElement.classList.contains('open')) {
+          this.renderer.removeClass(chevronElement, 'open');
+        } else {
+          this.renderer.addClass(chevronElement, 'open');
+        }
+      }
+    } else {
+      // No subroutes logic...
+      // Optionally navigate if needed: this.router.navigate([route.path]);
+    }
+  }
+
+  updateRouteInfo(routeName: string): void {
+    this.routeInformation = routeName;
+  }
+
+  setActiveRoute(routeId: string): void {
+    this.activeRouteId = routeId;
+
+    const navLinks = this.el.nativeElement.querySelectorAll('.nav-link, .subroute-link');
+
+    navLinks.forEach((linkElement: HTMLElement) => {
+      this.renderer.removeClass(linkElement, 'active');
+    });
+
+    const targetRoute = this.el.nativeElement.querySelector(`[data-route-id="${routeId}"]`) as HTMLElement;
+
+    if (targetRoute) {
+      this.renderer.addClass(targetRoute, 'active');
+
+      if (targetRoute.classList.contains('subroute-link')) {
+        const parentMenu = targetRoute.closest('.subroutes') as HTMLElement;
+        if (parentMenu) {
+          this.renderer.addClass(parentMenu, 'open');
+
+          const parentLink = parentMenu.previousElementSibling as HTMLElement;
+          if (parentLink) {
+            const chevron = parentLink.querySelector('.chevron-down') as HTMLElement;
+            if (chevron) {
+              this.renderer.addClass(chevron, 'open');
+            }
           }
         }
       }
     }
   }
-}
 
 
-setupMobileMenuInitialState(): void {
-  this.isMobileView = window.innerWidth <= 768;
-  const sidebar = this.el.nativeElement.querySelector('#sidebar');
-  const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
+  setupMobileMenuInitialState(): void {
+    this.isMobileView = window.innerWidth <= 768;
+    const sidebar = this.el.nativeElement.querySelector('#sidebar');
+    const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
 
-  if (sidebar && sidebarContent) {
-    if (this.isMobileView) {
-      this.renderer.addClass(sidebar, 'collapsed');
-      this.renderer.removeClass(sidebarContent, 'show');
-    } else {
-      this.renderer.removeClass(sidebar, 'collapsed');
-      this.renderer.addClass(sidebarContent, 'show');
+    if (sidebar && sidebarContent) {
+      if (this.isMobileView) {
+        this.renderer.addClass(sidebar, 'collapsed');
+        this.renderer.removeClass(sidebarContent, 'show');
+      } else {
+        this.renderer.removeClass(sidebar, 'collapsed');
+        this.renderer.addClass(sidebarContent, 'show');
+      }
     }
   }
-}
 
-@HostListener('window:resize', ['$event'])
-onResize(event: any): void {
-  this.isMobileView = window.innerWidth <= 768;
-  const sidebar = this.el.nativeElement.querySelector('#sidebar');
-  const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.isMobileView = window.innerWidth <= 768;
+    const sidebar = this.el.nativeElement.querySelector('#sidebar');
+    const sidebarContent = this.el.nativeElement.querySelector('#sidebarContent');
 
-  if (sidebar && sidebarContent) {
-    if (this.isMobileView) {
-      this.renderer.addClass(sidebar, 'collapsed');
-      this.renderer.removeClass(sidebarContent, 'show');
-    } else {
-      this.renderer.removeClass(sidebar, 'collapsed');
-      this.renderer.addClass(sidebarContent, 'show');
+    if (sidebar && sidebarContent) {
+      if (this.isMobileView) {
+        this.renderer.addClass(sidebar, 'collapsed');
+        this.renderer.removeClass(sidebarContent, 'show');
+      } else {
+        this.renderer.removeClass(sidebar, 'collapsed');
+        this.renderer.addClass(sidebarContent, 'show');
+      }
     }
   }
-}
 
-sendDisplayHidden(): void {
-  this.hiddenContent.emit("hidden");
-}
+  sendDisplayHidden(): void {
+    this.hiddenContent.emit("hidden");
+  }
 
-sendDisplayShow() : void{
+  sendDisplayShow(): void {
 
-  this.showContent.emit("show");
-}
+    this.showContent.emit("show");
+  }
 }

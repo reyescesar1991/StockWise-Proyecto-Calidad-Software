@@ -108,7 +108,7 @@ export class InicioComponent {
     },
     {
       iconType : 'money-icon',
-      icon : 'fas fa-shopping-cart',
+      icon : 'fa fa-shopping-cart',
       titleCard : 'Valor Inventario (Venta)',
       valueCard : 12.450,
       unit : '$',
